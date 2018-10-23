@@ -263,11 +263,7 @@ bool JsEditor::saveToFile (const File &file)
     
     if (os.openedOk())
     {
-#if JUCE_MAC
-        os.writeText (content, false, false);
-#else
         os.writeText (content, false, false, "\r\n");
-#endif
         return true;
     }
     
@@ -722,7 +718,7 @@ void CodeEditorPanel::panelWasClosed()
 
 XmlElement* CodeEditorPanel::getAsXml()
 {
-    auto e = new XmlElement (getPanelName().isEmpty() ? "CodeEditorPanel" : getPanelName());
+    auto e = new XmlElement (getPanelName().isEmpty() ? "CodeEditorPanel" : getPanelName().removeCharacters (" "));
     e->setAttribute ("panelId", getPanelId());
     
     auto applied = e->createNewChildElement ("APPLIED");

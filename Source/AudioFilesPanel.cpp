@@ -163,7 +163,7 @@ void AudioFilesPanel::buttonClicked (Button* b)
 
 void AudioFilesPanel::addButtonClicked()
 {
-    FileChooser chooser ("Select an audio file to add...", File::nonexistent, "*.wav, *.aif, *.mp3, *.ogg");
+    FileChooser chooser ("Select an audio file to add...", File(), "*.wav, *.aif, *.mp3, *.ogg");
     
     if (chooser.browseForFileToOpen())
         addFileUndoable (chooser.getResult());
@@ -341,7 +341,7 @@ void AudioFilesPanel::addToGraph (int row, String interfaceName)
 
 void AudioFilesPanel::modifyFileWindow (int row)
 {
-    FileChooser chooser ("Select an audio file", File::nonexistent, "*.wav, *.aif, *.mp3");
+    FileChooser chooser ("Select an audio file", File(), "*.wav, *.aif, *.mp3");
     
     if (row < subItems.size() && chooser.browseForFileToOpen())
     {

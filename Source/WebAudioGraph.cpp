@@ -1653,13 +1653,7 @@ void RootWebAudioGraphPanel::generateOutput (bool openInEditor)
         FileOutputStream fos (f);
         
         if (fos.openedOk())
-        {
-#if JUCE_MAC
-            fos.writeText (c, false, false);
-#else
             fos.writeText (c, false, false, "\r\n");
-#endif
-        }
     };
     
     if (generator.isUsingCoreLibrary())

@@ -31,11 +31,7 @@ GraphElementPreset* UserLibraryManager::addPresetFile (String wantedName, String
     
     if (fos.openedOk())
     {
-#if JUCE_MAC
-        fos.writeText (document, false, false);
-#else
         fos.writeText (document, false, false, "\r\n");
-#endif
 
         auto newPreset = new GraphElementPreset (output.getFileNameWithoutExtension(), interfaceName, output);
         presets.add (newPreset);
@@ -92,11 +88,7 @@ GraphSnippet* UserLibraryManager::addSnippetFile (String wantedName, String docu
         
         if (fos.openedOk())
         {
-#if JUCE_MAC
-            fos.writeText (document, false, false);
-#else
             fos.writeText (document, false, false, "\r\n");
-#endif
             
             auto newPreset = new GraphSnippet (output.getFileNameWithoutExtension(), output);
             snippets.add (newPreset);

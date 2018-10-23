@@ -237,10 +237,8 @@ void PropertyItemColourComponent::paint (Graphics &g)
 {
     if (checkerBoardIsVisible)
     {
-        auto r = getLocalBounds().withTrimmedLeft (labelWidth + 4);
-        // Newest JUCE code should use a Rectangle<float>...
-        //g.fillCheckerBoard (r.withTrimmedRight (getHeight()).toFloat(), 10, 10, Colours::black, Colours::white);
-        g.fillCheckerBoard (r.withTrimmedRight (getHeight()), 10, 10, Colours::black, Colours::white);
+        const auto r = getLocalBounds().withTrimmedLeft (labelWidth + 4);
+        g.fillCheckerBoard (r.withTrimmedRight (getHeight()).toFloat(), 10, 10, Colours::black, Colours::white);
     }
 }
  

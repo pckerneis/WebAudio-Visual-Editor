@@ -218,6 +218,12 @@
         <FILE id="cXTlUz" name="WebServer.cpp" compile="1" resource="0" file="Source/WebServer.cpp"/>
         <FILE id="UJaDrP" name="WebServer.h" compile="0" resource="0" file="Source/WebServer.h"/>
       </GROUP>
+      <GROUP id="{FF947D3B-76B3-0453-B0A1-58C88BB571B1}" name="OutputScriptPanel">
+        <FILE id="dFXauP" name="OutputScriptPanel.cpp" compile="1" resource="0"
+              file="Source/OutputScriptPanel.cpp"/>
+        <FILE id="HB1N3h" name="OutputScriptPanel.h" compile="0" resource="0"
+              file="Source/OutputScriptPanel.h"/>
+      </GROUP>
       <GROUP id="{10D40142-1100-38F7-9AEF-3F6CD6F9541A}" name="AudioFilesPanel">
         <FILE id="ze5sFN" name="AudioFilesManager.cpp" compile="1" resource="0"
               file="Source/AudioFilesManager.cpp"/>

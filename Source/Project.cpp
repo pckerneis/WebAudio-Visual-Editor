@@ -410,6 +410,7 @@ Panel* Project::loadPanelLayout (XmlElement* state)
 #include "GenerationPanel.h"
 #include "AudioFilesPanel.h"
 #include "LibraryPanel.h"
+#include "OutputScriptPanel.h"
 
 Panel* Project::findStaticPanel (XmlElement* state)
 {
@@ -419,7 +420,7 @@ Panel* Project::findStaticPanel (XmlElement* state)
     else if (tag == "WebAudioGraph")            return findStaticPanelWithClass<WebAudioGraphPanel>();
     else if (tag == "InspectorPanel")           return findStaticPanelWithClass<WebAudioInspector>();
     else if (tag == "GeneratorPanel")           return findStaticPanelWithClass<CodeGenerationPanel>();
-    else if (tag == "GeneratedCodePanel")       return findStaticPanelWithClass<CodeEditorPanel>();
+    else if (tag == "OutputScriptPanel")        return findStaticPanelWithClass<OutputScriptPanel>();
     else if (tag == "AudioFilesPanel")          return findStaticPanelWithClass<AudioFilesPanel>();
     else if (tag == "Library")                  return findStaticPanelWithClass<LibraryPanel>();
     else                                        return nullptr;
@@ -449,8 +450,7 @@ void Project::createStaticPanels()
     auto generationPanel = new CodeGenerationPanel (*this);
     staticPanels.add (generationPanel);
     
-    auto generatedPanel = new CodeEditorPanel (&panelManager, "Generated code");
-    generatedPanel->setPanelName ("GeneratedCodePanel");
+    auto generatedPanel = new OutputScriptPanel (&panelManager);
     staticPanels.add (generatedPanel);
     
     auto nav = new WebAudioNavigation (*this);

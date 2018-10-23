@@ -371,7 +371,7 @@ void ResizableLayoutManager::setTotalSize (int newSize)
                     item->defaultSize = contentSize;
                 else
                 {
-                    int deltaForThisItem = roundFloatToInt((float)delta / (float)numItemsToResize);
+                    int deltaForThisItem = roundToInt((float)delta / (float)numItemsToResize);
                     int target = getAbsoluteSize (item->defaultSize, oldSize) + deltaForThisItem;
             
                     target = jlimit (getAbsoluteSize(item->minSize, totalSize),
