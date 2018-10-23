@@ -44,6 +44,8 @@ PanelManager& Project::getPanelManager()
 Project::Project(ProjectManager& pm) : projectManager (pm), panelManager (*this), commandTarget (&pm, this)
 {
     createStaticPanels();
+    // This constructor is called when loading a project. We don't need to open the default window as the
+    // panel layout will be restored anyway.
     //triggerAsyncUpdate();
 }
 
@@ -53,6 +55,8 @@ Project::Project(String n, String d, File f, File dir, ProjectManager& pm)
 : creationDate(d), projectFile(f), projectDirectory (dir), projectManager (pm), panelManager (*this), commandTarget (&pm, this)
 {
     createStaticPanels();
+    // This constructor is called when creating a new project. To ensure the static panels are properly created
+    // at the time we create the window, we use an async update.
     triggerAsyncUpdate();
 }
 
@@ -65,13 +69,13 @@ void Project::handleAsyncUpdate()
 
 Project* Project::createNewProject (String projectName, File destination, ProjectManager& pm)
 {
-    String creationDate = Time::getCurrentTime().toString(true, true, true, true);
+    String creationDate = Time::getCurrentTime().toString (true, true, true, true);
     
     if (! destination.exists())
         destination.createDirectory();
     
     File projectDirectory = destination.getChildFile(projectName);
-    createDirectories(projectDirectory);
+    createDirectories (projectDirectory);
     File projectConfig = projectDirectory.getChildFile(projectName).withFileExtension (projectFileExtension);
     
     ScopedPointer<Project> p = new Project (projectName, creationDate, projectConfig, projectDirectory, pm);
@@ -102,7 +106,7 @@ Project::~Project()
     masterReference.clear();
 }
 
-void Project::quit()
+void Project::closeWindowsAndQuit()
 {
     panelManager.closeAllWindows();
     projectManager.quitProject (this);
@@ -177,7 +181,7 @@ Result Project::tryToClose()
             if (temporary)
                 deleteProjectDirectory();
             
-            quit();
+            closeWindowsAndQuit();
             return Result::ok();
         }
     }
@@ -190,7 +194,7 @@ Result Project::tryToClose()
         if (temporary)
             deleteProjectDirectory();
         
-        quit();
+        closeWindowsAndQuit();
         return Result::ok();
     }
     
@@ -319,15 +323,6 @@ bool Project::saveProjectConfig (File destination)
     return result;
 }
 
-Panel* Project::findPanelWithId (int panelId)
-{
-    for (auto panel : panelManager.getPanels())
-        if (panel->getPanelId() == panelId)
-            return panel;
-    
-    return nullptr;
-}
-
 bool Project::loadProjectConfig (const File & file)
 {
     XmlDocument xmlDoc (file);
@@ -339,26 +334,33 @@ bool Project::loadProjectConfig (const File & file)
     if (element->getTagName() != projectFileTagName)
         return false;
     
+    // Restore the project's property set
     PropertySet ps;
+    
     if (auto projectConf = element->getChildByName ("ProjectConfig"))
         ps.restoreFromXml (*projectConf);
     else
         return false;
     
-    name = ps.getValue ("name");
+    // Restore project's internal state
+    name = ps.getValue ("name");    // Not sure this is even used anymore...
     creationDate = ps.getValue ("created");
     projectDirectory = ps.getValue ("directory");
     
     projectFile = file;
     
+    // Restore internal state of each panels
     if (auto panelsXml = element->getChildByName ("Panels"))
         forEachXmlChildElement (*panelsXml, item)
             loadPanelState (item);
     
+    // Restore the panel windows
     if (auto windowsXml = element->getChildByName ("PanelWindows"))
         forEachXmlChildElement (*windowsXml, item)
             restorePanelWindow (item);
     
+    // We restore the layout for each panels after the panels window have been restored
+    // to make sure that the panels have their definitive size.
     if (auto panelsXml = element->getChildByName ("Panels"))
         forEachXmlChildElement (*panelsXml, item)
             loadPanelLayout (item);
@@ -372,6 +374,8 @@ void Project::restorePanelWindow (XmlElement* state)
         return;
     
     auto window = new PanelWindow (panelManager, *this);
+    
+    // Give some default size to the window
     auto userArea = Desktop::getInstance().getDisplays().getMainDisplay().userArea;
     window->centreWithSize (userArea.getWidth() * 0.9, userArea.getHeight() * 0.9);
     panelManager.addPanelWindow (window);
