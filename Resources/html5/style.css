@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700,800');
+
+a, p, h1, h2, h3, h4, h5, small {
+    font-family: "Montserrat", "Adobe Blank";
+    color:#373737;
+}
+
+h1, h2, h3, h4, h5 {
+    text-align: center;
+    letter-spacing: 0.01em;
+    line-height: 1.15em;
+}
+
+audio {
+    width: 100%;
+}
+
+#controllers {
+    width: 600px;
+    margin: auto;
+}
+
+#controllers button {
+    width: 100%;
+    margin-bottom: 5px;
+    height: 22px;
+}
+
+@media all and (max-width: 650px) {
+    #controllers {
+        width: 90%;
+        margin: auto;
+    }
+}

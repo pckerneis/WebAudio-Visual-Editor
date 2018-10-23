@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="Bctrt3" name="WebAudio Visual Editor" splashScreenColour="Dark"
+              projectType="guiapp" version="0.0.1" bundleIdentifier="com.pckerneis.WebAudioVisualEditor"
+              includeBinaryInAppConfig="1" jucerVersion="5.3.2" buildVST="1"
+              buildVST3="1" buildAU="1" buildAUv3="1" buildRTAS="0" buildAAX="0"
+              buildStandalone="0" enableIAA="0" pluginName="WebAudio Visual Editor"
+              pluginDesc="WebAudio Visual Editor" pluginManufacturer="pckerneis"
+              pluginManufacturerCode="Manu" pluginCode="Bctr" pluginChannelConfigs=""
+              pluginIsSynth="0" pluginWantsMidiIn="0" pluginProducesMidiOut="0"
+              pluginIsMidiEffectPlugin="0" pluginEditorRequiresKeys="0" pluginAUExportPrefix="WebAudioVisualEditorAU"
+              pluginRTASCategory="" aaxIdentifier="com.pckerneis.WebAudioVisualEditor"
+              pluginAAXCategory="2" cppLanguageStandard="14" companyCopyright=""
+              pluginFormats="buildVST,buildVST3,buildAU,buildAUv3" reportAppUsage="0"
+              displaySplashScreen="0">
+  <MAINGROUP id="AnLJgt" name="WebAudio Visual Editor">
+    <GROUP id="{6FC45E57-56ED-6329-99B6-03F6F56D00F7}" name="Resources">
+      <GROUP id="{82A5F01A-D592-6D47-4359-7C867DCAA801}" name="html5">
+        <FILE id="bRBmTM" name="index.html" compile="0" resource="1" file="Resources/html5/index.html"/>
+        <FILE id="ItjU8O" name="style.css" compile="0" resource="1" file="Resources/html5/style.css"/>
+        <FILE id="GHwVhv" name="wave.js" compile="0" resource="1" file="Resources/html5/wave.js"/>
+      </GROUP>
+      <FILE id="QNLMNT" name="dictionary.xml" compile="0" resource="1" file="Resources/dictionary.xml"/>
+      <FILE id="Gkyg9q" name="Montserrat-Light.ttf" compile="0" resource="1"
+            file="Resources/Montserrat-Light.ttf"/>
+      <FILE id="fiit5Q" name="waveproj_icon.png" compile="0" resource="1"
+            file="Resources/waveproj_icon.png"/>
+      <FILE id="kFzVru" name="wave-icon-small.png" compile="0" resource="1"
+            file="Resources/wave-icon-small.png"/>
+      <FILE id="aISeGo" name="wave-icon-large.png" compile="0" resource="1"
+            file="Resources/wave-icon-large.png"/>
+      <FILE id="B1tZrP" name="about-bg.png" compile="0" resource="1" file="Resources/about-bg.png"/>
+    </GROUP>
+    <GROUP id="{6C06BAF2-0319-ED5A-0816-713B9246BB6B}" name="Source">
+      <GROUP id="{4102FA58-E6FD-7EF7-25EB-3D2CD9122767}" name="Application">
+        <FILE id="NxotvS" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+        <FILE id="JzG034" name="CommandIDs.h" compile="0" resource="0" file="Source/CommandIDs.h"/>
+        <FILE id="KKWIRY" name="AppSettings.cpp" compile="1" resource="0" file="Source/AppSettings.cpp"/>
+        <FILE id="qRgn6U" name="AppSettings.h" compile="0" resource="0" file="Source/AppSettings.h"/>
+        <FILE id="nUlhGc" name="InternalClipboard.h" compile="0" resource="0"
+              file="Source/InternalClipboard.h"/>
+        <FILE id="JPJEWW" name="PopupMenuHandler.cpp" compile="1" resource="0"
+              file="Source/PopupMenuHandler.cpp"/>
+        <FILE id="HxWrZx" name="PopupMenuHandler.h" compile="0" resource="0"
+              file="Source/PopupMenuHandler.h"/>
+      </GROUP>
+      <GROUP id="{E49EEA2A-94A5-B6FA-2B26-132482E417C8}" name="Project">
+        <FILE id="wJ2y9t" name="Project.cpp" compile="1" resource="0" file="Source/Project.cpp"/>
+        <FILE id="hLH6aB" name="Project.h" compile="0" resource="0" file="Source/Project.h"/>
+        <FILE id="nz4fDc" name="ProjectCommandTarget.cpp" compile="1" resource="0"
+              file="Source/ProjectCommandTarget.cpp"/>
+        <FILE id="oMI35X" name="ProjectCommandTarget.h" compile="0" resource="0"
+              file="Source/ProjectCommandTarget.h"/>
+      </GROUP>
+      <GROUP id="{B743ECD9-792F-4A12-0A45-3EFD35FE8404}" name="Layout">
+        <GROUP id="{7745DEA1-6E23-AD1D-A0A5-A348E62F6575}" name="Windows">
+          <FILE id="L81MMu" name="AboutWindow.cpp" compile="1" resource="0" file="Source/AboutWindow.cpp"/>
+          <FILE id="AbahDV" name="AboutWindow.h" compile="0" resource="0" file="Source/AboutWindow.h"/>
+          <FILE id="NFuytL" name="PanelWindow.cpp" compile="1" resource="0" file="Source/PanelWindow.cpp"/>
+          <FILE id="MqysJv" name="PanelWindow.h" compile="0" resource="0" file="Source/PanelWindow.h"/>
+          <FILE id="SlnMwo" name="StartWindow.cpp" compile="1" resource="0" file="Source/StartWindow.cpp"/>
+          <FILE id="PgPLXc" name="StartWindow.h" compile="0" resource="0" file="Source/StartWindow.h"/>
+          <FILE id="ezraqw" name="PreferencesWindow.cpp" compile="1" resource="0"
+                file="Source/PreferencesWindow.cpp"/>
+          <FILE id="KW6jlj" name="PreferencesWindow.h" compile="0" resource="0"
+                file="Source/PreferencesWindow.h"/>
+        </GROUP>
+        <GROUP id="{2CB405DF-7DEC-F44C-0781-CCC18C0CA0A5}" name="Components">
+          <FILE id="Uv7T0h" name="PropertyTree.cpp" compile="1" resource="0"
+                file="Source/PropertyTree.cpp"/>
+          <FILE id="Cl00cx" name="PropertyTree.h" compile="0" resource="0" file="Source/PropertyTree.h"/>
+          <FILE id="WfvmM6" name="PanelTree.cpp" compile="1" resource="0" file="Source/PanelTree.cpp"/>
+          <FILE id="amGEiD" name="PanelTree.h" compile="0" resource="0" file="Source/PanelTree.h"/>
+          <FILE id="cmVG3y" name="Panel.cpp" compile="1" resource="0" file="Source/Panel.cpp"/>
+          <FILE id="g1KWNG" name="Panel.h" compile="0" resource="0" file="Source/Panel.h"/>
+          <FILE id="LR0gLe" name="ResizableLayoutManager.h" compile="0" resource="0"
+                file="Source/ResizableLayoutManager.h"/>
+          <FILE id="XNf9hi" name="ResizableLayoutManager.cpp" compile="1" resource="0"
+                file="Source/ResizableLayoutManager.cpp"/>
+          <FILE id="uWIW4L" name="ConsoleComponent.cpp" compile="1" resource="0"
+                file="Source/ConsoleComponent.cpp"/>
+          <FILE id="BGTUmZ" name="ConsoleComponent.h" compile="0" resource="0"
+                file="Source/ConsoleComponent.h"/>
+          <FILE id="n2IBCe" name="ColourPicker.cpp" compile="1" resource="0"
+                file="Source/ColourPicker.cpp"/>
+          <FILE id="Lus56a" name="ColourPicker.h" compile="0" resource="0" file="Source/ColourPicker.h"/>
+          <FILE id="ph4orB" name="ShapeButtons.cpp" compile="1" resource="0"
+                file="Source/ShapeButtons.cpp"/>
+          <FILE id="Xp8vcz" name="ShapeButtons.h" compile="0" resource="0" file="Source/ShapeButtons.h"/>
+        </GROUP>
+        <GROUP id="{7E1F1733-7BCD-6700-5F23-F711A91E105B}" name="Graph">
+          <FILE id="Z451jN" name="GraphPanel.cpp" compile="1" resource="0" file="Source/GraphPanel.cpp"/>
+          <FILE id="K288Wo" name="GraphPanel.h" compile="0" resource="0" file="Source/GraphPanel.h"/>
+          <FILE id="Mxz0sK" name="GraphEmbeddedComponent.cpp" compile="1" resource="0"
+                file="Source/GraphEmbeddedComponent.cpp"/>
+          <FILE id="GiAMl4" name="GraphEmbeddedComponent.h" compile="0" resource="0"
+                file="Source/GraphEmbeddedComponent.h"/>
+          <FILE id="L3OobQ" name="GraphSelector.cpp" compile="1" resource="0"
+                file="Source/GraphSelector.cpp"/>
+          <FILE id="lcm2PY" name="GraphSelector.h" compile="0" resource="0" file="Source/GraphSelector.h"/>
+          <FILE id="Xuzw1f" name="GraphDragger.cpp" compile="1" resource="0"
+                file="Source/GraphDragger.cpp"/>
+          <FILE id="EMTI14" name="GraphDragger.h" compile="0" resource="0" file="Source/GraphDragger.h"/>
+        </GROUP>
+        <GROUP id="{0F1DA561-3E6E-CBB6-4A76-87F50B8066A6}" name="ScriptEditor">
+          <FILE id="ZQj9ts" name="JavascriptCodeTokeniser.cpp" compile="1" resource="0"
+                file="Source/JavascriptCodeTokeniser.cpp"/>
+          <FILE id="rl89L8" name="JavascriptCodeTokeniser.h" compile="0" resource="0"
+                file="Source/JavascriptCodeTokeniser.h"/>
+          <FILE id="FtTCC7" name="JavascriptEditor.cpp" compile="1" resource="0"
+                file="Source/JavascriptEditor.cpp"/>
+          <FILE id="LNP4Je" name="JavascriptEditor.h" compile="0" resource="0"
+                file="Source/JavascriptEditor.h"/>
+        </GROUP>
+        <GROUP id="{5E49C45B-6200-E20D-4377-4E0A8518D19E}" name="Panels">
+          <FILE id="CMwOSP" name="TabbedPanel.cpp" compile="1" resource="0" file="Source/TabbedPanel.cpp"/>
+          <FILE id="fsfE7N" name="TabbedPanel.h" compile="0" resource="0" file="Source/TabbedPanel.h"/>
+          <FILE id="O1ucO7" name="InspectorPanel.cpp" compile="1" resource="0"
+                file="Source/InspectorPanel.cpp"/>
+          <FILE id="hPYR3p" name="InspectorPanel.h" compile="0" resource="0"
+                file="Source/InspectorPanel.h"/>
+          <FILE id="vU95l1" name="NavigationPanel.cpp" compile="1" resource="0"
+                file="Source/NavigationPanel.cpp"/>
+          <FILE id="NsuVCI" name="NavigationPanel.h" compile="0" resource="0"
+                file="Source/NavigationPanel.h"/>
+        </GROUP>
+        <FILE id="LHh9HP" name="WaveLookAndFeel.h" compile="0" resource="0"
+              file="Source/WaveLookAndFeel.h"/>
+      </GROUP>
+      <GROUP id="{88F97E25-706A-2EA3-1FAB-4E6399BBA1E6}" name="WebAudioHelpers">
+        <FILE id="GjEGsd" name="WebAudioGraphElementTypeNames.h" compile="0"
+              resource="0" file="Source/WebAudioGraphElementTypeNames.h"/>
+        <FILE id="f13YO6" name="JsCodeHelpers.h" compile="0" resource="0" file="Source/JsCodeHelpers.h"/>
+        <FILE id="aP9RuP" name="PropertyComponentTypes.h" compile="0" resource="0"
+              file="Source/PropertyComponentTypes.h"/>
+      </GROUP>
+      <GROUP id="{4F3BEC83-8AA7-BEAD-6C6C-EF1DC9216A13}" name="WebAudioGraph">
+        <FILE id="XFvBEw" name="WebAudioGraph.cpp" compile="1" resource="0"
+              file="Source/WebAudioGraph.cpp"/>
+        <FILE id="xwz3HI" name="WebAudioGraph.h" compile="0" resource="0" file="Source/WebAudioGraph.h"/>
+        <FILE id="H5n3XW" name="GraphTipComponent.cpp" compile="1" resource="0"
+              file="Source/GraphTipComponent.cpp"/>
+        <FILE id="GT7s1R" name="GraphTipComponent.h" compile="0" resource="0"
+              file="Source/GraphTipComponent.h"/>
+        <FILE id="mTCfv5" name="WebAudioNodeInstance.cpp" compile="1" resource="0"
+              file="Source/WebAudioNodeInstance.cpp"/>
+        <FILE id="J7punP" name="WebAudioNodeInstance.h" compile="0" resource="0"
+              file="Source/WebAudioNodeInstance.h"/>
+        <FILE id="sFL1pd" name="WebAudioDictionary.cpp" compile="1" resource="0"
+              file="Source/WebAudioDictionary.cpp"/>
+        <FILE id="AzUctf" name="WebAudioDictionary.h" compile="0" resource="0"
+              file="Source/WebAudioDictionary.h"/>
+      </GROUP>
+      <GROUP id="{138163E4-E763-4465-D70D-B746A9A399F1}" name="WebAudioGraphElements">
+        <FILE id="fasgCg" name="WebAudioInspectableElement.cpp" compile="1"
+              resource="0" file="Source/WebAudioInspectableElement.cpp"/>
+        <FILE id="aHXZUO" name="WebAudioInspectableElement.h" compile="0" resource="0"
+              file="Source/WebAudioInspectableElement.h"/>
+        <FILE id="Zsx79D" name="WebAudioData.cpp" compile="1" resource="0"
+              file="Source/WebAudioData.cpp"/>
+        <FILE id="XSkWde" name="WebAudioData.h" compile="0" resource="0" file="Source/WebAudioData.h"/>
+        <FILE id="jLP7wd" name="WebAudioContext.cpp" compile="1" resource="0"
+              file="Source/WebAudioContext.cpp"/>
+        <FILE id="oFcqAy" name="WebAudioContext.h" compile="0" resource="0"
+              file="Source/WebAudioContext.h"/>
+        <FILE id="nFE0uR" name="WebAudioNode.cpp" compile="1" resource="0"
+              file="Source/WebAudioNode.cpp"/>
+        <FILE id="rbHyWg" name="WebAudioNode.h" compile="0" resource="0" file="Source/WebAudioNode.h"/>
+        <FILE id="RyIMR2" name="WebAudioDynamicRoute.cpp" compile="1" resource="0"
+              file="Source/WebAudioDynamicRoute.cpp"/>
+        <FILE id="k8SUWC" name="WebAudioDynamicRoute.h" compile="0" resource="0"
+              file="Source/WebAudioDynamicRoute.h"/>
+        <FILE id="cITx0I" name="WebAudioScript.cpp" compile="1" resource="0"
+              file="Source/WebAudioScript.cpp"/>
+        <FILE id="wNejhB" name="WebAudioScript.h" compile="0" resource="0"
+              file="Source/WebAudioScript.h"/>
+        <FILE id="OcDpKJ" name="WebAudioMessage.cpp" compile="1" resource="0"
+              file="Source/WebAudioMessage.cpp"/>
+        <FILE id="AkeiDj" name="WebAudioMessage.h" compile="0" resource="0"
+              file="Source/WebAudioMessage.h"/>
+        <FILE id="oXgch0" name="WebAudioComment.cpp" compile="1" resource="0"
+              file="Source/WebAudioComment.cpp"/>
+        <FILE id="eYiFrP" name="WebAudioComment.h" compile="0" resource="0"
+              file="Source/WebAudioComment.h"/>
+      </GROUP>
+      <GROUP id="{5C35982D-F124-159C-A478-34D099959878}" name="WebAudioInspector">
+        <FILE id="IjnTwE" name="WebAudioInspector.cpp" compile="1" resource="0"
+              file="Source/WebAudioInspector.cpp"/>
+        <FILE id="FNYewk" name="WebAudioInspector.h" compile="0" resource="0"
+              file="Source/WebAudioInspector.h"/>
+      </GROUP>
+      <GROUP id="{5946AAFA-A233-0CE7-9017-E5EB48CF3AA3}" name="WebAudioNavigation">
+        <FILE id="jAVdy7" name="WebAudioNavigation.cpp" compile="1" resource="0"
+              file="Source/WebAudioNavigation.cpp"/>
+        <FILE id="V9PPom" name="WebAudioNavigation.h" compile="0" resource="0"
+              file="Source/WebAudioNavigation.h"/>
+      </GROUP>
+      <GROUP id="{22552E92-BC0F-5B08-21CA-295F01CA6EA8}" name="LibraryPanel">
+        <FILE id="PLBRCO" name="UserLibraryManager.h" compile="0" resource="0"
+              file="Source/UserLibraryManager.h"/>
+        <FILE id="lXhwH8" name="UserLibraryManager.cpp" compile="1" resource="0"
+              file="Source/UserLibraryManager.cpp"/>
+        <FILE id="YDoZma" name="LibraryPanel.cpp" compile="1" resource="0"
+              file="Source/LibraryPanel.cpp"/>
+        <FILE id="LD7jsp" name="LibraryPanel.h" compile="0" resource="0" file="Source/LibraryPanel.h"/>
+      </GROUP>
+      <GROUP id="{7622F5B3-71CB-4CA8-F0C2-961C311E51B2}" name="CodeGenerator">
+        <FILE id="lQd46L" name="GenerationPanel.cpp" compile="1" resource="0"
+              file="Source/GenerationPanel.cpp"/>
+        <FILE id="k2uK6Y" name="GenerationPanel.h" compile="0" resource="0"
+              file="Source/GenerationPanel.h"/>
+        <FILE id="vUIIyL" name="WebAudioGraphCodeGenerator.cpp" compile="1"
+              resource="0" file="Source/WebAudioGraphCodeGenerator.cpp"/>
+        <FILE id="KGLU5z" name="WebAudioGraphCodeGenerator.h" compile="0" resource="0"
+              file="Source/WebAudioGraphCodeGenerator.h"/>
+      </GROUP>
+      <GROUP id="{719C27A5-8D16-BBAA-C18A-1122AD580644}" name="WebServer">
+        <FILE id="cXTlUz" name="WebServer.cpp" compile="1" resource="0" file="Source/WebServer.cpp"/>
+        <FILE id="UJaDrP" name="WebServer.h" compile="0" resource="0" file="Source/WebServer.h"/>
+      </GROUP>
+      <GROUP id="{10D40142-1100-38F7-9AEF-3F6CD6F9541A}" name="AudioFilesPanel">
+        <FILE id="ze5sFN" name="AudioFilesManager.cpp" compile="1" resource="0"
+              file="Source/AudioFilesManager.cpp"/>
+        <FILE id="l83hlC" name="AudioFilesManager.h" compile="0" resource="0"
+              file="Source/AudioFilesManager.h"/>
+        <FILE id="q4yHpD" name="AudioFilesPanel.cpp" compile="1" resource="0"
+              file="Source/AudioFilesPanel.cpp"/>
+        <FILE id="i5kV3a" name="AudioFilesPanel.h" compile="0" resource="0"
+              file="Source/AudioFilesPanel.h"/>
+      </GROUP>
+    </GROUP>
+  </MAINGROUP>
+  <EXPORTFORMATS>
+    <XCODE_MAC targetFolder="Builds/MacOSX" customXcodeResourceFolders="" smallIcon="kFzVru"
+               bigIcon="aISeGo" vst3Folder="../../../SDKs/VST_SDK/VST3_SDK"
+               externalLibraries="" extraLinkerFlags="" documentExtensions=".waveproj">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" isDebug="1" optimisation="1" targetName="WebAudio Visual Editor"
+                       headerPath="" libraryPath="" enablePluginBinaryCopyStep="1"/>
+        <CONFIGURATION name="Release" isDebug="0" optimisation="3" targetName="WebAudio Visual Editor"
+                       enablePluginBinaryCopyStep="1" libraryPath=""/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_video" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_dsp" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_osc" path="../../../JUCE/modules"/>
+        <MODULEPATH id="juce_mongoose" path="JuceLibraryCode/modules/juce_mongoose"/>
+      </MODULEPATHS>
+    </XCODE_MAC>
+    <VS2017 targetFolder="Builds/VisualStudio2017" smallIcon="bS2HsO" bigIcon="wxVVH6">
+      <CONFIGURATIONS>
+        <CONFIGURATION isDebug="1" name="Debug"/>
+        <CONFIGURATION isDebug="0" name="Release"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_video" path="../../juce"/>
+        <MODULEPATH id="juce_osc" path="../../juce"/>
+        <MODULEPATH id="juce_opengl" path="../../juce"/>
+        <MODULEPATH id="juce_mongoose" path="..\..\..\modules\juce_mongoose"/>
+        <MODULEPATH id="juce_gui_extra" path="../../juce"/>
+        <MODULEPATH id="juce_gui_basics" path="../../juce"/>
+        <MODULEPATH id="juce_graphics" path="../../juce"/>
+        <MODULEPATH id="juce_events" path="../../juce"/>
+        <MODULEPATH id="juce_dsp" path="../../juce"/>
+        <MODULEPATH id="juce_data_structures" path="../../juce"/>
+        <MODULEPATH id="juce_cryptography" path="../../juce"/>
+        <MODULEPATH id="juce_core" path="../../juce"/>
+        <MODULEPATH id="juce_audio_utils" path="../../juce"/>
+        <MODULEPATH id="juce_audio_processors" path="../../juce"/>
+        <MODULEPATH id="juce_audio_formats" path="../../juce"/>
+        <MODULEPATH id="juce_audio_devices" path="../../juce"/>
+        <MODULEPATH id="juce_audio_basics" path="../../juce"/>
+      </MODULEPATHS>
+    </VS2017>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULE id="juce_audio_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_devices" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_formats" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_processors" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_audio_utils" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_core" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_cryptography" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_data_structures" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_dsp" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_events" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_mongoose" showAllCode="1" useLocalCopy="1" useGlobalPath="0"/>
+    <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_osc" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_video" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+  </MODULES>
+  <JUCEOPTIONS/>
+  <LIVE_SETTINGS>
+    <OSX/>
+    <WINDOWS/>
+  </LIVE_SETTINGS>
+</JUCERPROJECT>

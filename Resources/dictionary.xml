@@ -1,0 +1,1064 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<DICTIONARY>
+    <ENUM name="AudioContextState">
+        <ELEMENT name="suspended"></ELEMENT>
+        <ELEMENT name="running"></ELEMENT>
+        <ELEMENT name="closed"></ELEMENT>
+    </ENUM>
+    
+    <!-- Callback DecodeErrorCallback -->
+    <!-- Callback DecodeSuccessCallback -->
+    
+    <INTERFACE name="BaseAudioContext">
+        <PROPERTY name="destination" interface="AudioDestinationNode" attributes="readonly"></PROPERTY>
+        <PROPERTY name="sampleRate" interface="float" attributes="readonly"></PROPERTY>
+        <PROPERTY name="currentTime" interface="double" attributes="readonly" defaultValue="0"></PROPERTY>
+        <PROPERTY name="listener" interface="AudioListener" attributes="readonly"></PROPERTY>
+        <PROPERTY name="state" interface="AudioContextState" attributes="readonly"></PROPERTY>
+        <PROPERTY name="audioWorklet" interface="AudioWorklet" attributes="readonly"></PROPERTY>
+        <PROPERTY name="onstatechange" interface="EventHandler"></PROPERTY>
+        
+        <METHOD name="createAnalyser" returns="AnalyserNode">Factory method for an AnalyserNode.</METHOD>
+        <METHOD name="createBiquadFilter" returns="BiquadFilterNode">Factory method for a BiquadFilterNode representing a second order filter which can be configured as one of several common filter types.</METHOD>
+        <METHOD name="createBuffer" returns="AudioBuffer">Creates an AudioBuffer of the given size. The audio data in the buffer will be zero-initialized (silent).
+            <ARGUMENT name="numberOfChannels" interface="unsigned long">Determines how many channels the buffer will have.</ARGUMENT>
+            <ARGUMENT name="length" interface="unsigned long">Determines the size of the buffer in sample-frames. </ARGUMENT>
+            <ARGUMENT name="sampleRate" interface="float">Describes the sample-rate of the linear PCM audio data in the buffer in sample-frames per second.</ARGUMENT>
+        </METHOD>
+        <METHOD name="createBufferSource" returns="AudioBufferSourceNode">Factory method for a AudioBufferSourceNode.</METHOD>
+        <METHOD name="createChannelMerger" returns="ChannelMergerNode">Factory method for a ChannelMergerNode representing a channel merger.
+            <ARGUMENT name="numberOfInputs" interface="unsigned long" attributes="optional">Determines the number of inputs.</ARGUMENT>
+        </METHOD>
+        <METHOD name="createChannelSplitter" returns="ChannelSplitterNode">Factory method for a ChannelSplitterNode representing a channel splitter.
+            <ARGUMENT name="numberOfOutputs" interface="unsigned long" attributes="optional">The number of outputs.</ARGUMENT>
+        </METHOD>
+        <METHOD name="createConstantSource" returns="ConstantSourceNode">Factory method for a ConstantSourceNode.</METHOD>
+        <METHOD name="createConvolver" returns="ConvolverNode">Factory method for a ConvolverNode.</METHOD>
+        <METHOD name="createDelay" returns="DelayNode">Factory method for a DelayNode.
+            <ARGUMENT name="maxDelayTime" interface="double" attributes="optional">Specifies the maximum delay time in seconds allowed for the delay line.</ARGUMENT>
+        </METHOD>
+        <METHOD name="createDynamicsCompressor" returns="DynamicsCompressorNode">Factory method for a DynamicsCompressorNode.</METHOD>
+        <METHOD name="createGain" returns="GainNode">Factory method for GainNode.</METHOD>
+        <METHOD name="createIIRFilter" returns="IIRFilterNode">
+            <ARGUMENT name="feedforward" interface="sequence:double">An array of the feedforward (numerator) coefficients for the transfer function of the IIR filter. The maximum length of this array is 20.</ARGUMENT>
+            <ARGUMENT name="feedback" interface="sequence:double">An array of the feedback (denominator) coefficients for the transfer function of the IIR filter. The maximum length of this array is 20.</ARGUMENT>
+        </METHOD>
+        <METHOD name="createOscillator" returns="OscillatorNode">Factory method for an OscillatorNode.</METHOD>
+        <METHOD name="createPanner" returns="PannerNode">Factory method for a PannerNode.</METHOD>
+        <METHOD name="createPeriodicWave" returns="PeriodicWave">Factory method to create a PeriodicWave.
+            <ARGUMENT name="real" interface="sequence:float">A sequence of cosine parameters.</ARGUMENT>
+            <ARGUMENT name="imag" interface="sequence:float">A sequence of sine parameters.</ARGUMENT>
+            <ARGUMENT name="constraints" interface="PeriodicWaveConstraints" attributes="optional">If not given, the waveform is normalized. Otherwise, the waveform is normalized according the value given by constraints.</ARGUMENT>
+        </METHOD>
+        <!-- ScriptProcessorNode createScriptProcessor -->
+        <METHOD name="createStereoPanner" returns="StereoPannerNode">Factory method for a StereoPannerNode.</METHOD>
+        <METHOD name="createWaveShaper" returns="WaveShaperNode">Factory method for a WaveShaperNode representing a non-linear distortion.</METHOD>
+        
+        <METHOD name="decodeAudioData" returns="Promise:AudioBuffer">Asynchronously decodes the audio file data contained in the ArrayBuffer.
+            <ARGUMENT name="audioData" interface="ArrayBuffer">An ArrayBuffer containing compressed audio data.</ARGUMENT>
+            <ARGUMENT name="successCallback" interface="DecodeSuccessCallback" attributes="optional">A callback function which will be invoked when the decoding is finished. The single argument to this callback is an AudioBuffer representing the decoded PCM audio data.</ARGUMENT>
+            <ARGUMENT name="errorCallback" interface="DecodeErrorCallback" attributes="optional">A callback function which will be invoked if there is an error decoding the audio file.</ARGUMENT>
+        </METHOD>
+        <METHOD name="resume" returns="Promise:void">Resumes the progression of the BaseAudioContext's currentTime when it has been suspended.</METHOD>
+        
+    </INTERFACE>
+    
+    <ENUM name="AudioContextLatencyCategory">
+        <ELEMENT name="balanced">Balance audio output latency and power consumption.</ELEMENT>
+        <ELEMENT name="interactive">Provide the lowest audio output latency possible without glitching. This is the default.</ELEMENT>
+        <ELEMENT name="playback">Prioritize sustained playback without interruption over audio output latency. Lowest power consumption.</ELEMENT>
+    </ENUM>
+    
+    <INTERFACE name="AudioContext" category="CONTEXT">
+        <PROPERTY name="baseLatency" interface="double" attributes="readonly"></PROPERTY>
+        <PROPERTY name="outputLatency" interface="double" attributes="readonly"></PROPERTY>
+        
+        <METHOD name="getOutputTimestamp" returns="AudioTimestamp">Returns a new AudioTimestamp instance (...)</METHOD>
+        <METHOD name="suspend" returns="Promise:void">Suspends the progression of AudioContext's currentTime, allows any current context processing blocks that are already processed to be played to the destination, and then allows the system to release its claim on audio hardware.</METHOD>
+        <METHOD name="close" returns="Promise:void">Closes the AudioContext, releasing the system resources it’s using.</METHOD>
+        <METHOD name="createMediaElementSource" returns="MediaElementAudioSourceNode">Creates a MediaElementAudioSourceNode given an HTMLMediaElement.
+            <ARGUMENT name="mediaElement" interface="HTMLMediaElement">The media element that will be re-routed.</ARGUMENT>
+        </METHOD>
+        <METHOD name="createMediaStreamSource" returns="MediaStreamAudioSourceNode">Creates a MediaStreamTrackAudioSourceNode.
+            <ARGUMENT name="mediaStream" interface="MediaStream">The media stream that will act as source.</ARGUMENT>
+        </METHOD>
+        <METHOD name="createMediaStreamTrackSource" returns="MediaStreamTrackAudioSourceNode">Creates a MediaStreamTrackAudioSourceNode.
+            <ARGUMENT name="mediaStreamTrack" interface="MediaStreamTrack">The MediaStreamTrack that will act as source.</ARGUMENT>
+        </METHOD>
+        <METHOD name="createMediaStreamDestination" returns="MediaStreamAudioDestinationNode">Creates a MediaStreamAudioDestinationNode</METHOD>
+
+        <INHERITANCE name="BaseAudioContext"></INHERITANCE>
+    </INTERFACE>
+    
+    <DICT name="AudioContextOptions">
+        <PROPERTY name="latencyHint" interface="AudioContextLatencyCategory" defaultValue="&quot;interactive&quot;"></PROPERTY>
+        <PROPERTY name="sampleRate" interface="float"></PROPERTY>
+    </DICT>
+    
+    <DICT name="AudioTimestamp">
+        <PROPERTY name="contextTime" interface="double"></PROPERTY>
+        <PROPERTY name="performanceTime" interface="DOMHighResTimeStamp"></PROPERTY>
+    </DICT>
+    
+    <INTERFACE name="OfflineAudioContext" category="CONTEXT">
+        <PROPERTY name="length" interface="int" attributes="readonly"></PROPERTY>
+        <PROPERTY name="oncomplete" interface="EventHandler"></PROPERTY>
+        
+        <METHOD name="startRendering" returns="Promise:AudioBuffer">Given the current connections and scheduled changes, starts rendering audio.</METHOD>
+        <METHOD name="suspend" returns="Promise:void">Schedules a suspension of the time progression in the audio context at the specified time and returns a promise.
+            <ARGUMENT name="suspendTime" interface="double">Schedules a suspension of the rendering at the specified time.</ARGUMENT>
+        </METHOD>
+        
+        <INHERITANCE name="BaseAudioContext"></INHERITANCE>
+    </INTERFACE>
+    
+    <DICT name="OfflineAudioContextOptions">
+        <PROPERTY name="numberOfChannels" interface="unsigned long" defaultValue="1"></PROPERTY>
+        <PROPERTY name="length" interface="unsigned long" attributes="required"></PROPERTY>
+        <PROPERTY name="sampleRate" interface="float"></PROPERTY>
+    </DICT>
+    
+    <INTERFACE name="OfflineAudioCompletionEvent">
+        <PROPERTY name="renderedBuffer" interface="AudioBuffer" attributes="readonly"></PROPERTY>
+        <INHERITANCE name="Event"></INHERITANCE>
+    </INTERFACE>
+    
+    <DICT name="OfflineAudioCompletionEventInit">
+        <PROPERTY name="renderedBuffer" interface="AudioBuffer" attributes="required"></PROPERTY>
+        <INHERITANCE name="EventInit"></INHERITANCE>
+    </DICT>
+    
+    <INTERFACE name="AudioBuffer" category="AUDIODATA">
+        <CONSTRUCTOR value="createBuffer"></CONSTRUCTOR>
+        <PROPERTY name="sampleRate" interface="float" attributes="readonly"></PROPERTY>
+        <PROPERTY name="length" interface="unsigned long" attributes="readonly"></PROPERTY>
+        <PROPERTY name="duration" interface="double" attributes="readonly"></PROPERTY>
+        <PROPERTY name="numberOfChannels" interface="unsigned long" attributes="readonly"></PROPERTY>
+        
+        <METHOD name="getChannelData" returns="Float32Array">Get a reference or a copy of the bytes in a new Float32Array
+            <ARGUMENT name="channel" interface="unsigned long">Index representing the particular channel to get data for.</ARGUMENT>
+        </METHOD>
+        <METHOD name="copyFromChannel" returns="void">Copies the samples from the specified channel of the AudioBuffer to the destination array.
+            <ARGUMENT name="destination" interface="Float32Array">The array the channel data will be copied to.</ARGUMENT>
+            <ARGUMENT name="channelNumber" interface="unsigned long">The index of the channel to copy the data from.</ARGUMENT>
+            <ARGUMENT name="startInChannel" interface="unsigned long" attributes="optional" defaultValue="0">An optional offset to copy the data from.</ARGUMENT>
+        </METHOD>
+        <METHOD name="copyToChannel" returns="void">Copies the samples to the specified channel of the AudioBuffer from the source array.
+            <ARGUMENT name="source" interface="Float32Array">The array the channel data will be copied from.</ARGUMENT>
+            <ARGUMENT name="channelNumber" interface="unsigned long">The index of the channel to copy the data to.</ARGUMENT>
+            <ARGUMENT name="startInChannel" interface="unsigned long" attributes="optional" defaultValue="0">An optional offset to copy the data to.</ARGUMENT>
+        </METHOD>
+    </INTERFACE>
+    
+    <DICT name="AudioBufferOptions">
+        <PROPERTY name="numberOfChannels" interface="unsigned long" defaultValue="1">The length in sample frames of the buffer.</PROPERTY>
+        <PROPERTY name="length" interface="unsigned long" attributes="required">The number of channels for the buffer.</PROPERTY>
+        <PROPERTY name="sampleRate" interface="float" attributes="required">The sample rate in Hz for the buffer.</PROPERTY>
+    </DICT>
+
+    <INTERFACE name="AudioNode">
+        <PROPERTY name="context" interface="BaseAudioContext" attributes="readonly reference"></PROPERTY>
+        <PROPERTY name="numberOfInputs" interface="unsigned long" attributes="readonly"></PROPERTY>
+        <PROPERTY name="numberOfOutputs" interface="unsigned long" attributes="readonly"></PROPERTY>
+        <PROPERTY name="channelCount" interface="unsigned long"></PROPERTY>
+        <PROPERTY name="channelCountMode" interface="ChannelCountMode"></PROPERTY>
+        <PROPERTY name="channelInterpretation" interface="ChannelInterpretation"></PROPERTY>
+        
+        <METHOD name="connect" returns="AudioNode">Connects this node to another in the same context. There can only be one connection between a given output of one specific node and a given input of another specific node. Returns destination AudioNode object.
+            <ARGUMENT name="destinationNode" interface="AudioNode">The destination parameter is the AudioNode to connect to.</ARGUMENT>
+            <ARGUMENT name="output" interface="unsigned long" attributes="optional" defaultValue="0">The output parameter is an index describing which output of the AudioNode from which to connect.</ARGUMENT>
+            <ARGUMENT name="input" interface="unsigned long" attributes="optional" defaultValue="0">The input parameter is an index describing which input of the destination AudioNode to connect to. </ARGUMENT>
+        </METHOD>
+        <METHOD name="connect" returns="void">Connects the AudioNode to an AudioParam, controlling the parameter value with an audio-rate signal. Returns destination AudioNode object.
+            <ARGUMENT name="destinationParam" interface="AudioParam">The destination parameter is the AudioParam to connect to.</ARGUMENT>
+            <ARGUMENT name="output" interface="unsigned long" attributes="optional" defaultValue="0">The output parameter is an index describing which output of the AudioNode from which to connect.</ARGUMENT>
+        </METHOD>
+        <METHOD name="disconnect" returns="void">Disconnects all outgoing connections from the AudioNode.</METHOD>
+        <METHOD name="disconnect" returns="void">Disconnects all outputs of the AudioNode that go to a specific destination AudioNode.
+            <ARGUMENT name="destinationNode" interface="AudioNode">The destinationNode parameter is the AudioNode to disconnect. It disconnects all outgoing connections to the given destinationNode.</ARGUMENT>
+        </METHOD>
+        <METHOD name="disconnect" returns="void">Disconnects a specific output of the AudioNode from a specific input of some destination AudioNode.
+            <ARGUMENT name="destinationNode" interface="AudioNode">The destinationNode parameter is the AudioNode to disconnect.</ARGUMENT>
+            <ARGUMENT name="output" interface="unsigned long">The output parameter is an index describing which output of the AudioNode from which to disconnect. </ARGUMENT>
+        </METHOD>
+        <METHOD name="disconnect" returns="void">Disconnects a specific output of the AudioNode from a specific input of some destination AudioNode.
+            <ARGUMENT name="destinationNode" interface="AudioNode">The destinationNode parameter is the AudioNode to disconnect.</ARGUMENT>
+            <ARGUMENT name="output" interface="unsigned long">The output parameter is an index describing which output of the AudioNode from which to disconnect. </ARGUMENT>
+            <ARGUMENT name="input" interface="unsigned long">The input parameter is an index describing which input of the destination AudioNode to disconnect.</ARGUMENT>
+        </METHOD>
+        <METHOD name="disconnect" returns="void">Disconnects all outputs of the AudioNode that go to a specific destination AudioParam. The contribution of this AudioNode to the computed parameter value goes to 0 when this operation takes effect. The intrinsic parameter value is not affected by this operation.
+            <ARGUMENT name="destinationParam" interface="AudioParam">The destinationParam parameter is the AudioParam to disconnect.</ARGUMENT>
+        </METHOD>
+        <METHOD name="disconnect" returns="void">Disconnects a specific output of the AudioNode from a specific destination AudioParam. The contribution of this AudioNode to the computed parameter value goes to 0 when this operation takes effect. The intrinsic parameter value is not affected by this operation.
+            <ARGUMENT name="destinationParam" interface="AudioParam">The destinationParam parameter is the AudioParam to disconnect.</ARGUMENT>
+            <ARGUMENT name="output" interface="unsigned long">The output parameter is an index describing which output of the AudioNode from which to disconnect. </ARGUMENT>
+        </METHOD>
+        
+        <INHERITANCE name="EventTarget"></INHERITANCE>
+    </INTERFACE>
+    
+    <ENUM name="ChannelCountMode">
+        <ELEMENT name="max"></ELEMENT>
+        <ELEMENT name="clamped-max"></ELEMENT>
+        <ELEMENT name="explicit"></ELEMENT>
+    </ENUM>
+    
+    <ENUM name="ChannelInterpretation">
+        <ELEMENT name="speakers"></ELEMENT>
+        <ELEMENT name="discrete"></ELEMENT>
+    </ENUM>
+    
+    <DICT name="AudioNodeOptions">
+        <PROPERTY name="channelCount" interface="unsigned long"></PROPERTY>
+        <PROPERTY name="channelCountMode" interface="ChannelCountMode"></PROPERTY>
+        <PROPERTY name="channelInterpretation" interface="ChannelInterpretation"></PROPERTY>
+    </DICT>
+
+    <ENUM name="AutomationRate">
+        <ELEMENT name="a-rate"></ELEMENT>
+        <ELEMENT name="k-rate"></ELEMENT>
+    </ENUM>
+    
+    <INTERFACE name="AudioParam">
+        <PROPERTY name="value" interface="float" defaultValue="1"></PROPERTY>
+        <PROPERTY name="automationRate" interface="AutomationRate" attributes="readonly" defaultValue="a-rate"></PROPERTY>
+        <PROPERTY name="defaultValue" interface="float" attributes="readonly" defaultValue="1"></PROPERTY>
+        <PROPERTY name="minValue" interface="float" attributes="readonly" defaultValue="most-negative-single-float"></PROPERTY>
+        <PROPERTY name="maxValue" interface="float" attributes="readonly" defaultValue="most-positive-single-float"></PROPERTY>
+        
+        <METHOD name="setValueAtTime" returns="AudioParam">Schedules a parameter value change at the given time.
+            <ARGUMENT name="value" interface="float">The value the parameter will change to at the given time.</ARGUMENT>
+            <ARGUMENT name="startTime" interface="double">The time in the same time coordinate system as the BaseAudioContext's currentTime attribute at which the parameter changes to the given value.</ARGUMENT>
+        </METHOD>
+        <METHOD name="linearRampToValueAtTime" returns="AudioParam">Schedules a linear continuous change in parameter value from the previous scheduled parameter value to the given value.
+            <ARGUMENT name="value" interface="float">The value the parameter will linearly ramp to at the given time.</ARGUMENT>
+            <ARGUMENT name="endTime" interface="double">The time in the same time coordinate system as the AudioContext's currentTime attribute at which the automation ends. </ARGUMENT>
+        </METHOD>
+        <METHOD name="exponentialRampToValueAtTime" returns="AudioParam">Schedules an exponential continuous change in parameter value from the previous scheduled parameter value to the given value. Parameters representing filter frequencies and playback rate are best changed exponentially because of the way humans perceive sound.
+            <ARGUMENT name="value" interface="float">The value the parameter will exponentially ramp to at the given time. </ARGUMENT>
+            <ARGUMENT name="endTime" interface="double">The time in the same time coordinate system as the AudioContext's currentTime attribute where the exponential ramp ends.</ARGUMENT>
+        </METHOD>
+        <METHOD name="setTargetAtTime" returns="AudioParam">Start exponentially approaching the target value at the given time with a rate having the given time constant.
+            <ARGUMENT name="target" interface="float">The value the parameter will start changing to at the given time.</ARGUMENT>
+            <ARGUMENT name="startTime" interface="double">The time at which the exponential approach will begin, in the same time coordinate system as the AudioContext's currentTime attribute.</ARGUMENT>
+            <ARGUMENT name="timeConstant" interface="float">The time-constant value of first-order filter (exponential) approach to the target value. The larger this value is, the slower the transition will be.</ARGUMENT>
+        </METHOD>
+        <METHOD name="setValueCurveAtTime" returns="AudioParam">Sets an array of arbitrary parameter values starting at the given time for the given duration. The number of values will be scaled to fit into the desired duration.
+            <ARGUMENT name="values" interface="sequence:float">A sequence of float values representing a parameter value curve. These values will apply starting at the given time and lasting for the given duration.</ARGUMENT>
+            <ARGUMENT name="startTime" interface="double">The start time in the same time coordinate system as the AudioContext's currentTime attribute at which the value curve will be applied.</ARGUMENT>
+            <ARGUMENT name="duration" interface="double">The amount of time in seconds (after the startTime parameter) where values will be calculated according to the values parameter.</ARGUMENT>
+        </METHOD>
+        <METHOD name="cancelScheduledValues" returns="AudioParam">Cancels all scheduled parameter changes with times greater than or equal to cancelTime.
+            <ARGUMENT name="cancelTime" interface="double">The time after which any previously scheduled parameter changes will be cancelled. It is a time in the same time coordinate system as the AudioContext's currentTime attribute.</ARGUMENT>
+        </METHOD>
+        <METHOD name="cancelAndHoldAtTime" returns="AudioParam">This is similar to cancelScheduledValues() in that it cancels all scheduled parameter changes with times greater than or equal to cancelTime. However, in addition, the automation value that would have happened at cancelTime is then proprogated for all future time until other automation events are introduced.
+            <ARGUMENT name="cancelTime" interface="double">The time after which any previously scheduled parameter changes will be cancelled. It is a time in the same time coordinate system as the AudioContext's currentTime attribute.</ARGUMENT>
+        </METHOD>
+        
+        <INHERITANCE name="AudioNode">
+            <OVERRIDE numberOfInputs="1"
+                numberOfOutput="1"
+                channelCount="1"
+                channelCountMode="&quot;max&quot;"
+                channelInterpretation="&quot;speakers&quot;">
+            </OVERRIDE>
+        </INHERITANCE>
+    </INTERFACE>
+    
+    <INTERFACE name="AudioScheduledSourceNode">
+        <PROPERTY name="onended" interface="EventHandler"></PROPERTY>
+        
+        <METHOD name="start" returns="void">Schedules a sound to playback at an exact time.
+            <ARGUMENT name="when" interface="double" attributes="optional">The when parameter describes at what time (in seconds) the sound should start playing. It is in the same time coordinate system as the AudioContext's currentTime attribute.</ARGUMENT>
+        </METHOD>
+        <METHOD name="stop" returns="void">Schedules a sound to stop playback at an exact time. If stop is called again after already having been called, the last invocation will be the only one applied.
+            <ARGUMENT name="when" interface="double" attributes="optional">The when parameter describes at what time (in seconds) the source should stop playing. It is in the same time coordinate system as the AudioContext's currentTime attribute. If 0 is passed in for this value or if the value is less than currentTime, then the sound will stop playing immediately.</ARGUMENT>
+        </METHOD>
+        
+        <INHERITANCE name="AudioNode"></INHERITANCE>
+    </INTERFACE>
+    
+    <INTERFACE name="AnalyserNode" category="NODE">
+        <CONSTRUCTOR value="createAnalyser"></CONSTRUCTOR>
+        <PROPERTY name="fftSize" interface="unsigned long"></PROPERTY>
+        <PROPERTY name="frequencyBinCount" interface="unsigned long" attributes="readonly"></PROPERTY>
+        <PROPERTY name="minDecibels" interface="double"></PROPERTY>
+        <PROPERTY name="maxDecibels" interface="double"></PROPERTY>
+        <PROPERTY name="smoothingTimeConstant" interface="double"></PROPERTY>
+        
+        <METHOD name="getFloatFrequencyData" returns="void">Copies the current frequency data into the passed floating-point array. If the array has fewer elements than the frequencyBinCount, the excess elements will be dropped. If the array has more elements than the frequencyBinCount, the excess elements will be ignored. The most recent fftSize frames are used in computing the frequency data.
+            <ARGUMENT name="array" interface="Float32Array">This parameter is where the frequency-domain analysis data will be copied.</ARGUMENT>
+        </METHOD>
+        <METHOD name="getByteFrequencyData" returns="void">Copies the current frequency data into the passed unsigned byte array. If the array has fewer elements than the frequencyBinCount, the excess elements will be dropped. If the array has more elements than the frequencyBinCount, the excess elements will be ignored. The most recent fftSize frames are used in computing the frequency data.
+            <ARGUMENT name="array" interface="Uint8Array">This parameter is where the frequency-domain analysis data will be copied.</ARGUMENT>
+        </METHOD>
+        <METHOD name="getFloatTimeDomainData" returns="void">Copies the current frequency data into the passed floating-point array. If the array has fewer elements than the frequencyBinCount, the excess elements will be dropped. If the array has more elements than the frequencyBinCount, the excess elements will be ignored. The most recent fftSize frames are used in computing the frequency data.
+            <ARGUMENT name="array" interface="Float32Array">This parameter is where the time-domain sample data will be copied.</ARGUMENT>
+        </METHOD>
+        <METHOD name="getByteTimeDomainData" returns="void">Copies the current time-domain data (waveform data) into the passed unsigned byte array. If the array has fewer elements than the value of fftSize, the excess elements will be dropped. If the array has more elements than fftSize, the excess elements will be ignored. The most recent fftSize frames are used in computing the byte data.
+            <ARGUMENT name="array" interface="Uint8Array">This parameter is where the time-domain sample data will be copied.</ARGUMENT>
+        </METHOD>
+        
+        <INHERITANCE name="AudioNode">
+            <OVERRIDE numberOfInputs="1"
+                numberOfOutputs="1"
+                channelCount="1"
+                channelCountMode="&quot;explicit&quot;"
+                channelInterpretation="&quot;speakers&quot;">
+            </OVERRIDE>
+        </INHERITANCE>
+    </INTERFACE>
+    
+    <DICT name="AnalyserOptions">
+        <PROPERTY name="fftSize" interface="unsigned long" defaultValue="2048">The desired initial size of the FFT for frequency-domain analysis.</PROPERTY>
+        <PROPERTY name="maxDecibels" interface="double" defaultValue="-30">The desired initial maximum power in dB for FFT analysis.</PROPERTY>
+        <PROPERTY name="minDecibels" interface="double" defaultValue="-100">The desired initial minimum power in dB for FFT analysis.</PROPERTY>
+        <PROPERTY name="smoothingTimeConstant" interface="double" defaultValue="0.8">The desired initial smoothing constant for the FFT analysis.</PROPERTY>
+    </DICT>
+    
+    <INTERFACE name="AudioBufferSourceNode" category="NODE">
+        <CONSTRUCTOR value="createBufferSource">
+        </CONSTRUCTOR>
+        
+        <PROPERTY name="buffer" interface="AudioBuffer" attributes="nullable"></PROPERTY>
+        <PROPERTY name="playbackRate" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue="1"
+                minValue="most-negative-single-float"
+                maxValue="most-positive-single-float"
+                automationRate="&quot;k-rate&quot;">
+            </OVERRIDE>
+        </PROPERTY>
+        <PROPERTY name="detune" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue="0"
+                minValue="most-negative-single-float"
+                maxValue="most-positive-single-float"
+                automationRate="&quot;k-rate&quot;">
+            </OVERRIDE>
+        </PROPERTY>
+        <PROPERTY name="loop" interface="boolean"></PROPERTY>
+        <PROPERTY name="loopStart" interface="double"></PROPERTY>
+        <PROPERTY name="loopEnd" interface="double"></PROPERTY>
+        
+        <METHOD name="start" returns="void">Schedules a sound to playback at an exact time.
+            <ARGUMENT name="when" interface="double" attributes="optional" defaultValue="0">The when parameter describes at what time (in seconds) the sound should start playing. It is in the same time coordinate system as the AudioContext's currentTime attribute. If 0 is passed in for this value or if the value is less than currentTime, then the sound will start playing immediately. </ARGUMENT>
+            <ARGUMENT name="offset" interface="double" attributes="optional">The offset parameter supplies a playhead position where playback will begin. If 0 is passed in for this value, then playback will start from the beginning of the buffer. </ARGUMENT>
+            <ARGUMENT name="duration" interface="double" attributes="optional">The duration parameter describes the duration of sound to be played, expressed as seconds of total buffer content to be output, including any whole or partial loop iterations. The units of duration are independent of the effects of playbackRate.</ARGUMENT>
+        </METHOD>
+        
+        <INHERITANCE name="AudioScheduledSourceNode">
+            <OVERRIDE numberOfInputs="0"
+                numberOfOutputs="1">
+            </OVERRIDE>
+        </INHERITANCE>
+    </INTERFACE>
+    
+    <DICT name="AudioBufferSourceOptions">
+        <PROPERTY name="buffer" interface="AudioBuffer" attributes="nullable"></PROPERTY>
+        <PROPERTY name="detune" interface="float" defaultValue="0"></PROPERTY>
+        <PROPERTY name="loop" interface="boolean" defaultValue="false"></PROPERTY>
+        <PROPERTY name="loopEnd" interface="" defaultValue="0"></PROPERTY>
+        <PROPERTY name="loopStart" interface="" defaultValue="0"></PROPERTY>
+        <PROPERTY name="playbackRate" interface="float" defaultValue="1"></PROPERTY>
+    </DICT>
+    
+    <INTERFACE name="AudioDestinationNode">
+        <PROPERTY name="maxChannelCount" interface="unsigned long" attributes="readonly"></PROPERTY>
+        <INHERITANCE name="AudioNode">
+            <OVERRIDE numberOfInputs="1"
+                numberOfOutputs="1"
+                channelCount="2"
+                channelCountMode="&quot;explicit&quot;"
+                channelInterpretation="&quot;speakers&quot;">
+            </OVERRIDE>
+        </INHERITANCE>
+    </INTERFACE>
+    
+    <INTERFACE name="AudioListener">
+        <PROPERTY name="positionX" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue="0"
+                minValue="most-negative-single-float"
+                maxValue="most-positive-single-float"
+                automationRate="&quot;a-rate&quot;">
+            </OVERRIDE>
+        </PROPERTY>
+        <PROPERTY name="positionY" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue="0"
+                minValue="most-negative-single-float"
+                maxValue="most-positive-single-float"
+                automationRate="&quot;a-rate&quot;">
+            </OVERRIDE>
+        </PROPERTY>
+        <PROPERTY name="positionZ" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue="0"
+                minValue="most-negative-single-float"
+                maxValue="most-positive-single-float"
+                automationRate="&quot;a-rate&quot;">
+            </OVERRIDE>
+        </PROPERTY>
+        <PROPERTY name="forwardX" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue="0"
+                minValue="most-negative-single-float"
+                maxValue="most-positive-single-float"
+                automationRate="&quot;a-rate&quot;">
+            </OVERRIDE>
+        </PROPERTY>
+        <PROPERTY name="forwardY" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue="0"
+                minValue="most-negative-single-float"
+                maxValue="most-positive-single-float"
+                automationRate="&quot;a-rate&quot;">
+            </OVERRIDE></PROPERTY>
+        <PROPERTY name="forwardZ" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue="-1"
+                minValue="most-negative-single-float"
+                maxValue="most-positive-single-float"
+                automationRate="&quot;a-rate&quot;">
+            </OVERRIDE></PROPERTY>
+        <PROPERTY name="upX" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue="0"
+                minValue="most-negative-single-float"
+                maxValue="most-positive-single-float"
+                automationRate="&quot;a-rate&quot;">
+            </OVERRIDE>
+        </PROPERTY>
+        <PROPERTY name="upY" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue="1"
+                minValue="most-negative-single-float"
+                maxValue="most-positive-single-float"
+                automationRate="&quot;a-rate&quot;">
+            </OVERRIDE>
+        </PROPERTY>
+        <PROPERTY name="upZ" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue="0"
+                minValue="most-negative-single-float"
+                maxValue="most-positive-single-float"
+                automationRate="&quot;a-rate&quot;">
+            </OVERRIDE>
+        </PROPERTY>
+        
+        <METHOD name="setPosition" returns="void">This method is DEPRECATED. It is equivalent to setting positionX.value, positionY.value, and positionZ.value directly with the given x, y, and z values, respectively.
+            <ARGUMENT name="x" interface="float"></ARGUMENT>
+            <ARGUMENT name="y" interface="float"></ARGUMENT>
+            <ARGUMENT name="z" interface="float"></ARGUMENT>
+        </METHOD>
+        <METHOD name="setOrientation" returns="void">This method is DEPRECATED. It is equivalent to setting forwardX.value, forwardY.value, forwardZ.value, upX.value, upY.value, and upZ.value directly with the given x, y, z, xUp, yUp, and zUp values, respectively.
+            <ARGUMENT name="x" interface="float"></ARGUMENT>
+            <ARGUMENT name="y" interface="float"></ARGUMENT>
+            <ARGUMENT name="z" interface="float"></ARGUMENT>
+            <ARGUMENT name="xUp" interface="float"></ARGUMENT>
+            <ARGUMENT name="yUp" interface="float"></ARGUMENT>
+            <ARGUMENT name="zUp" interface="float"></ARGUMENT>
+        </METHOD>
+        
+    </INTERFACE>
+
+    <INTERFACE name="AudioProcessingEvent" attributes="deprecated">
+        <PROPERTY name="playbackTime" interface="double" attributes="readonly"></PROPERTY>
+        <PROPERTY name="inputBuffer" interface="AudioBuffer" attributes="readonly"></PROPERTY>
+        <PROPERTY name="outputBuffer" interface="AudioBuffer" attributes="readonly"></PROPERTY>
+        <INHERITANCE name="Event"></INHERITANCE>
+    </INTERFACE>
+    
+    <DICT name="AudioProcessingEventInit">
+        <PROPERTY name="playbackTime" interface="double" attributes="required"></PROPERTY>
+        <PROPERTY name="inputBuffer" interface="AudioBuffer" attributes="required"></PROPERTY>
+        <PROPERTY name="outputBuffer" interface="AudioBuffer" attributes="required"></PROPERTY>
+        <INHERITANCE name="EventInit"></INHERITANCE>
+    </DICT>
+    
+    <ENUM name="BiquadFilterType">
+        <ELEMENT name="lowpass"></ELEMENT>
+        <ELEMENT name="highpass"></ELEMENT>
+        <ELEMENT name="bandpass"></ELEMENT>
+        <ELEMENT name="lowshelf"></ELEMENT>
+        <ELEMENT name="highshelf"></ELEMENT>
+        <ELEMENT name="peaking"></ELEMENT>
+        <ELEMENT name="notch"></ELEMENT>
+        <ELEMENT name="allpass"></ELEMENT>
+    </ENUM>
+    
+    <INTERFACE name="BiquadFilterNode" category="NODE">
+        <CONSTRUCTOR value="createBiquadFilter"></CONSTRUCTOR>
+        <PROPERTY name="type" interface="BiquadFilterType"></PROPERTY>
+        <PROPERTY name="frequency" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue="350"
+                minValue="most-negative-single-float"
+                maxValue="most-positive-single-float"
+                automationRate="&quot;a-rate&quot;">
+            </OVERRIDE>
+        </PROPERTY>
+        <PROPERTY name="detune" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue="0"
+                minValue="most-negative-single-float"
+                maxValue="most-positive-single-float"
+                automationRate="&quot;a-rate&quot;">
+            </OVERRIDE>
+        </PROPERTY>
+        <PROPERTY name="Q" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue="1"
+                minValue="most-negative-single-float"
+                maxValue="most-positive-single-float"
+                automationRate="&quot;a-rate&quot;">
+            </OVERRIDE>
+        </PROPERTY>
+        <PROPERTY name="gain" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue="0"
+                minValue="most-negative-single-float"
+                maxValue="most-positive-single-float"
+                automationRate="&quot;a-rate&quot;">
+            </OVERRIDE>
+        </PROPERTY>
+        
+        <METHOD name="getFrequencyResponse" returns="void">Given the current filter parameter settings, synchronously calculates the frequency response for the specified frequencies.
+            <ARGUMENT name="frequencyHz" interface="Float32Array">This parameter specifies an array of frequencies at which the response values will be calculated.</ARGUMENT>
+            <ARGUMENT name="magResponse" interface="Float32Array">This parameter specifies an output array receiving the linear magnitude response values.</ARGUMENT>
+            <ARGUMENT name="phaseResponse" interface="Float32Array">This parameter specifies an output array receiving the phase response values in radians.</ARGUMENT>
+        </METHOD>
+        
+        <INHERITANCE name="AudioNode">
+            <OVERRIDE numberOfInputs="1"
+                numberOfOutputs="1"
+                channelCount="2"
+                channelCountMode="&quot;max&quot;"
+                channelInterpretation="&quot;speakers&quot;">
+            </OVERRIDE>
+        </INHERITANCE>
+    </INTERFACE>
+    
+    <DICT name="BiquadFilterOptions">
+        <PROPERTY name="type" interface="BiquadFilterType" defaultValue = "&quot;lowpass&quot;"></PROPERTY>
+        <PROPERTY name="Q" interface="float" defaultValue = "1"></PROPERTY>
+        <PROPERTY name="detune" interface="float" defaultValue = "0"></PROPERTY>
+        <PROPERTY name="frequency" interface="float" defaultValue = "350"></PROPERTY>
+        <PROPERTY name="gain" interface="float" defaultValue = "1"></PROPERTY>
+        <INHERITANCE name="AudioNodeOptions"></INHERITANCE>
+    </DICT>
+    
+    <INTERFACE name="ChannelMergerNode" category="NODE">
+        <CONSTRUCTOR value="createChannelMerger"></CONSTRUCTOR>
+        <INHERITANCE name="AudioNode">
+            <OVERRIDE numberOfInputs="6"
+                numberOfOutputs="1"
+                channelCount="1"
+                channelCountMode="&quot;explicit&quot;"
+                channelInterpretation="&quot;speakers&quot;">
+            </OVERRIDE>
+        </INHERITANCE>
+    </INTERFACE>
+    
+    <DICT name="ChannelMergerOptions">
+        <PROPERTY name="numberOfInputs" interface="unsigned long" defaultValue = "6"></PROPERTY>
+        <INHERITANCE name="AudioNodeOptions"></INHERITANCE>
+    </DICT>
+
+    <INTERFACE name="ChannelSplitterNode" category="NODE">
+        <CONSTRUCTOR value="createChannelSplitter"></CONSTRUCTOR>
+        <INHERITANCE name="AudioNode">
+            <OVERRIDE numberOfInputs="1"
+                numberOfOutputs="6"
+                channelCount="1"
+                channelCountMode="&quot;explicit&quot;"
+                channelInterpretation="&quot;speakers&quot;">
+            </OVERRIDE>
+        </INHERITANCE>
+    </INTERFACE>
+    
+    <DICT name="ChannelSplitterOptions">
+        <PROPERTY name="numberOfOutputs" interface="unsigned long" defaultValue = "6"></PROPERTY>
+        <INHERITANCE name="AudioNodeOptions"></INHERITANCE>
+    </DICT>
+
+    <INTERFACE name="ConstantSourceNode" category="NODE">
+        <CONSTRUCTOR value="createConstantSource"></CONSTRUCTOR>
+        <PROPERTY name="offset" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue="1"
+                minValue="most-negative-single-float"
+                maxValue="most-positive-single-float"
+                automationRate="&quot;a-rate&quot;">
+            </OVERRIDE>
+        </PROPERTY>
+        <INHERITANCE name="AudioNode">
+            <OVERRIDE numberOfInputs="0"
+                numberOfOutputs="1"
+                channelCount="2"
+                channelCountMode="&quot;max&quot;"
+                channelInterpretation="&quot;speakers&quot;">
+            </OVERRIDE>
+        </INHERITANCE>
+    </INTERFACE>
+
+    <DICT name="ConstantSourceOptions">
+        <PROPERTY name="offset" interface="float" defaultValue = "1"></PROPERTY>
+    </DICT>
+    
+    <INTERFACE name="ConvolverNode" category="NODE">
+        <CONSTRUCTOR value="createConvolver"></CONSTRUCTOR>
+        <PROPERTY name="buffer" interface="AudioBuffer" attributes="nullable"></PROPERTY>
+        <PROPERTY name="normalize" interface="boolean"></PROPERTY>
+        <INHERITANCE name="AudioNode">
+            <OVERRIDE numberOfInputs="1"
+                numberOfOutputs="1"
+                channelCount="2"
+                channelCountMode="&quot;clamped-max&quot;"
+                channelInterpretation="&quot;speakers&quot;">
+            </OVERRIDE>
+        </INHERITANCE>
+    </INTERFACE>
+
+    <DICT name="ConvolverOptions">
+        <PROPERTY name="buffer" interface="AudioBuffer" attributes="nullable"></PROPERTY>
+        <PROPERTY name="disableNormalization" interface="boolean" defaultValue="false"></PROPERTY>
+        <INHERITANCE name="AudioNodeOptions"></INHERITANCE>
+    </DICT>
+    
+    <INTERFACE name="DelayNode" category="NODE">
+        <CONSTRUCTOR value="createDelay"></CONSTRUCTOR>
+        <PROPERTY name="delayTime" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue="0"
+                minValue="0"
+                maxValue="maxDelayTime"
+                automationRate="&quot;a-rate&quot;">
+            </OVERRIDE>
+        </PROPERTY>
+        <INHERITANCE name="AudioNode">
+            <OVERRIDE numberOfInputs="1"
+                numberOfOutputs="1"
+                channelCount="2"
+                channelCountMode="&quot;max&quot;"
+                channelInterpretation="&quot;speakers&quot;">
+            </OVERRIDE>
+        </INHERITANCE>
+    </INTERFACE>
+    
+    <DICT name="DelayOptions">
+        <PROPERTY name="maxDelayTime" interface="double" defaultValue="1"></PROPERTY>
+        <PROPERTY name="delayTime" interface="double" defaultValue="0"></PROPERTY>
+        <INHERITANCE name="AudioNodeOptions"></INHERITANCE>
+    </DICT>
+    
+    <INTERFACE name="DynamicsCompressorNode" category="NODE">
+        <CONSTRUCTOR value="createDynamicsCompressor"></CONSTRUCTOR>
+        <PROPERTY name="threshold" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue="-24"
+                minValue="-100"
+                maxValue="0"
+                automationRate="&quot;k-rate&quot;">
+            </OVERRIDE>
+        </PROPERTY>
+        <PROPERTY name="knee" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue="30"
+                minValue="0"
+                maxValue="40"
+                automationRate="&quot;k-rate&quot;">
+            </OVERRIDE>
+        </PROPERTY>
+        <PROPERTY name="ratio" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue="12"
+                minValue="1"
+                maxValue="20"
+                automationRate="&quot;k-rate&quot;">
+            </OVERRIDE>
+        </PROPERTY>
+        <PROPERTY name="reduction" interface="float" attributes="readonly"></PROPERTY>
+        <PROPERTY name="attack" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue=".003"
+                minValue="0"
+                maxValue="1"
+                automationRate="&quot;k-rate&quot;">
+            </OVERRIDE>
+        </PROPERTY>
+        <PROPERTY name="release" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue=".25"
+                minValue="0"
+                maxValue="1"
+                automationRate="&quot;k-rate&quot;">
+            </OVERRIDE>
+        </PROPERTY>
+        <INHERITANCE name="AudioNode">
+            <OVERRIDE numberOfInputs="1"
+                numberOfOutputs="1"
+                channelCount="2"
+                channelCountMode="&quot;clamped-max&quot;"
+                channelInterpretation="&quot;speakers&quot;">
+            </OVERRIDE>
+        </INHERITANCE>
+    </INTERFACE>
+    
+    <DICT name="DynamicsCompressorOptions">
+        <PROPERTY name="attack" interface="float" defaultValue="0.003"></PROPERTY>
+        <PROPERTY name="knee" interface="float" defaultValue="30"></PROPERTY>
+        <PROPERTY name="ratio" interface="float" defaultValue="12"></PROPERTY>
+        <PROPERTY name="release" interface="float" defaultValue="0.25"></PROPERTY>
+        <PROPERTY name="threshold" interface="float" defaultValue="-24"></PROPERTY>
+        <INHERITANCE name="AudioNodeOptions"></INHERITANCE>
+    </DICT>
+    
+    <INTERFACE name="GainNode" category="NODE">
+        <CONSTRUCTOR value="createGain">
+        </CONSTRUCTOR>
+        <PROPERTY name="gain" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue="1"
+                minValue="most-negative-single-float"
+                maxValue="most-positive-single-float"
+                automationRate="&quot;a-rate&quot;">
+            </OVERRIDE>
+        </PROPERTY>
+        <INHERITANCE name="AudioNode">
+            <OVERRIDE numberOfInputs="1"
+                numberOfOutputs="1"
+                channelCount="2"
+                channelCountMode="&quot;max&quot;"
+                channelInterpretation="&quot;speakers&quot;">
+            </OVERRIDE>
+        </INHERITANCE>
+    </INTERFACE>
+    
+    <DICT name="GainOptions">
+        <PROPERTY name="gain" interface="float" defaultValue="1.0"></PROPERTY>
+        <INHERITANCE name="AudioNodeOptions"></INHERITANCE>
+    </DICT>
+    
+    <INTERFACE name="IIRFilterNode" category="NODE">
+        <CONSTRUCTOR value="createIIRFilter"></CONSTRUCTOR>
+        
+        <METHOD name="getFrequencyResponse" returns="void">Given the current filter parameter settings, synchronously calculates the frequency response for the specified frequencies.
+            <ARGUMENT name="frequencyHz" interface="Float32Array">This parameter specifies an array of frequencies at which the response values will be calculated.</ARGUMENT>
+            <ARGUMENT name="magResponse" interface="Float32Array">This parameter specifies an output array receiving the linear magnitude response values.</ARGUMENT>
+            <ARGUMENT name="phaseResponse" interface="Float32Array">This parameter specifies an output array receiving the phase response values in radians.</ARGUMENT>
+        </METHOD>
+        
+        <INHERITANCE name="AudioNode">
+            <OVERRIDE numberOfInputs="1"
+                numberOfOutputs="1"
+                channelCount="2"
+                channelCountMode="&quot;max&quot;"
+                channelInterpretation="&quot;speakers&quot;">
+            </OVERRIDE>
+        </INHERITANCE>
+    </INTERFACE>
+    
+    <DICT name="IIRFilterOptions">
+        <PROPERTY name="feedforward" interface="sequence:double" attributes="required"></PROPERTY>
+        <PROPERTY name="feedback" interface="sequence:double" attributes="required"></PROPERTY>
+        <INHERITANCE name="AudioNodeOptions"></INHERITANCE>
+    </DICT>
+    
+    <INTERFACE name="MediaElementAudioSourceNode" category="NODE">
+        <PROPERTY name="mediaElement" interface="HTMLMediaElement" attributes="readonly"></PROPERTY>
+        <INHERITANCE name="AudioNode">
+            <OVERRIDE numberOfInputs="0"
+                numberOfOutputs="1">
+            </OVERRIDE>
+        </INHERITANCE>
+    </INTERFACE>
+    
+    <DICT name="MediaElementAudioSourceOptions">
+        <PROPERTY name="mediaElement" interface="HTMLMediaElement" attributes="required"></PROPERTY>
+    </DICT>
+    
+    <INTERFACE name="MediaStreamAudioDestinationNode">
+        <PROPERTY name="stream" interface="MediaStream" attributes="readonly"></PROPERTY>
+        <INHERITANCE name="AudioNode">
+            <OVERRIDE numberOfInputs="1"
+                numberOfOutputs="0"
+                channelCount="2"
+                channelCountMode="&quot;explicit&quot;"
+                channelInterpretation="&quot;speakers&quot;">
+            </OVERRIDE>
+        </INHERITANCE>
+    </INTERFACE>
+    
+    <INTERFACE name="MediaStreamAudioSourceNode">
+        <PROPERTY name="stream" interface="MediaStream" attributes="readonly"></PROPERTY>
+        <INHERITANCE name="AudioNode">
+            <OVERRIDE numberOfInputs="0"
+                numberOfOutputs="1">
+            </OVERRIDE>
+        </INHERITANCE>
+    </INTERFACE>
+    
+    <DICT name="MediaStreamAudioSourceOptions">
+        <PROPERTY name="mediaStream" interface="MediaStream" attributes="required"></PROPERTY>
+    </DICT>
+    
+    <INTERFACE name="MediaStreamTrackAudioSourceNode">
+        <INHERITANCE name="AudioNode">
+            <OVERRIDE numberOfInputs="0"
+                numberOfOutputs="1">
+            </OVERRIDE>
+        </INHERITANCE>
+    </INTERFACE>
+    
+    <DICT name="MediaStreamTrackAudioSourceOptions">
+        <PROPERTY name="mediaStreamTrack" interface="MediaStreamTrack" attributes="required"></PROPERTY>
+    </DICT>
+
+    <ENUM name="OscillatorType">
+        <ELEMENT name ="sine"></ELEMENT>
+        <ELEMENT name ="square"></ELEMENT>
+        <ELEMENT name ="sawtooth"></ELEMENT>
+        <ELEMENT name ="triangle"></ELEMENT>
+        <ELEMENT name ="custom"></ELEMENT>
+    </ENUM>
+    
+    <INTERFACE name="OscillatorNode" category="NODE">
+        <CONSTRUCTOR value="createOscillator"></CONSTRUCTOR>
+        <PROPERTY name="type" interface="OscillatorType"></PROPERTY>
+        <PROPERTY name="frequency" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue="440"
+                minValue="-sampleRate * 0.5"
+                maxValue="sampleRate * 0.5"
+                automationRate="&quot;a-rate&quot;">
+            </OVERRIDE>
+        </PROPERTY>
+        <PROPERTY name="detune" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue="0"
+                minValue="-1200 * log2(sampleRate)"
+                maxValue="1200 * log2(sampleRate)"
+                automationRate="&quot;a-rate&quot;">
+            </OVERRIDE>
+        </PROPERTY>
+        
+        <METHOD name="setPeriodicWave" returns="void">Sets an arbitrary custom periodic waveform given a PeriodicWave.            <ARGUMENT name="periodicWave" interface="PeriodicWave"></ARGUMENT>
+        </METHOD>
+        
+        <INHERITANCE name="AudioScheduledSourceNode">
+            <OVERRIDE numberOfInputs="0"
+                numberOfOutputs="1"
+                channelCount="2"
+                channelCountMode="&quot;max&quot;"
+                channelInterpretation="&quot;speakers&quot;">
+            </OVERRIDE>
+        </INHERITANCE>
+    </INTERFACE>
+    
+    <DICT name="OscillatorOptions">
+        <PROPERTY name="type" interface="OscillatorType" defaultValue="&quot;sine&quot;"></PROPERTY>
+        <PROPERTY name="frequency" interface="float" defaultValue="440"></PROPERTY>
+        <PROPERTY name="detune" interface="float" defaultValue="0"></PROPERTY>
+        <PROPERTY name="periodicWave" interface="PeriodicWave"></PROPERTY>
+        <INHERITANCE name="AudioNodeOptions"></INHERITANCE>
+    </DICT>
+    
+    <ENUM name="PanningModelType">
+        <ELEMENT name ="equalpower"></ELEMENT>
+        <ELEMENT name ="HRTF"></ELEMENT>
+    </ENUM>
+    
+    <ENUM name="DistanceModelType">
+        <ELEMENT name ="linear"></ELEMENT>
+        <ELEMENT name ="inverse"></ELEMENT>
+        <ELEMENT name ="exponential"></ELEMENT>
+    </ENUM>
+    
+    <INTERFACE name="PannerNode" category="NODE">
+        <CONSTRUCTOR value="createPanner"></CONSTRUCTOR>
+        <PROPERTY name="panningModel" interface="PanningModelType"></PROPERTY>
+        <PROPERTY name="positionX" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue="0"
+                minValue="most-negative-single-float"
+                maxValue="most-positive-single-float"
+                automationRate="&quot;a-rate&quot;">
+            </OVERRIDE>
+        </PROPERTY>
+        <PROPERTY name="positionY" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue="0"
+                minValue="most-negative-single-float"
+                maxValue="most-positive-single-float"
+                automationRate="&quot;a-rate&quot;">
+            </OVERRIDE>
+        </PROPERTY>
+        <PROPERTY name="positionZ" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue="0"
+                minValue="most-negative-single-float"
+                maxValue="most-positive-single-float"
+                automationRate="&quot;a-rate&quot;">
+            </OVERRIDE>
+        </PROPERTY>
+        <PROPERTY name="orientationX" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue="1"
+                minValue="most-negative-single-float"
+                maxValue="most-positive-single-float"
+                automationRate="&quot;a-rate&quot;">
+            </OVERRIDE>
+        </PROPERTY>
+        <PROPERTY name="orientationY" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue="0"
+                minValue="most-negative-single-float"
+                maxValue="most-positive-single-float"
+                automationRate="&quot;a-rate&quot;">
+            </OVERRIDE>
+        </PROPERTY>
+        <PROPERTY name="orientationZ" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue="0"
+                minValue="most-negative-single-float"
+                maxValue="most-positive-single-float"
+                automationRate="&quot;a-rate&quot;">
+            </OVERRIDE>
+        </PROPERTY>
+        <PROPERTY name="distanceModel" interface="DistanceModelType"></PROPERTY>
+        <PROPERTY name="refDistance" interface="double"></PROPERTY>
+        <PROPERTY name="maxDistance" interface="double"></PROPERTY>
+        <PROPERTY name="rolloffFactor" interface="double"></PROPERTY>
+        <PROPERTY name="coneInnerAngle" interface="double"></PROPERTY>
+        <PROPERTY name="coneOuterAngle" interface="double"></PROPERTY>
+        <PROPERTY name="coneOuterGain" interface="double"></PROPERTY>
+        
+        <METHOD name="setPosition" returns="void">This method is DEPRECATED. It is equivalent to setting positionX.value, positionY.value, and positionZ.value attribute directly with the x, y and z parameters, respectively.
+            <ARGUMENT name="x" interface="float"></ARGUMENT>
+            <ARGUMENT name="y" interface="float"></ARGUMENT>
+            <ARGUMENT name="z" interface="float"></ARGUMENT>
+        </METHOD>
+        <METHOD name="setOrientation" returns="void">This method is DEPRECATED. It is equivalent to setting orientationX.value, orientationY.value, and orientationZ.value attribute directly, with the x, y and z parameters, respectively.
+            <ARGUMENT name="x" interface="float"></ARGUMENT>
+            <ARGUMENT name="y" interface="float"></ARGUMENT>
+            <ARGUMENT name="z" interface="float"></ARGUMENT>
+        </METHOD>
+        
+        <INHERITANCE name="AudioNode">
+            <OVERRIDE numberOfInputs="1"
+                numberOfOutputs="1"
+                channelCount="2"
+                channelCountMode="&quot;clamped-max&quot;"
+                channelInterpretation="&quot;speakers&quot;">
+            </OVERRIDE>
+        </INHERITANCE>
+    </INTERFACE>
+    
+    <DICT name="PannerOptions">
+        <PROPERTY name="panningModel" interface="PanningModelType" defaultValue="&quot;equalpower&quot;"></PROPERTY>
+        <PROPERTY name="distanceModel" interface="DistanceModelType" defaultValue="&quot;inverse&quot;"></PROPERTY>
+        <PROPERTY name="positionX" interface="float" defaultValue="0"></PROPERTY>
+        <PROPERTY name="positionY" interface="float" defaultValue="0"></PROPERTY>
+        <PROPERTY name="positionZ" interface="float" defaultValue="0"></PROPERTY>
+        <PROPERTY name="orientationX" interface="float" defaultValue="1"></PROPERTY>
+        <PROPERTY name="orientationY" interface="float" defaultValue="0"></PROPERTY>
+        <PROPERTY name="orientationZ" interface="float" defaultValue="0"></PROPERTY>
+        <PROPERTY name="refDistance" interface="double" defaultValue="1"></PROPERTY>
+        <PROPERTY name="maxDistance" interface="double" defaultValue="10000"></PROPERTY>
+        <PROPERTY name="rolloffFactor" interface="double" defaultValue="1"></PROPERTY>
+        <PROPERTY name="coneInnerAngle" interface="double" defaultValue="360"></PROPERTY>
+        <PROPERTY name="coneOuterAngle" interface="double" defaultValue="360"></PROPERTY>
+        <PROPERTY name="coneOuterGain" interface="double" defaultValue="0"></PROPERTY>
+        <INHERITANCE name="AudioNodeOptions"></INHERITANCE>
+    </DICT>
+    
+    <INTERFACE name="PeriodicWave">
+        <CONSTRUCTOR value="createPeriodicWave"></CONSTRUCTOR>
+    </INTERFACE>
+    
+    <DICT name="PeriodicWaveOptions">
+        <PROPERTY name="disableNormalization" interface="boolean" defaultValue="false"></PROPERTY>
+    </DICT>
+    
+    <DICT name="PeriodicWaveOptions">
+        <PROPERTY name="real" interface="sequence:float"></PROPERTY>
+        <PROPERTY name="imag" interface="sequence:float"></PROPERTY>
+        <INHERITANCE name="PeriodicWaveConstraints"></INHERITANCE>
+    </DICT>
+    
+    <!-- ScriptProcessorNode -->
+    
+    <INTERFACE name="StereoPannerNode" category="NODE">
+        <CONSTRUCTOR value="createStereoPanner"></CONSTRUCTOR>
+        <PROPERTY name="pan" interface="AudioParam" attributes="readonly">
+            <OVERRIDE defaultValue="0"
+                minValue="-1"
+                maxValue="1"
+                automationRate="&quot;a-rate&quot;">
+            </OVERRIDE>
+        </PROPERTY>
+        <INHERITANCE name="AudioNode">
+            <OVERRIDE numberOfInputs="1"
+                numberOfOutputs="1"
+                channelCount="2"
+                channelCountMode="&quot;clamped-max&quot;"
+                channelInterpretation="&quot;speakers&quot;">
+            </OVERRIDE>
+        </INHERITANCE>
+    </INTERFACE>
+    
+    <DICT name="StereoPannerOptions">
+        <PROPERTY name="pan" interface="float" defaultVaue="0"></PROPERTY>
+        <INHERITANCE name="AudioNodeOptions"></INHERITANCE>
+    </DICT>
+    
+    <ENUM name="OverSampleType">
+        <ELEMENT name ="none"></ELEMENT>
+        <ELEMENT name ="2x"></ELEMENT>
+        <ELEMENT name ="4x"></ELEMENT>
+    </ENUM>
+    
+    <INTERFACE name="WaveShaperNode" category="NODE">
+        <CONSTRUCTOR value="createWaveShaper"></CONSTRUCTOR>
+        <PROPERTY name="curve" interface="sequence:float" attributes="nullable"></PROPERTY>
+        <PROPERTY name="oversample" interface="OverSampleType"></PROPERTY>
+        <INHERITANCE name="AudioNode">
+            <OVERRIDE numberOfInputs="1"
+                numberOfOutputs="1"
+                channelCount="2"
+                channelCountMode="&quot;max&quot;"
+                channelInterpretation="&quot;speakers&quot;">
+            </OVERRIDE>
+        </INHERITANCE>
+    </INTERFACE>
+    
+    <DICT name="WaveShaperOptions">
+        <PROPERTY name="curve" interface="sequence:float" defaultVaue="0"></PROPERTY>
+        <PROPERTY name="oversample" interface="OverSampleType" defaultValue = "&quot;none&quot;"></PROPERTY>
+        <INHERITANCE name="AudioNodeOptions"></INHERITANCE>
+    </DICT>
+    
+    <!-- AudioWorklet -->
+    
+    <!-- AudioWorkletGlobalScope -->
+    
+    <!-- AudioParamMap -->
+    
+    <!-- AudioWorkletNode -->
+    
+    <!-- AudioWorkletNodeOptions -->
+    
+    <!-- AudioWorkletProcessor -->
+    
+    
+    
+    <!--    CUSTOM DEFINITIONS      -->
+    
+    <INTERFACE name="AudioElement" category="AUDIODATA">
+        <METHOD name="play" returns="void"></METHOD>
+        <METHOD name="pause" returns="void"></METHOD>
+    </INTERFACE>
+    
+    <ENUM name="AudioElementPreloadType">
+        <ELEMENT name ="auto"></ELEMENT>
+        <ELEMENT name ="metadata"></ELEMENT>
+        <ELEMENT name ="none"></ELEMENT>
+    </ENUM>
+    
+    <DICT name="AudioElementOptions">
+        <PROPERTY name="autoplay" interface="boolean"></PROPERTY>
+        <PROPERTY name="controls" interface="boolean"></PROPERTY>
+        <PROPERTY name="loop" interface="boolean"></PROPERTY>
+        <PROPERTY name="muted" interface="boolean"></PROPERTY>
+        <PROPERTY name="preload" interface="AudioElementPreloadType" defaultValue = "&quot;auto&quot;"></PROPERTY>
+        <PROPERTY name="src" interface="URL"></PROPERTY>
+    </DICT>
+    
+    <INTERFACE name="DecodableAudio" category="AUDIODATA">
+        <PROPERTY name="useFileChooser" interface="boolean"></PROPERTY>
+        <PROPERTY name="url" interface="string"></PROPERTY>
+        <PROPERTY name="autoDecode" interface="boolean"></PROPERTY>
+        <PROPERTY name="buffer" interface="AudioBuffer" attributes="readonly"></PROPERTY>
+        
+        <METHOD name="decode" returns="Promise:void"></METHOD>
+    </INTERFACE>
+    
+    <DICT name="DecodableAudioOptions">
+        <PROPERTY name="useFileChooser" interface="boolean"></PROPERTY>
+        <PROPERTY name="url" interface="string"></PROPERTY>
+        <PROPERTY name="autoDecode" interface="boolean" defaultValue="1"></PROPERTY>
+    </DICT>
+    
+</DICTIONARY>
