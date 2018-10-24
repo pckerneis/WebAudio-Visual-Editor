@@ -130,6 +130,15 @@ AudioFilesPanel::~AudioFilesPanel()
     Project::getAudioDeviceManager().removeAudioCallback (&audioSourcePlayer);
 }
 
+AudioFileItem* AudioFilesPanel::findFile (File file) const
+{
+    for (auto item : subItems)
+        if (item->getFile() == file)
+            return item;
+    
+    return nullptr;
+}
+
 void AudioFilesPanel::resized()
 {
     Panel::resized();
@@ -185,22 +194,29 @@ void AudioFilesPanel::showPopupMenu (int row)
     const String relocateString (item->hasValidSource() ? "Change file..." : "Relocate file...");
     
     m.addItem (2, relocateString);
+    m.addItem (3,
+#if JUCE_MAC
+               "Reveal in Finder");
+#else
+               "Reveal in Explorer");
+#endif
     m.addSeparator();
     m.addCommandItem (&acm, CommandIDs::del);
     m.addSeparator();
     
     PopupMenu addAsMenu;
     
-    addAsMenu.addItem (3, "new audio element");
-    addAsMenu.addItem (4, "new decodable audio");
+    addAsMenu.addItem (4, "new audio element");
+    addAsMenu.addItem (5, "new decodable audio");
     
     m.addSubMenu("Add to graph as...", addAsMenu);
     
     const int r = m.show();
     
     if (r == 2)         modifyFileWindow (row);
-    else if (r == 3)    addToGraph (row, "AudioElement");
-    else if (r == 4)    addToGraph (row, "DecodableAudio");
+    else if (r == 3)    revealFileToUser (row);
+    else if (r == 4)    addToGraph (row, "AudioElement");
+    else if (r == 5)    addToGraph (row, "DecodableAudio");
 }
 
 class UndoableAddFileAction : public UndoableAction
@@ -347,44 +363,71 @@ void AudioFilesPanel::modifyFileWindow (int row)
     {
         auto chosen = chooser.getResult();
         
-        if (!filesManager->isAlreadyLoaded(chosen.getFullPathName()))
+        // We don't want to add a file twice...
+        if (auto duplicate = findFile (chosen))
         {
-            const String alias = subItems.getUnchecked (row)->getOutputName();
-            removeFile (row);
+            const String duplicateOutputName (duplicate->getOutputName().quoted();
             
-            if (auto newItem = addFile (chooser.getResult()))
-            {
-                newItem->setOutputName(alias);
-                subItems.move (subItems.size() - 1, row);
-                
-                table.updateContent();
-            }
+            NativeMessageBox::showMessageBoxAsync (AlertWindow::AlertIconType::InfoIcon,
+                                                   "This file can't be added twice!",
+                                                   "The file you've chosen has already been added with "
+                                                   "output name " + duplicateOutputName + ".");
+            
+            return;
+        }
+        
+        const String alias = subItems.getUnchecked (row)->getOutputName();
+        removeFile (row);
+        
+        if (auto newItem = addFile (chooser.getResult()))
+        {
+            newItem->setOutputName(alias);
+            // Move it to its original position
+            subItems.move (subItems.size() - 1, row);
+            
+            table.updateContent();
         }
     }
 }
 
+void AudioFilesPanel::revealFileToUser (int row)
+{
+    if (auto f = subItems[row])
+        f->getFile().revealToUser();
+}
+
 AudioFileItem* AudioFilesPanel::addFile (File file)
 {
-    if (!filesManager->isAlreadyLoaded (file.getFullPathName()))
+    // If the file is already there, return the item
+    if (auto item = findFile (file))
+        return item;
+    
+    
+    // The file may have been loaded in another project
+    auto loadedFile = filesManager->findFileWithFullPath (file.getFullPathName());
+    
+    // If it's not the case, create a new LoadedAudioFile
+    if (loadedFile == nullptr)
     {
         const int sampleRate = Project::getAudioDeviceManager().getCurrentAudioDevice()->getCurrentSampleRate();
-        auto loadedFile = filesManager->loadFile (file.getFullPathName(), sampleRate);
-        
-        auto item = new AudioFileItem (loadedFile, *this);
-        subItems.add (item);
-        
-        item->setOutputName (file.getFileName());
-        
-        //setPreviewedFile (loadedFile);
-        table.updateContent();
-        
-        if (! filePlayer.isPlaying())
-            table.selectRow (subItems.size() - 1);
-        
-        return item;
+        loadedFile = filesManager->loadFile (file.getFullPathName(), sampleRate);
     }
     
-    return nullptr;
+    // Create the item
+    auto item = new AudioFileItem (loadedFile, *this);
+    subItems.add (item);
+    
+    // Set its output name by default, checking duplicates, illegal characters...
+    item->setOutputName (file.getFileName());
+    
+    // Update the table list so that the new item is shown
+    table.updateContent();
+    
+    // Select this new item if no file is being played
+    if (! filePlayer.isPlaying())
+        table.selectRow (subItems.size() - 1);
+    
+    return item;
 }
 
 void AudioFilesPanel::removeFile (AudioFileItem* item)
@@ -521,7 +564,8 @@ void AudioFilesPanel::paintCell (Graphics& g, int rowNumber, int columnId, int w
     
     if (columnId == 3)
     {
-        text = item->getFullPath();
+        // Display the file path relative from the project directory.
+        text = item->getFile().getRelativePathFrom (project.getProjectDirectory());
         
         Font f (12.0f);
         Colour c (getLookAndFeel().findColour (ListBox::textColourId));
@@ -638,6 +682,7 @@ XmlElement* AudioFilesPanel::getXmlFor (AudioFileItem* item)
     if (item != nullptr)
     {
         e->setAttribute ("alias", item->getOutputName());
+        e->setAttribute ("relativePath", item->getFile().getRelativePathFrom (project.getProjectDirectory()));
         e->setAttribute ("fullPath", item->getFullPath());
         e->setAttribute ("uuid", item->getUuid().toString());
     }
@@ -656,8 +701,17 @@ void AudioFilesPanel::restoreState (XmlElement* e)
     {
         const String alias (item->getStringAttribute ("alias"));
         const String fullPath (item->getStringAttribute ("fullPath"));
+        const String relativePath (item->getStringAttribute ("relativePath"));
         const String uuid (item->getStringAttribute ("uuid"));
         
+        auto file = project.getProjectDirectory().getChildFile (relativePath);
+        
+        // If the file can't be found with the relative path, try with the absolute one
+        if (! file.existsAsFile())
+            file = File (fullPath);
+        
+        // If the file still can't be found, we'll add it anyway
+        // and the new item will be marked as missing
         if (auto newFile = addFile (File(fullPath)))
         {
             newFile->setOutputName (alias);

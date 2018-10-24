@@ -76,6 +76,9 @@ public:
     const ReferenceCountedArray<AudioFileItem>& getSubItems() const { return subItems; }
     
     AudioFileItem* findFileWithUuid (Uuid uuid) const;
+    AudioFileItem* findFile (File file) const;
+    
+    void revealFileToUser (int row);
     
     //==============================================================================
     void setPreviewedFile (LoadedAudioFile* f);
