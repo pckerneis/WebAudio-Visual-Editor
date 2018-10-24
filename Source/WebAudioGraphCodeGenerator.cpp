@@ -596,7 +596,7 @@ String WebAudioGraphGenerator::generateAudioData (int numIndents)
                 const String v (opt.getUnchecked(i)->defaultValue);
                 
                 if (v.isNotEmpty())
-                    output += lineStart + attrib + " = " + v + ";" + newLine + newLine;
+                    output += lineStart + attrib + " = " + v + ";" + newLine;
             }
             
             output += ind + "document.querySelector(\"#controllers\").appendChild (" + instanceName + ");" + newLine;
@@ -797,11 +797,13 @@ String WebAudioGraphGenerator::getPreloadDeclaration (int numIndents) const
     output += newLine;
     output += preloadAudioContent;
     
+    if (preloadAudioContent.isNotEmpty())
+        output += newLine;
+    
     if (useAudioPredecoder)
     {
-        output += ind2 + "predecoder.onSuccess = prepareHtmlElements;";
-        output += ind2 + "predecoder.predecode();" + newLine + newLine;
-        //output += ind + "predecoder.addEventListener ('ready', prepareHtmlElements);" + newLine;
+        output += ind2 + "predecoder.onSuccess = prepareHtmlElements;" + newLine;
+        output += ind2 + "predecoder.predecode();" + newLine;
     }
     
     output += ind + "}" + newLine + newLine;
