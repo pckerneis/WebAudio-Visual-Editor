@@ -1,5 +1,7 @@
 # WebAudio Visual Editor
 
+![WebAudio Visual Editor screenshot](/docs/images/screenshot01.png)
+
 WebAudio Visual Editor is an open-source project that aims at giving the HTML5 WebAudio API a powerful GUI, in the form of a desktop software written in C++ with JUCE. It generates vanilla Javascript code.
 
 WebAudio Visual Editor **is not** :
