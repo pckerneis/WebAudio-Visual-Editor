@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<WAVEProject>
+  <ProjectConfig>
+    <VALUE name="name" val=""/>
+    <VALUE name="created" val="19 Oct 2018 12:46:40"/>
+    <VALUE name="directory" val="/Users/pierre/Developer/JUCE projects/WebAudioVisualEditor/Examples/Convolution reverb"/>
+  </ProjectConfig>
+  <Panels>
+    <InspectorPanel panelId="0"/>
+    <AudioFilesPanel panelId="1">
+      <AudioFile alias="ir.wav" fullPath="/Users/pierre/Desktop/carpark_balloon_ir_stereo_24bit_44100.wav"
+                 uuid="5863f3f83a8a423eb17064c286f25951"/>
+      <AudioFile alias="loop.mp3" fullPath="/Users/pierre/Desktop/loop.mp3" uuid="906503888fdb4ab5a03f3b5abb1a63c1"/>
+    </AudioFilesPanel>
+    <WebAudioGraph panelId="2">
+      <GraphPanel>
+        <Embedded name=".destination" graphId="0" uiComp="audioDestinationNodeType"
+                  xpos="60" ypos="591" width="96" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="AudioDestinationNode" elementType="audioDestinationNodeType"
+                  isOpen="0" backgroundColour="ff00fff3">
+          <OPTIONS/>
+        </Embedded>
+        <Embedded name="master" graphId="1" uiComp="audioNodeType" xpos="71" ypos="546"
+                  width="75" height="22" navigableUuid="b1e3d4d89d1e4567b6b4f0ebb19a19ae"
+                  interface="GainNode" elementType="audioNodeType" isOpen="0" backgroundColour="ff00fff3">
+          <OPTIONS gain="0.5"/>
+        </Embedded>
+        <Embedded name="ir" graphId="2" uiComp="audioDataType" xpos="17" ypos="229"
+                  width="139" height="86" navigableUuid="78cc58ad50c0451399f52b9ad6179215"
+                  interface="DecodableAudio" elementType="audioDataType" linkedFile="5863f3f83a8a423eb17064c286f25951"
+                  isOpen="1" backgroundColour="ff8abfff">
+          <OPTIONS useFileChooser="" url="&quot;/data/ir.wav&quot;" autoDecode="1"/>
+        </Embedded>
+        <Embedded name="convolver" graphId="3" uiComp="audioNodeType" xpos="138"
+                  ypos="451" width="167" height="68" navigableUuid="961ac855eacf449e8d546cd1b4c10720"
+                  interface="ConvolverNode" elementType="audioNodeType" isOpen="1"
+                  backgroundColour="ff8abfff">
+          <OPTIONS buffer="ir.buffer" disableNormalization="false"/>
+        </Embedded>
+        <Embedded name="reverbSend" graphId="4" uiComp="audioNodeType" xpos="175"
+                  ypos="413" width="92" height="22" navigableUuid="47a8f0a9d02941beb649ef9bebe2738e"
+                  interface="GainNode" elementType="audioNodeType" isOpen="0" backgroundColour="ff8abfff">
+          <OPTIONS gain="0.5"/>
+        </Embedded>
+        <Embedded name="mediaElementAudioSource" graphId="5" uiComp="audioNodeType"
+                  xpos="15" ypos="333" width="187" height="50" navigableUuid="c914829853b44099aa39de929a31bdc4"
+                  interface="MediaElementAudioSourceNode" elementType="audioNodeType"
+                  isOpen="1" backgroundColour="fffd9a24">
+          <OPTIONS mediaElement="loop"/>
+        </Embedded>
+        <Embedded name="prepareSliders" graphId="6" uiComp="scriptType" xpos="30"
+                  ypos="26" width="111" height="22" navigableUuid="c903d4bded2d4866827a41d1019d48f0"
+                  interface="" elementType="scriptType" editorPanelId="10" editorContent="// Quick way of checking if this code was already executed...&#13;&#10;if (document.getElementById (&quot;reverbSendSlider&quot;) != undefined)&#13;&#10;    return;&#13;&#10;&#13;&#10;// Helper method to create HTML range input and a text label.&#13;&#10;function createSlider (id, label, min, max, defaultValue, inputCb) {&#13;&#10;    let slider = document.createElement(&quot;input&quot;);&#13;&#10;    slider.id = id;&#13;&#10;    slider.setAttribute(&quot;type&quot;, &quot;range&quot;);&#13;&#10;    slider.setAttribute(&quot;min&quot;, min);&#13;&#10;    slider.setAttribute(&quot;max&quot;, max);&#13;&#10;    slider.value = defaultValue;&#13;&#10;    slider.style.width = &quot;100%&quot;;&#13;&#10;    slider.oninput = inputCb;&#13;&#10;&#13;&#10;    var pElement = document.createElement(&quot;p&quot;);&#10;    pElement.appendChild(document.createTextNode(label));&#10;    document.getElementById(&quot;controllers&quot;).appendChild(pElement);&#13;&#10;    document.getElementById(&quot;controllers&quot;).appendChild(slider);&#13;&#10;&#13;&#10;    return slider;&#13;&#10;}&#13;&#10;&#13;&#10;// This is a concise way to add a bunch of sliders with custom callback methods&#13;&#10;let rvbSlider = createSlider (&quot;reverbSendSlider&quot;, &quot;Reverb send :&quot;, 0, 100, 50, function() {&#13;&#10;    reverbSend.gain.setValueAtTime(rvbSlider.value / 100, now());&#13;&#10;});&#13;&#10;&#13;&#10;let gainSlider = createSlider (&quot;masterSlider&quot;, &quot;Master gain :&quot;, 0, 100, 50, function() {&#13;&#10;    master.gain.setValueAtTime(gainSlider.value / 100, now());&#13;&#10;});&#13;&#10;&#13;&#10;"
+                  isOpen="0" backgroundColour="ff8b00ff">
+          <OPTIONS/>
+        </Embedded>
+        <Embedded name="This AudioElement object creates a HTML 'audio' element. Audio elements can be used to play sound files. Here, we'll play 'loop.mp3' in loop and we'll add a GUI controller for it."
+                  graphId="7" uiComp="commentType" xpos="175" ypos="101" width="311"
+                  height="64" navigableUuid="8038b9361b784c1ea05d8154d7f4a712"
+                  interface="" elementType="commentType" backgroundColour="ffffffff"/>
+        <Embedded name="loop" graphId="8" uiComp="audioDataType" xpos="17" ypos="67"
+                  width="143" height="140" navigableUuid="d5e1abb6ce354e9599fa374d87b3d8db"
+                  interface="AudioElement" elementType="audioDataType" linkedFile="906503888fdb4ab5a03f3b5abb1a63c1"
+                  isOpen="1" backgroundColour="fffd9a24">
+          <OPTIONS autoplay="0" controls="1" loop="1" muted="0" preload="&quot;auto&quot;"
+                   src="&quot;/data/loop.mp3&quot;"/>
+        </Embedded>
+        <Embedded name="This script creates and adds sliders for the amount of signal sent into the reverberation and for the master gain."
+                  graphId="9" uiComp="commentType" xpos="172" ypos="11" width="311"
+                  height="64" navigableUuid="8038b9361b784c1ea05d8154d7f4a712"
+                  interface="" elementType="commentType" backgroundColour="ffffffff"/>
+        <Embedded name="This is a DecodableAudio object. It is used to fill a buffer with some remote data before the audio starts. We use it to create a buffer with the impulse response used for the convolver."
+                  graphId="10" uiComp="commentType" xpos="176" ypos="240" width="311"
+                  height="64" navigableUuid="8038b9361b784c1ea05d8154d7f4a712"
+                  interface="" elementType="commentType" backgroundColour="ffffffff"/>
+        <Embedded name="This AudioNode 'steals' the signal from (AudioElement) loop. We can then send this signal into the master gain node as well as in another GainNode that will allow us to control the amount of reverberation."
+                  graphId="11" uiComp="commentType" xpos="224" ypos="331" width="442"
+                  height="63" navigableUuid="8038b9361b784c1ea05d8154d7f4a712"
+                  interface="" elementType="commentType" backgroundColour="ffffffff"/>
+        <Embedded name="This GainNode is controled by an HTML slider." graphId="12"
+                  uiComp="commentType" xpos="290" ypos="409" width="292" height="32"
+                  navigableUuid="8038b9361b784c1ea05d8154d7f4a712" interface=""
+                  elementType="commentType" backgroundColour="ffffffff"/>
+        <Embedded name="This is the ConvolverNode. It applies in real-time a convolving operation. Using that technique with a recording of a short reverberated sound (the impulse response), we get a simulation of an acoustic space"
+                  graphId="13" uiComp="commentType" xpos="316" ypos="450" width="352"
+                  height="77" navigableUuid="8038b9361b784c1ea05d8154d7f4a712"
+                  interface="" elementType="commentType" backgroundColour="ffffffff"/>
+        <Embedded name="Both reverberated and 'dry' signals are send to the master GainNode which is connected to the audio context's destination."
+                  graphId="14" uiComp="commentType" xpos="166" ypos="551" width="292"
+                  height="65" navigableUuid="8038b9361b784c1ea05d8154d7f4a712"
+                  interface="" elementType="commentType" backgroundColour="ffffffff"/>
+        <Connection sourceId="3" sourceChannel="0" sourcePlacement="2" destId="1"
+                    destChannel="0" destPlacement="0"/>
+        <Connection sourceId="4" sourceChannel="0" sourcePlacement="2" destId="3"
+                    destChannel="0" destPlacement="0"/>
+        <Connection sourceId="5" sourceChannel="0" sourcePlacement="2" destId="4"
+                    destChannel="0" destPlacement="0"/>
+        <Connection sourceId="5" sourceChannel="0" sourcePlacement="2" destId="1"
+                    destChannel="0" destPlacement="0"/>
+        <Connection sourceId="1" sourceChannel="0" sourcePlacement="2" destId="0"
+                    destChannel="0" destPlacement="0"/>
+        <SELECTION/>
+      </GraphPanel>
+    </WebAudioGraph>
+    <GeneratorPanel panelId="3"/>
+    <OutputScriptPanel panelId="4">
+      <APPLIED>&quot;use strict&quot;;
+
+var graph = (function() {
+   let ctx, mediaElementAudioSource, reverbSend, convolver, master, ir, loop;
+
+   let now = function() {
+      return ctx.currentTime;
+   };
+
+   let prepareHtmlElements = function() {
+      var controllersDiv = document.querySelector('#controllers');
+
+      var startAudioButton = document.createElement ('button');
+      startAudioButton.appendChild (document.createTextNode('startAudio'));
+      startAudioButton.onclick = function() {
+         startAudio();
+      }
+
+      startAudioButton.style.background = &quot;#FFFFFF&quot;;
+      controllersDiv.appendChild (startAudioButton);
+   }
+
+   let prepareSliders = function() {
+      // Quick way of checking if this code was already executed...
+      if (document.getElementById (&quot;reverbSendSlider&quot;) != undefined)
+          return;
+      
+      // Helper method to create HTML range input and a text label.
+      function createSlider (id, label, min, max, defaultValue, inputCb) {
+          let slider = document.createElement(&quot;input&quot;);
+          slider.id = id;
+          slider.setAttribute(&quot;type&quot;, &quot;range&quot;);
+          slider.setAttribute(&quot;min&quot;, min);
+          slider.setAttribute(&quot;max&quot;, max);
+          slider.value = defaultValue;
+          slider.style.width = &quot;100%&quot;;
+          slider.oninput = inputCb;
+      
+          var pElement = document.createElement(&quot;p&quot;);
+          pElement.appendChild(document.createTextNode(label));
+          document.getElementById(&quot;controllers&quot;).appendChild(pElement);
+          document.getElementById(&quot;controllers&quot;).appendChild(slider);
+      
+          return slider;
+      }
+      
+      // This is a concise way to add a bunch of sliders with custom callback methods
+      let rvbSlider = createSlider (&quot;reverbSendSlider&quot;, &quot;Reverb send :&quot;, 0, 100, 50, function() {
+          reverbSend.gain.setValueAtTime(rvbSlider.value / 100, now());
+      });
+      
+      let gainSlider = createSlider (&quot;masterSlider&quot;, &quot;Master gain :&quot;, 0, 100, 50, function() {
+          master.gain.setValueAtTime(gainSlider.value / 100, now());
+      });
+      
+      
+   };
+
+   let loadAudio = function() {
+      let adCtx = new AudioContext();
+
+      let predecoder = new AudioPredecoder();
+
+      ir = new DecodableAudio (predecoder, adCtx, 0, &quot;/data/ir.wav&quot;, 1);
+
+      loop = document.createElement('audio');
+      loop.autoplay = 0;
+
+      loop.controls = 1;
+
+      loop.loop = 1;
+
+      loop.muted = 0;
+
+      loop.preload = &quot;auto&quot;;
+
+      loop.src = &quot;/data/loop.mp3&quot;;
+
+      document.querySelector(&quot;#controllers&quot;).appendChild (loop);
+      predecoder.onSuccess = prepareHtmlElements;      predecoder.predecode();
+
+   }
+
+   window.addEventListener ('load', loadAudio);
+
+   let startAudio = function() {
+      var AudioContext = window.AudioContext || window.webkitAudioContext;
+
+      // Context declaration (default context)
+      ctx = new AudioContext();
+
+      mediaElementAudioSource = new MediaElementAudioSourceNode(ctx, {
+         mediaElement: loop
+      });
+
+      reverbSend = new GainNode(ctx, {
+         gain: 0.5
+      });
+
+      convolver = new ConvolverNode(ctx, {
+         buffer: ir.buffer,
+         disableNormalization: false
+      });
+
+      master = new GainNode(ctx, {
+         gain: 0.5
+      });
+
+      convolver.connect(master);
+      reverbSend.connect(convolver);
+      mediaElementAudioSource.connect(reverbSend);
+      mediaElementAudioSource.connect(master);
+      master.connect(ctx.destination);
+
+      prepareSliders();
+   };
+
+})();</APPLIED>
+      <UNAPPLIED>&quot;use strict&quot;;
+
+var graph = (function() {
+   let ctx, mediaElementAudioSource, reverbSend, convolver, master, ir, loop;
+
+   let now = function() {
+      return ctx.currentTime;
+   };
+
+   let prepareHtmlElements = function() {
+      var controllersDiv = document.querySelector('#controllers');
+
+      var startAudioButton = document.createElement ('button');
+      startAudioButton.appendChild (document.createTextNode('startAudio'));
+      startAudioButton.onclick = function() {
+         startAudio();
+      }
+
+      startAudioButton.style.background = &quot;#FFFFFF&quot;;
+      controllersDiv.appendChild (startAudioButton);
+   }
+
+   let prepareSliders = function() {
+      // Quick way of checking if this code was already executed...
+      if (document.getElementById (&quot;reverbSendSlider&quot;) != undefined)
+          return;
+      
+      // Helper method to create HTML range input and a text label.
+      function createSlider (id, label, min, max, defaultValue, inputCb) {
+          let slider = document.createElement(&quot;input&quot;);
+          slider.id = id;
+          slider.setAttribute(&quot;type&quot;, &quot;range&quot;);
+          slider.setAttribute(&quot;min&quot;, min);
+          slider.setAttribute(&quot;max&quot;, max);
+          slider.value = defaultValue;
+          slider.style.width = &quot;100%&quot;;
+          slider.oninput = inputCb;
+      
+          var pElement = document.createElement(&quot;p&quot;);
+          pElement.appendChild(document.createTextNode(label));
+          document.getElementById(&quot;controllers&quot;).appendChild(pElement);
+          document.getElementById(&quot;controllers&quot;).appendChild(slider);
+      
+          return slider;
+      }
+      
+      // This is a concise way to add a bunch of sliders with custom callback methods
+      let rvbSlider = createSlider (&quot;reverbSendSlider&quot;, &quot;Reverb send :&quot;, 0, 100, 50, function() {
+          reverbSend.gain.setValueAtTime(rvbSlider.value / 100, now());
+      });
+      
+      let gainSlider = createSlider (&quot;masterSlider&quot;, &quot;Master gain :&quot;, 0, 100, 50, function() {
+          master.gain.setValueAtTime(gainSlider.value / 100, now());
+      });
+      
+      
+   };
+
+   let loadAudio = function() {
+      let adCtx = new AudioContext();
+
+      let predecoder = new AudioPredecoder();
+
+      ir = new DecodableAudio (predecoder, adCtx, 0, &quot;/data/ir.wav&quot;, 1);
+
+      loop = document.createElement('audio');
+      loop.autoplay = 0;
+
+      loop.controls = 1;
+
+      loop.loop = 1;
+
+      loop.muted = 0;
+
+      loop.preload = &quot;auto&quot;;
+
+      loop.src = &quot;/data/loop.mp3&quot;;
+
+      document.querySelector(&quot;#controllers&quot;).appendChild (loop);
+      predecoder.onSuccess = prepareHtmlElements;      predecoder.predecode();
+
+   }
+
+   window.addEventListener ('load', loadAudio);
+
+   let startAudio = function() {
+      var AudioContext = window.AudioContext || window.webkitAudioContext;
+
+      // Context declaration (default context)
+      ctx = new AudioContext();
+
+      mediaElementAudioSource = new MediaElementAudioSourceNode(ctx, {
+         mediaElement: loop
+      });
+
+      reverbSend = new GainNode(ctx, {
+         gain: 0.5
+      });
+
+      convolver = new ConvolverNode(ctx, {
+         buffer: ir.buffer,
+         disableNormalization: false
+      });
+
+      master = new GainNode(ctx, {
+         gain: 0.5
+      });
+
+      convolver.connect(master);
+      reverbSend.connect(convolver);
+      mediaElementAudioSource.connect(reverbSend);
+      mediaElementAudioSource.connect(master);
+      master.connect(ctx.destination);
+
+      prepareSliders();
+   };
+
+})();</UNAPPLIED>
+    </OutputScriptPanel>
+    <NavigationPanel panelId="5">
+      <OPEN id="c85124db812e4767bded4470f359c4e3" scrollPos="0"/>
+    </NavigationPanel>
+    <Library panelId="6"/>
+  </Panels>
+  <PanelWindows>
+    <PanelWindow state="57 79 1728 951">
+      <PanelTree>
+        <ROOT>
+          <LAYOUT barsEnabled="1" isVertical="0">
+            <ITEM keepProportions="0" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
+                  defaultSize="337.00000000000000000000"/>
+            <ITEM keepProportions="0" minSize="4.00000000000000000000" maxSize="4.00000000000000000000"
+                  defaultSize="4.00000000000000000000"/>
+            <ITEM keepProportions="0" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
+                  defaultSize="1030.00000000000000000000"/>
+            <ITEM keepProportions="0" minSize="4.00000000000000000000" maxSize="4.00000000000000000000"
+                  defaultSize="4.00000000000000000000"/>
+            <ITEM keepProportions="0" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
+                  defaultSize="343.00000000000000000000"/>
+          </LAYOUT>
+          <CHILD>
+            <LAYOUT barsEnabled="1" isVertical="1">
+              <ITEM keepProportions="0" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
+                    defaultSize="561.00000000000000000000"/>
+              <ITEM keepProportions="0" minSize="4.00000000000000000000" maxSize="4.00000000000000000000"
+                    defaultSize="4.00000000000000000000"/>
+              <ITEM keepProportions="0" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
+                    defaultSize="376.00000000000000000000"/>
+            </LAYOUT>
+            <CHILD>
+              <LAYOUT barsEnabled="1" isVertical="0"/>
+              <PANEL panelId="5"/>
+            </CHILD>
+            <CHILD>
+              <LAYOUT barsEnabled="1" isVertical="0"/>
+              <PANEL panelId="1"/>
+            </CHILD>
+          </CHILD>
+          <CHILD>
+            <LAYOUT barsEnabled="1" isVertical="1">
+              <ITEM keepProportions="0" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
+                    defaultSize="527.00000000000000000000"/>
+              <ITEM keepProportions="0" minSize="4.00000000000000000000" maxSize="4.00000000000000000000"
+                    defaultSize="4.00000000000000000000"/>
+              <ITEM keepProportions="0" minSize="30.00000000000000000000" maxSize="30.00000000000000000000"
+                    defaultSize="30.00000000000000000000"/>
+              <ITEM keepProportions="0" minSize="4.00000000000000000000" maxSize="4.00000000000000000000"
+                    defaultSize="4.00000000000000000000"/>
+              <ITEM keepProportions="0" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
+                    defaultSize="376.00000000000000000000"/>
+            </LAYOUT>
+            <CHILD>
+              <LAYOUT barsEnabled="1" isVertical="0">
+                <ITEM keepProportions="0" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
+                      defaultSize="202.00000000000000000000"/>
+                <ITEM keepProportions="0" minSize="4.00000000000000000000" maxSize="4.00000000000000000000"
+                      defaultSize="4.00000000000000000000"/>
+                <ITEM keepProportions="0" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
+                      defaultSize="824.00000000000000000000"/>
+              </LAYOUT>
+              <CHILD>
+                <LAYOUT barsEnabled="1" isVertical="1"/>
+                <PANEL panelId="6"/>
+              </CHILD>
+              <CHILD>
+                <LAYOUT barsEnabled="1" isVertical="1"/>
+                <PANEL panelId="2"/>
+              </CHILD>
+            </CHILD>
+            <CHILD>
+              <LAYOUT barsEnabled="1" isVertical="0"/>
+              <PANEL panelId="3"/>
+            </CHILD>
+            <CHILD>
+              <LAYOUT barsEnabled="1" isVertical="0"/>
+              <TABBED>
+                <TabbedPanel currentTab="1">
+                  <TAB panelId="4"/>
+                  <TAB panelId="10"/>
+                </TabbedPanel>
+              </TABBED>
+            </CHILD>
+          </CHILD>
+          <CHILD>
+            <LAYOUT barsEnabled="1" isVertical="1"/>
+            <PANEL panelId="0"/>
+          </CHILD>
+        </ROOT>
+      </PanelTree>
+    </PanelWindow>
+  </PanelWindows>
+</WAVEProject>
