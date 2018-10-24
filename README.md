@@ -15,7 +15,7 @@ Here are a few design goals :
 
 Please note that for now, the software is more suited to prototyping than to 'serious' web deployment. Most notably, the software is based on the [WebAudio API w3c spec](https://www.w3.org/TR/webaudio/) which is not fully implemented in all browsers. You can have more info on supported platforms on [Mozilla's guide](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API).
 
-Here are a few test projects generated from the examples :
+Here are a few test pages generated from the example projects :
 * [Basics](http://htmlpreview.github.io/?https://github.com/pckerneis/WebAudio-Visual-Editor/blob/master/Examples/Basics/output/index.html): a sinus generator and a stop button.
 * [Synthesis FX](http://htmlpreview.github.io/?https://github.com/pckerneis/WebAudio-Visual-Editor/blob/master/Examples/Synthesis%20FX/output/index.html): a few examples of short synthesized sounds with a master gain slider
 
