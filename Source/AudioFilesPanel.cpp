@@ -366,7 +366,7 @@ void AudioFilesPanel::modifyFileWindow (int row)
         // We don't want to add a file twice...
         if (auto duplicate = findFile (chosen))
         {
-            const String duplicateOutputName (duplicate->getOutputName().quoted();
+            const String duplicateOutputName (duplicate->getOutputName().quoted());
             
             NativeMessageBox::showMessageBoxAsync (AlertWindow::AlertIconType::InfoIcon,
                                                    "This file can't be added twice!",
