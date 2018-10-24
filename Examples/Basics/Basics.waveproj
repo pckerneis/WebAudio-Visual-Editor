@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<WAVEProject>
+  <ProjectConfig>
+    <VALUE name="name" val=""/>
+    <VALUE name="created" val="24 Oct 2018 12:13:45"/>
+    <VALUE name="directory" val="/Users/pierre/Developer/JUCE projects/WebAudioVisualEditor/Examples/Basics"/>
+  </ProjectConfig>
+  <Panels>
+    <InspectorPanel panelId="0"/>
+    <AudioFilesPanel panelId="1"/>
+    <WebAudioGraph panelId="2">
+      <GraphPanel>
+        <Embedded name="oscillator" graphId="0" uiComp="audioNodeType" xpos="18"
+                  ypos="21" width="142" height="104" navigableUuid="29d1251b73a44b828da00ca8a6d9b3b5"
+                  interface="OscillatorNode" elementType="audioNodeType" isOpen="1"
+                  backgroundColour="ff555555">
+          <OPTIONS type="&quot;sine&quot;" frequency="440" detune="0" periodicWave=""/>
+        </Embedded>
+        <Embedded name="Before it starts emitting sound, we need to call its method 'start'. That's what message elements are made for. They connect to the right inlet of AudioNodes. Here we call 'start' with no arguments so we add empty parenthesis. This is equivalent to writing 'oscillator.start()'"
+                  graphId="1" uiComp="commentType" xpos="267" ypos="98" width="429"
+                  height="79" navigableUuid="87b49eccc983448d8e610c04b3e1acdc"
+                  interface="" elementType="commentType" backgroundColour="ffffffff"/>
+        <Embedded name="start()" graphId="2" uiComp="messageType" xpos="198" ypos="115"
+                  width="60" height="22" navigableUuid="d9d753f1124c4f37b8749baaac8618ba"
+                  interface="" elementType="messageType" backgroundColour="ff555555"/>
+        <Embedded name="This element, named 'oscillator', represents an OscillatorNode. It is one of the basic building blocks for audio synthesis. It allows to generate different kind of periodic sounds (that is a sound with a fixed pitch). In its default setup, it will generate a sinusoid at 440Hz."
+                  graphId="3" uiComp="commentType" xpos="178" ypos="9" width="353"
+                  height="91" navigableUuid="87b49eccc983448d8e610c04b3e1acdc"
+                  interface="" elementType="commentType" backgroundColour="ffffffff"/>
+        <Embedded name=".destination" graphId="4" uiComp="audioDestinationNodeType"
+                  xpos="41" ypos="262" width="96" height="22" navigableUuid="f4f1871ea4a74c248674d7d8bc73392d"
+                  interface="AudioDestinationNode" elementType="audioDestinationNodeType"
+                  isOpen="0" backgroundColour="ff555555">
+          <OPTIONS/>
+        </Embedded>
+        <Embedded name="This is a special AudioNode used to send audio signals to the default audio context. This is what allows us to hear sounds with the computer's audio devices."
+                  graphId="5" uiComp="commentType" xpos="148" ypos="251" width="429"
+                  height="60" navigableUuid="87b49eccc983448d8e610c04b3e1acdc"
+                  interface="" elementType="commentType" backgroundColour="ffffffff"/>
+        <Embedded name="This is an audio connection. Audio signals flow from top to bottom. This is the same as writing 'oscillator.connect (audio.destination);'"
+                  graphId="6" uiComp="commentType" xpos="92" ypos="186" width="424"
+                  height="45" navigableUuid="87b49eccc983448d8e610c04b3e1acdc"
+                  interface="" elementType="commentType" backgroundColour="ffffffff"/>
+        <Embedded name="oscillator" graphId="7" uiComp="audioNodeType" xpos="35"
+                  ypos="323" width="79" height="22" navigableUuid="6c119949f8444288813b7b10bee79186"
+                  interface="OscillatorNode" elementType="audioNodeType" isOpen="0"
+                  backgroundColour="ff555555">
+          <OPTIONS type="&quot;sine&quot;" frequency="440" detune="0" periodicWave=""/>
+        </Embedded>
+        <Embedded name="We can add further connections to 'oscillator' by adding a second OscillatorNode and giving it the exact same name."
+                  graphId="8" uiComp="commentType" xpos="132" ypos="315" width="429"
+                  height="42" navigableUuid="87b49eccc983448d8e610c04b3e1acdc"
+                  interface="" elementType="commentType" backgroundColour="ffffffff"/>
+        <Embedded name="stop" graphId="9" uiComp="dynamicRouteType" xpos="70" ypos="370"
+                  width="164" height="69" navigableUuid="6ba7109eb2314688bcbeb766e8a5fccd"
+                  interface="" elementType="dynamicRouteType" backgroundColour="ffffffff"/>
+        <Embedded name="This is a dynamic route. Dynamic routes are quick ways to add dynamic sections in a graph. Here we'll only use it to trigger a 'stop' message to the oscillator. A function named 'stop()' will automatically be generated in the output script and in the HTML test project, it will be linked to a button."
+                  graphId="10" uiComp="commentType" xpos="252" ypos="364" width="429"
+                  height="82" navigableUuid="87b49eccc983448d8e610c04b3e1acdc"
+                  interface="" elementType="commentType" backgroundColour="ffffffff"/>
+        <Embedded name="stop()" graphId="11" uiComp="messageType" xpos="127" ypos="400"
+                  width="60" height="22" navigableUuid="24ad4838c2c4414995bf7339748cdd01"
+                  interface="" elementType="messageType" backgroundColour="ff555555"/>
+        <Connection sourceId="0" sourceChannel="0" sourcePlacement="1" destId="2"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="0" sourceChannel="0" sourcePlacement="2" destId="4"
+                    destChannel="0" destPlacement="0"/>
+        <Connection sourceId="7" sourceChannel="0" sourcePlacement="1" destId="11"
+                    destChannel="0" destPlacement="3"/>
+        <SELECTION/>
+      </GraphPanel>
+    </WebAudioGraph>
+    <GeneratorPanel panelId="3"/>
+    <OutputScriptPanel panelId="4">
+      <APPLIED>&quot;use strict&quot;;
+
+var graph = (function() {
+   let ctx, oscillator;
+
+   let now = function() {
+      return ctx.currentTime;
+   };
+
+   let prepareHtmlElements = function() {
+      var controllersDiv = document.querySelector('#controllers');
+
+      var startAudioButton = document.createElement ('button');
+      startAudioButton.appendChild (document.createTextNode('startAudio'));
+      startAudioButton.onclick = function() {
+         startAudio();
+      }
+
+      startAudioButton.style.background = &quot;#FFFFFF&quot;;
+      controllersDiv.appendChild (startAudioButton);
+
+      var stopButton = document.createElement ('button');
+      stopButton.appendChild (document.createTextNode('stop'));
+      stopButton.onclick = function() {
+         stop();
+      }
+
+      stopButton.style.background = &quot;#FFFFFF&quot;;
+      controllersDiv.appendChild (stopButton);
+   }
+
+   window.addEventListener ('load', prepareHtmlElements);
+
+   let startAudio = function() {
+      var AudioContext = window.AudioContext || window.webkitAudioContext;
+
+      // Context declaration (default context)
+      ctx = new AudioContext();
+
+      oscillator = new OscillatorNode(ctx, {
+         type: &quot;sine&quot;,
+         frequency: 440,
+         detune: 0
+      });
+
+      oscillator.connect(ctx.destination);
+
+      oscillator.start();
+   };
+
+   let stop = function() {
+      oscillator.stop();
+   }
+
+})();</APPLIED>
+      <UNAPPLIED>&quot;use strict&quot;;
+
+var graph = (function() {
+   let ctx, oscillator;
+
+   let now = function() {
+      return ctx.currentTime;
+   };
+
+   let prepareHtmlElements = function() {
+      var controllersDiv = document.querySelector('#controllers');
+
+      var startAudioButton = document.createElement ('button');
+      startAudioButton.appendChild (document.createTextNode('startAudio'));
+      startAudioButton.onclick = function() {
+         startAudio();
+      }
+
+      startAudioButton.style.background = &quot;#FFFFFF&quot;;
+      controllersDiv.appendChild (startAudioButton);
+
+      var stopButton = document.createElement ('button');
+      stopButton.appendChild (document.createTextNode('stop'));
+      stopButton.onclick = function() {
+         stop();
+      }
+
+      stopButton.style.background = &quot;#FFFFFF&quot;;
+      controllersDiv.appendChild (stopButton);
+   }
+
+   window.addEventListener ('load', prepareHtmlElements);
+
+   let startAudio = function() {
+      var AudioContext = window.AudioContext || window.webkitAudioContext;
+
+      // Context declaration (default context)
+      ctx = new AudioContext();
+
+      oscillator = new OscillatorNode(ctx, {
+         type: &quot;sine&quot;,
+         frequency: 440,
+         detune: 0
+      });
+
+      oscillator.connect(ctx.destination);
+
+      oscillator.start();
+   };
+
+   let stop = function() {
+      oscillator.stop();
+   }
+
+})();</UNAPPLIED>
+    </OutputScriptPanel>
+    <NavigationPanel panelId="5">
+      <OPEN id="d1642bd581b74d6aa13273c08738a1bf" scrollPos="0"/>
+    </NavigationPanel>
+    <Library panelId="6"/>
+  </Panels>
+  <PanelWindows>
+    <PanelWindow state="72 68 1728 951">
+      <PanelTree>
+        <ROOT>
+          <LAYOUT barsEnabled="1" isVertical="0">
+            <ITEM keepProportions="1" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
+                  defaultSize="337.00000000000000000000"/>
+            <ITEM keepProportions="1" minSize="4.00000000000000000000" maxSize="4.00000000000000000000"
+                  defaultSize="4.00000000000000000000"/>
+            <ITEM keepProportions="1" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
+                  defaultSize="1030.00000000000000000000"/>
+            <ITEM keepProportions="1" minSize="4.00000000000000000000" maxSize="4.00000000000000000000"
+                  defaultSize="4.00000000000000000000"/>
+            <ITEM keepProportions="1" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
+                  defaultSize="343.00000000000000000000"/>
+          </LAYOUT>
+          <CHILD>
+            <LAYOUT barsEnabled="1" isVertical="1">
+              <ITEM keepProportions="1" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
+                    defaultSize="561.00000000000000000000"/>
+              <ITEM keepProportions="1" minSize="4.00000000000000000000" maxSize="4.00000000000000000000"
+                    defaultSize="4.00000000000000000000"/>
+              <ITEM keepProportions="1" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
+                    defaultSize="376.00000000000000000000"/>
+            </LAYOUT>
+            <CHILD>
+              <LAYOUT barsEnabled="1" isVertical="0"/>
+              <PANEL panelId="5"/>
+            </CHILD>
+            <CHILD>
+              <LAYOUT barsEnabled="1" isVertical="0"/>
+              <PANEL panelId="1"/>
+            </CHILD>
+          </CHILD>
+          <CHILD>
+            <LAYOUT barsEnabled="1" isVertical="1">
+              <ITEM keepProportions="1" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
+                    defaultSize="527.00000000000000000000"/>
+              <ITEM keepProportions="1" minSize="4.00000000000000000000" maxSize="4.00000000000000000000"
+                    defaultSize="4.00000000000000000000"/>
+              <ITEM keepProportions="1" minSize="30.00000000000000000000" maxSize="30.00000000000000000000"
+                    defaultSize="30.00000000000000000000"/>
+              <ITEM keepProportions="1" minSize="4.00000000000000000000" maxSize="4.00000000000000000000"
+                    defaultSize="4.00000000000000000000"/>
+              <ITEM keepProportions="1" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
+                    defaultSize="376.00000000000000000000"/>
+            </LAYOUT>
+            <CHILD>
+              <LAYOUT barsEnabled="1" isVertical="0">
+                <ITEM keepProportions="1" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
+                      defaultSize="202.00000000000000000000"/>
+                <ITEM keepProportions="1" minSize="4.00000000000000000000" maxSize="4.00000000000000000000"
+                      defaultSize="4.00000000000000000000"/>
+                <ITEM keepProportions="1" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
+                      defaultSize="824.00000000000000000000"/>
+              </LAYOUT>
+              <CHILD>
+                <LAYOUT barsEnabled="1" isVertical="1"/>
+                <PANEL panelId="6"/>
+              </CHILD>
+              <CHILD>
+                <LAYOUT barsEnabled="1" isVertical="1"/>
+                <PANEL panelId="2"/>
+              </CHILD>
+            </CHILD>
+            <CHILD>
+              <LAYOUT barsEnabled="1" isVertical="0"/>
+              <PANEL panelId="3"/>
+            </CHILD>
+            <CHILD>
+              <LAYOUT barsEnabled="1" isVertical="0"/>
+              <PANEL panelId="4"/>
+            </CHILD>
+          </CHILD>
+          <CHILD>
+            <LAYOUT barsEnabled="1" isVertical="1"/>
+            <PANEL panelId="0"/>
+          </CHILD>
+        </ROOT>
+      </PanelTree>
+    </PanelWindow>
+  </PanelWindows>
+</WAVEProject>

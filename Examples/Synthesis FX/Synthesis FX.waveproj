@@ -1,0 +1,1176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<WAVEProject>
+  <ProjectConfig>
+    <VALUE name="name" val=""/>
+    <VALUE name="created" val="11 Oct 2018 23:22:59"/>
+    <VALUE name="directory" val="/Users/pierre/Developer/JUCE projects/WebAudioVisualEditor/Examples/Synthesis FX"/>
+  </ProjectConfig>
+  <Panels>
+    <InspectorPanel panelId="0"/>
+    <AudioFilesPanel panelId="1"/>
+    <WebAudioGraph panelId="2">
+      <GraphPanel>
+        <Embedded name="tick" graphId="0" uiComp="dynamicRouteType" xpos="14" ypos="1137"
+                  width="619" height="214" navigableUuid="00000000000000000000000000000000"
+                  interface="" elementType="dynamicRouteType" backgroundColour="ff4db67d"/>
+        <Embedded name="start(now())" graphId="1" uiComp="messageType" xpos="174"
+                  ypos="1174" width="86" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="" elementType="messageType" backgroundColour="ff4db67d"/>
+        <Embedded name="frequency.setValueAtTime(6000, now() + 0.005)" graphId="2"
+                  uiComp="messageType" xpos="158" ypos="1201" width="299" height="22"
+                  navigableUuid="00000000000000000000000000000000" interface=""
+                  elementType="messageType" backgroundColour="ff4db67d"/>
+        <Embedded name="tk_osc" graphId="3" uiComp="audioNodeType" xpos="44" ypos="1206"
+                  width="75" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="OscillatorNode" elementType="audioNodeType" isOpen="0"
+                  backgroundColour="ff4db67d">
+          <OPTIONS type="&quot;sine&quot;" frequency="660" detune="0" periodicWave=""/>
+        </Embedded>
+        <Embedded name="frequency.exponentialRampToValueAtTime(1500, now() + 0.007)"
+                  graphId="4" uiComp="messageType" xpos="149" ypos="1229" width="397"
+                  height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="" elementType="messageType" backgroundColour="ff4db67d"/>
+        <Embedded name="tk_gain" graphId="5" uiComp="audioNodeType" xpos="44" ypos="1256"
+                  width="75" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="GainNode" elementType="audioNodeType" isOpen="0" backgroundColour="ff4db67d">
+          <OPTIONS gain="0"/>
+        </Embedded>
+        <Embedded name="gain.setValueAtTime(0, now() + 0.005)" graphId="6" uiComp="messageType"
+                  xpos="187" ypos="1261" width="244" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="" elementType="messageType" backgroundColour="ff4db67d"/>
+        <Embedded name="gain.linearRampToValueAtTime(0.6, now() + 0.01)" graphId="7"
+                  uiComp="messageType" xpos="172" ypos="1290" width="311" height="22"
+                  navigableUuid="00000000000000000000000000000000" interface=""
+                  elementType="messageType" backgroundColour="ff4db67d"/>
+        <Embedded name="gain.linearRampToValueAtTime(0, now() + 0.02)" graphId="8"
+                  uiComp="messageType" xpos="158" ypos="1318" width="300" height="22"
+                  navigableUuid="00000000000000000000000000000000" interface=""
+                  elementType="messageType" backgroundColour="ff4db67d"/>
+        <Embedded name="kick808" graphId="9" uiComp="dynamicRouteType" xpos="14"
+                  ypos="180" width="618" height="218" navigableUuid="00000000000000000000000000000000"
+                  interface="" elementType="dynamicRouteType" backgroundColour="ff2e78e2"/>
+        <Embedded name="start(0)" graphId="10" uiComp="messageType" xpos="116"
+                  ypos="200" width="74" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="" elementType="messageType" backgroundColour="ff2e78e2"/>
+        <Embedded name="frequency.setValueAtTime(300, now())" graphId="11" uiComp="messageType"
+                  xpos="140" ypos="242" width="241" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="" elementType="messageType" backgroundColour="ff2e78e2"/>
+        <Embedded name="kick_osc" graphId="12" uiComp="audioNodeType" xpos="26"
+                  ypos="262" width="75" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="OscillatorNode" elementType="audioNodeType" isOpen="0"
+                  backgroundColour="ff2e78e2">
+          <OPTIONS type="&quot;sine&quot;" frequency="660" detune="0" periodicWave=""/>
+        </Embedded>
+        <Embedded name="frequency.exponentialRampToValueAtTime(30, now() + 0.1)"
+                  graphId="13" uiComp="messageType" xpos="147" ypos="271" width="367"
+                  height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="" elementType="messageType" backgroundColour="ff2e78e2"/>
+        <Embedded name="kick_gain" graphId="14" uiComp="audioNodeType" xpos="23"
+                  ypos="306" width="81" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="GainNode" elementType="audioNodeType" isOpen="0" backgroundColour="ff2e78e2">
+          <OPTIONS gain="0"/>
+        </Embedded>
+        <Embedded name="gain.setValueAtTime(0, now())" graphId="15" uiComp="messageType"
+                  xpos="166" ypos="307" width="194" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="" elementType="messageType" backgroundColour="ff2e78e2"/>
+        <Embedded name="gain.linearRampToValueAtTime(0.9, now() + 0.001)" graphId="16"
+                  uiComp="messageType" xpos="159" ypos="336" width="318" height="22"
+                  navigableUuid="00000000000000000000000000000000" interface=""
+                  elementType="messageType" backgroundColour="ff2e78e2"/>
+        <Embedded name=".destination" graphId="17" uiComp="audioDestinationNodeType"
+                  xpos="29" ypos="141" width="96" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="AudioDestinationNode" elementType="audioDestinationNodeType"
+                  isOpen="0" backgroundColour="ff00fff3">
+          <OPTIONS/>
+        </Embedded>
+        <Embedded name="gain.linearRampToValueAtTime(0, now() + 0.3)" graphId="18"
+                  uiComp="messageType" xpos="150" ypos="364" width="292" height="22"
+                  navigableUuid="00000000000000000000000000000000" interface=""
+                  elementType="messageType" backgroundColour="ff2e78e2"/>
+        <Embedded name="beep" graphId="19" uiComp="dynamicRouteType" xpos="15"
+                  ypos="851" width="619" height="279" navigableUuid="00000000000000000000000000000000"
+                  interface="" elementType="dynamicRouteType" backgroundColour="ffde4141"/>
+        <Embedded name="bp_osc1" graphId="20" uiComp="audioNodeType" xpos="42"
+                  ypos="878" width="75" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="OscillatorNode" elementType="audioNodeType" isOpen="0"
+                  backgroundColour="ffde4141">
+          <OPTIONS type="&quot;sine&quot;" frequency="440" detune="0" periodicWave=""/>
+        </Embedded>
+        <Embedded name="start(0)" graphId="21" uiComp="messageType" xpos="217"
+                  ypos="870" width="74" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="" elementType="messageType" backgroundColour="ffde4141"/>
+        <Embedded name="bp_gain1" graphId="22" uiComp="audioNodeType" xpos="39"
+                  ypos="932" width="80" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="GainNode" elementType="audioNodeType" isOpen="0" backgroundColour="ffde4141">
+          <OPTIONS gain="0"/>
+        </Embedded>
+        <Embedded name="gain.setValueAtTime(0, now())" graphId="23" uiComp="messageType"
+                  xpos="235" ypos="936" width="194" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="" elementType="messageType" backgroundColour="ffde4141"/>
+        <Embedded name="gain.linearRampToValueAtTime(1, now() + 0.02)" graphId="24"
+                  uiComp="messageType" xpos="235" ypos="965" width="300" height="22"
+                  navigableUuid="00000000000000000000000000000000" interface=""
+                  elementType="messageType" backgroundColour="ffde4141"/>
+        <Embedded name="bp_osc2" graphId="25" uiComp="audioNodeType" xpos="105"
+                  ypos="968" width="75" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="OscillatorNode" elementType="audioNodeType" isOpen="0"
+                  backgroundColour="ffde4141">
+          <OPTIONS type="&quot;sine&quot;" frequency="660" detune="0" periodicWave=""/>
+        </Embedded>
+        <Embedded name="gain.linearRampToValueAtTime (0, now() + 0.09)" graphId="26"
+                  uiComp="messageType" xpos="235" ypos="993" width="303" height="22"
+                  navigableUuid="00000000000000000000000000000000" interface=""
+                  elementType="messageType" backgroundColour="ffde4141"/>
+        <Embedded name="bp_gain2" graphId="27" uiComp="audioNodeType" xpos="102"
+                  ypos="1007" width="80" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="GainNode" elementType="audioNodeType" isOpen="0" backgroundColour="ffde4141">
+          <OPTIONS gain="0"/>
+        </Embedded>
+        <Embedded name="gain.setValueAtTime(0, now() + 0.08)" graphId="28" uiComp="messageType"
+                  xpos="268" ypos="1035" width="237" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="" elementType="messageType" backgroundColour="ffde4141"/>
+        <Embedded name="bp_delay" graphId="29" uiComp="audioNodeType" xpos="146"
+                  ypos="1050" width="77" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="DelayNode" elementType="audioNodeType" isOpen="0"
+                  backgroundColour="ffde4141">
+          <OPTIONS maxDelayTime="1" delayTime="0.2"/>
+        </Embedded>
+        <Embedded name="gain.linearRampToValueAtTime(1, now() + 0.1)" graphId="30"
+                  uiComp="messageType" xpos="268" ypos="1064" width="292" height="22"
+                  navigableUuid="00000000000000000000000000000000" interface=""
+                  elementType="messageType" backgroundColour="ffde4141"/>
+        <Embedded name="bp_delayFb" graphId="31" uiComp="audioNodeType" xpos="138"
+                  ypos="1091" width="92" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="GainNode" elementType="audioNodeType" isOpen="0" backgroundColour="ffde4141">
+          <OPTIONS gain="0.1"/>
+        </Embedded>
+        <Embedded name="gain.linearRampToValueAtTime (0, now() + 0.17)" graphId="32"
+                  uiComp="messageType" xpos="268" ypos="1092" width="303" height="22"
+                  navigableUuid="00000000000000000000000000000000" interface=""
+                  elementType="messageType" backgroundColour="ffde4141"/>
+        <Embedded name="whiteNoiseGenerator" graphId="33" uiComp="scriptType" xpos="32"
+                  ypos="412" width="152" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="" elementType="scriptType" editorPanelId="10" editorContent="/* &#13;&#10;    A really simple white noise generator.&#13;&#10;    Creates a buffer, fills it with random numbers and attach this buffer&#13;&#10;    to the AudioBufferSourceNode named 'whiteNoiseSource'&#13;&#10;*/&#13;&#10;&#13;&#10;// sr is the audio context's sample rate&#13;&#10;let sr = ctx.sampleRate;&#13;&#10;&#13;&#10;// numSamples is the length in sample of the buffer&#13;&#10;let numSamples = sr * 2.0;&#13;&#10;&#13;&#10;// numChannels is the number of channel of the buffer (here 2 because we want stereo noise)&#13;&#10;let numChannels = 2;&#13;&#10;&#13;&#10;// Create a buffer&#13;&#10;let buffer = ctx.createBuffer (numChannels, numSamples, sr);&#13;&#10;&#13;&#10;// For each channel of this buffer&#13;&#10;for (let c = 0; c &lt; numChannels; ++c)&#13;&#10;{&#13;&#10;    // Get the audio data for this channel&#13;&#10;    let channelData = buffer.getChannelData (c);&#13;&#10;    &#13;&#10;    // For each sample in this channel data&#13;&#10;    for (let i = 0; i &lt; numSamples; ++i)&#13;&#10;        // Set the sample value to a random value between -1 and 1&#13;&#10;        channelData[i] = Math.random() * 2 - 1;&#13;&#10;}&#13;&#10;&#13;&#10;// Set (AudioBufferSourceNode) whiteNoiseSource's buffer to be the newly created buffer.&#13;&#10;whiteNoiseSource.buffer = buffer;"
+                  isOpen="0" backgroundColour="ffffec76">
+          <OPTIONS/>
+        </Embedded>
+        <Embedded name="whiteNoiseSource" graphId="34" uiComp="audioNodeType" xpos="15"
+                  ypos="452" width="132" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="AudioBufferSourceNode" elementType="audioNodeType"
+                  isOpen="0" backgroundColour="ffffec76">
+          <OPTIONS buffer="" detune="0" loop="1" loopEnd="0" loopStart="0" playbackRate="1"/>
+        </Embedded>
+        <Embedded name="start (now())" graphId="35" uiComp="messageType" xpos="172"
+                  ypos="452" width="90" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="" elementType="messageType" backgroundColour="ffffec76"/>
+        <Embedded name="snare808" graphId="36" uiComp="dynamicRouteType" xpos="15"
+                  ypos="482" width="617" height="359" navigableUuid="00000000000000000000000000000000"
+                  interface="" elementType="dynamicRouteType" backgroundColour="ffffec76"/>
+        <Embedded name="sn_noiseGain" graphId="37" uiComp="audioNodeType" xpos="29"
+                  ypos="578" width="104" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="GainNode" elementType="audioNodeType" isOpen="0" backgroundColour="ffffec76">
+          <OPTIONS gain="0"/>
+        </Embedded>
+        <Embedded name="frequency.setValueAtTime(7000, now())" graphId="38" uiComp="messageType"
+                  xpos="160" ypos="511" width="248" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="" elementType="messageType" backgroundColour="ffffec76"/>
+        <Embedded name="frequency.exponentialRampToValueAtTime(5000, now() + 0.05)"
+                  graphId="39" uiComp="messageType" xpos="152" ypos="537" width="390"
+                  height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="" elementType="messageType" backgroundColour="ffffec76"/>
+        <Embedded name="gain.setValueAtTime(0, now())" graphId="40" uiComp="messageType"
+                  xpos="167" ypos="566" width="194" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="" elementType="messageType" backgroundColour="ffffec76"/>
+        <Embedded name="gain.linearRampToValueAtTime(0.5, now() + 0.001)" graphId="41"
+                  uiComp="messageType" xpos="158" ypos="594" width="318" height="22"
+                  navigableUuid="00000000000000000000000000000000" interface=""
+                  elementType="messageType" backgroundColour="ffffec76"/>
+        <Embedded name="gain.linearRampToValueAtTime(0, now() + 0.05)" graphId="42"
+                  uiComp="messageType" xpos="151" ypos="621" width="300" height="22"
+                  navigableUuid="00000000000000000000000000000000" interface=""
+                  elementType="messageType" backgroundColour="ffffec76"/>
+        <Embedded name="sn_lpf" graphId="43" uiComp="audioNodeType" xpos="44" ypos="524"
+                  width="75" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="BiquadFilterNode" elementType="audioNodeType" isOpen="0"
+                  backgroundColour="ffffec76">
+          <OPTIONS type="&quot;lowpass&quot;" Q="0.03" detune="0" frequency="350"
+                   gain="1"/>
+        </Embedded>
+        <Embedded name="start(now())" graphId="44" uiComp="messageType" xpos="221"
+                  ypos="651" width="86" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="" elementType="messageType" backgroundColour="ffffec76"/>
+        <Embedded name="frequency.setValueAtTime(660, now())" graphId="45" uiComp="messageType"
+                  xpos="209" ypos="687" width="241" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="" elementType="messageType" backgroundColour="ffffec76"/>
+        <Embedded name="sn_osc" graphId="46" uiComp="audioNodeType" xpos="103"
+                  ypos="659" width="75" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="OscillatorNode" elementType="audioNodeType" isOpen="0"
+                  backgroundColour="ffffec76">
+          <OPTIONS type="&quot;sine&quot;" frequency="660" detune="0" periodicWave=""/>
+        </Embedded>
+        <Embedded name="frequency.exponentialRampToValueAtTime(330, now() + 0.004)"
+                  graphId="47" uiComp="messageType" xpos="198" ypos="714" width="390"
+                  height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="" elementType="messageType" backgroundColour="ffffec76"/>
+        <Embedded name="sn_oscGain" graphId="48" uiComp="audioNodeType" xpos="94"
+                  ypos="752" width="92" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="GainNode" elementType="audioNodeType" isOpen="0" backgroundColour="ffffec76">
+          <OPTIONS gain="0"/>
+        </Embedded>
+        <Embedded name="gain.setValueAtTime(0, now())" graphId="49" uiComp="messageType"
+                  xpos="217" ypos="751" width="194" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="" elementType="messageType" backgroundColour="ffffec76"/>
+        <Embedded name="gain.linearRampToValueAtTime(0.5, now() + 0.0001)" graphId="50"
+                  uiComp="messageType" xpos="211" ypos="779" width="326" height="22"
+                  navigableUuid="00000000000000000000000000000000" interface=""
+                  elementType="messageType" backgroundColour="ffffec76"/>
+        <Embedded name="gain.linearRampToValueAtTime(0, now() + 0.04)" graphId="51"
+                  uiComp="messageType" xpos="206" ypos="807" width="300" height="22"
+                  navigableUuid="00000000000000000000000000000000" interface=""
+                  elementType="messageType" backgroundColour="ffffec76"/>
+        <Embedded name="stop(now() + 1)" graphId="52" uiComp="messageType" xpos="203"
+                  ypos="213" width="110" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="" elementType="messageType" backgroundColour="ff2e78e2"/>
+        <Embedded name="stop(now() + 1)" graphId="53" uiComp="messageType" xpos="226"
+                  ypos="897" width="110" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="" elementType="messageType" backgroundColour="ffde4141"/>
+        <Embedded name="keyListener" graphId="54" uiComp="scriptType" xpos="28"
+                  ypos="16" width="93" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="" elementType="scriptType" editorPanelId="17" editorContent="/* &#13;&#10;    Bind some key presses to dynamic route calls.&#13;&#10;*/&#13;&#10;&#13;&#10;// This is a way to know if this function already executed. We don't want HTML elements to be created&#13;&#10;// twice so we check if it has already been added.&#13;&#10;if (document.getElementById (&quot;keysText&quot;) != undefined)&#13;&#10;    return;&#13;&#10;&#13;&#10;// We'll use the keyboard to trigger sounds.&#13;&#10;// To do so, we check the key's code to know what key was pressed and then we call trigger a sound by&#13;&#10;// using the name of a dynamic route with parenthesis '()'. It means that we call the function corresponding&#13;&#10;// to the dynamic route.&#13;&#10;window.onkeypress = function(e) {&#10;   if (e.code == &quot;KeyQ&quot;)            kick808();&#10;   else if (e.code == &quot;KeyW&quot;)       snare808();&#10;   else if (e.code == &quot;KeyE&quot;)       beep();&#10;   else if (e.code == &quot;KeyR&quot;)       tick();&#10;}&#13;&#10;&#13;&#10;// Here we create a para HTML element and we add some text to it. This text will be displayed in the &#13;&#10;// 'controllers' section of the generated HTML page&#10;var pElement = document.createElement(&quot;p&quot;);&#13;&#10;pElement.id = &quot;keysText&quot;;&#10;pElement.appendChild (document.createTextNode(&quot;Try using the keyboard to trigger these sounds!&quot;));&#13;&#10;pElement.appendChild (document.createElement(&quot;br&quot;));&#10;pElement.appendChild (document.createTextNode(&quot;Key codes : KeyQ, KeyW, KeyE and KeyR.&quot;));&#10;document.getElementById(&quot;controllers&quot;).appendChild(pElement);"
+                  isOpen="0" backgroundColour="ff8b00ff">
+          <OPTIONS/>
+        </Embedded>
+        <Embedded name="masterSlider" graphId="55" uiComp="scriptType" xpos="24"
+                  ypos="55" width="100" height="22" navigableUuid="c903d4bded2d4866827a41d1019d48f0"
+                  interface="" elementType="scriptType" editorPanelId="11" editorContent="/* &#13;&#10;    Creates a HTML range element to control the master gain.&#13;&#10;*/&#13;&#10;&#13;&#10;// This is a way to know if this function already executed. We don't want HTML elements to be created&#13;&#10;// twice so we check if it has already been added.&#13;&#10;if (document.getElementById (&quot;masterSlider&quot;) != undefined)&#13;&#10;    return;&#13;&#10;&#13;&#10;// Create a HTML input element with type range and prepare it.&#13;&#10;var slider = document.createElement(&quot;input&quot;);&#13;&#10;slider.id = &quot;masterSlider&quot;;&#13;&#10;slider.setAttribute(&quot;type&quot;, &quot;range&quot;);&#13;&#10;slider.setAttribute(&quot;min&quot;, &quot;0&quot;);&#13;&#10;slider.setAttribute(&quot;max&quot;, &quot;100&quot;);  // range works with integer values so we need an arbitrary scaling&#13;&#10;slider.style.width = &quot;100%&quot;;&#13;&#10;&#13;&#10;// Set oninput callback to react to value changes&#13;&#10;slider.oninput = function() {&#13;&#10;    // Sets the value of the gain parameter of (GainNode) master.&#13;&#10;    // Don't forget to divide the slider's value by the appropriate factor to get a value in the range [0., 1.].&#13;&#10;    master.gain.setValueAtTime(slider.value / 100, now());&#13;&#10;}&#13;&#10;&#13;&#10;// Create a label for the slider and add it to the 'controllers' section.&#13;&#10;var pElement = document.createElement(&quot;p&quot;);&#10;pElement.appendChild(document.createTextNode(&quot;Master gain :&quot;));&#10;document.getElementById(&quot;controllers&quot;).appendChild(pElement);&#13;&#10;&#13;&#10;// Add the slider to the 'controllers' section.&#13;&#10;document.getElementById(&quot;controllers&quot;).appendChild(slider);"
+                  isOpen="0" backgroundColour="ff00fff3">
+          <OPTIONS/>
+        </Embedded>
+        <Embedded name="master" graphId="56" uiComp="audioNodeType" xpos="40" ypos="106"
+                  width="75" height="22" navigableUuid="b1e3d4d89d1e4567b6b4f0ebb19a19ae"
+                  interface="GainNode" elementType="audioNodeType" isOpen="0" backgroundColour="ff00fff3">
+          <OPTIONS gain="0.5"/>
+        </Embedded>
+        <Embedded name="master" graphId="57" uiComp="audioNodeType" xpos="26" ypos="364"
+                  width="75" height="22" navigableUuid="b1e3d4d89d1e4567b6b4f0ebb19a19ae"
+                  interface="GainNode" elementType="audioNodeType" isOpen="0" backgroundColour="ff00fff3">
+          <OPTIONS gain="0.5"/>
+        </Embedded>
+        <Embedded name="master" graphId="58" uiComp="audioNodeType" xpos="44" ypos="802"
+                  width="75" height="22" navigableUuid="b1e3d4d89d1e4567b6b4f0ebb19a19ae"
+                  interface="GainNode" elementType="audioNodeType" isOpen="0" backgroundColour="ff00fff3">
+          <OPTIONS gain="0.5"/>
+        </Embedded>
+        <Embedded name="master" graphId="59" uiComp="audioNodeType" xpos="42" ypos="1096"
+                  width="75" height="22" navigableUuid="b1e3d4d89d1e4567b6b4f0ebb19a19ae"
+                  interface="GainNode" elementType="audioNodeType" isOpen="0" backgroundColour="ff00fff3">
+          <OPTIONS gain="0.5"/>
+        </Embedded>
+        <Embedded name="master" graphId="60" uiComp="audioNodeType" xpos="44" ypos="1315"
+                  width="75" height="22" navigableUuid="b1e3d4d89d1e4567b6b4f0ebb19a19ae"
+                  interface="GainNode" elementType="audioNodeType" isOpen="0" backgroundColour="ff00fff3">
+          <OPTIONS gain="0.5"/>
+        </Embedded>
+        <Embedded name="bp_mix" graphId="61" uiComp="audioNodeType" xpos="42" ypos="1047"
+                  width="75" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="GainNode" elementType="audioNodeType" isOpen="0" backgroundColour="ffde4141">
+          <OPTIONS gain="1"/>
+        </Embedded>
+        <Embedded name="At initialisation, this script fills a buffer with random numbers and sets whiteNoiseSource's buffer"
+                  graphId="62" uiComp="commentType" xpos="191" ypos="405" width="434"
+                  height="40" navigableUuid="fab67ae83ac14c858788e28f7d475ad7"
+                  interface="" elementType="commentType" backgroundColour="ffffec76"/>
+        <Embedded name="This script creates a HTML slider and link its value to the master gain node's value"
+                  graphId="63" uiComp="commentType" xpos="132" ypos="54" width="503"
+                  height="32" navigableUuid="fab67ae83ac14c858788e28f7d475ad7"
+                  interface="" elementType="commentType" backgroundColour="ff00fff3"/>
+        <Embedded name="A snare generator inspired by the famous TR-808. This looks like the kick section with a white noise generator added and a low pass filter."
+                  graphId="64" uiComp="commentType" xpos="482" ypos="577" width="146"
+                  height="124" navigableUuid="fab67ae83ac14c858788e28f7d475ad7"
+                  interface="" elementType="commentType" backgroundColour="ffffec76"/>
+        <Embedded name="A kick generator based on the famous TR-808. This applies a pitch enveloppe to a sinus oscillator and triggers a short a gain enveloppe"
+                  graphId="65" uiComp="commentType" xpos="387" ypos="199" width="239"
+                  height="74" navigableUuid="fab67ae83ac14c858788e28f7d475ad7"
+                  interface="" elementType="commentType" backgroundColour="ff2e78e2"/>
+        <Embedded name="A soft high pitched sound with some feedback delay" graphId="66"
+                  uiComp="commentType" xpos="438" ypos="879" width="174" height="47"
+                  navigableUuid="805aad7603854296bd82fc2ea073b43e" interface=""
+                  elementType="commentType" backgroundColour="ffde4141"/>
+        <Embedded name="Short sound that could be used for website interaction"
+                  graphId="67" uiComp="commentType" xpos="401" ypos="1156" width="198"
+                  height="38" navigableUuid="805aad7603854296bd82fc2ea073b43e"
+                  interface="" elementType="commentType" backgroundColour="ff4db67d"/>
+        <Embedded name="Add keyboard input listener to trigger sounds" graphId="68"
+                  uiComp="commentType" xpos="135" ypos="18" width="302" height="30"
+                  navigableUuid="25d4dfc06fa04e628c2cf66f609ff1cb" interface=""
+                  elementType="commentType" backgroundColour="ffbd6eff"/>
+        <Embedded name="stop(now() + 1)" graphId="69" uiComp="messageType" xpos="314"
+                  ypos="660" width="110" height="22" navigableUuid="00000000000000000000000000000000"
+                  interface="" elementType="messageType" backgroundColour="ffffec76"/>
+        <Embedded name="You'll see multiple 'copies' of this GainNode across this project. In fact, all these 'master' elements are references to the same AudioNode. It is an handy way to keep a project clean without connections spanning all across the screen! Here we just connect (once and for all) the master GainNode to the default context's destination node to hear the sound coming from master."
+                  graphId="70" uiComp="commentType" xpos="134" ypos="95" width="509"
+                  height="86" navigableUuid="fab67ae83ac14c858788e28f7d475ad7"
+                  interface="" elementType="commentType" backgroundColour="ff00fff3"/>
+        <Connection sourceId="12" sourceChannel="0" sourcePlacement="2" destId="14"
+                    destChannel="0" destPlacement="0"/>
+        <Connection sourceId="12" sourceChannel="0" sourcePlacement="1" destId="10"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="14" sourceChannel="0" sourcePlacement="1" destId="15"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="14" sourceChannel="0" sourcePlacement="1" destId="16"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="14" sourceChannel="0" sourcePlacement="1" destId="18"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="12" sourceChannel="0" sourcePlacement="1" destId="11"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="12" sourceChannel="0" sourcePlacement="1" destId="13"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="22" sourceChannel="0" sourcePlacement="1" destId="23"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="20" sourceChannel="0" sourcePlacement="2" destId="22"
+                    destChannel="0" destPlacement="0"/>
+        <Connection sourceId="20" sourceChannel="0" sourcePlacement="1" destId="21"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="25" sourceChannel="0" sourcePlacement="2" destId="27"
+                    destChannel="0" destPlacement="0"/>
+        <Connection sourceId="29" sourceChannel="0" sourcePlacement="2" destId="31"
+                    destChannel="0" destPlacement="0"/>
+        <Connection sourceId="25" sourceChannel="0" sourcePlacement="1" destId="21"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="22" sourceChannel="0" sourcePlacement="1" destId="24"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="22" sourceChannel="0" sourcePlacement="1" destId="26"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="27" sourceChannel="0" sourcePlacement="1" destId="28"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="27" sourceChannel="0" sourcePlacement="1" destId="30"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="27" sourceChannel="0" sourcePlacement="1" destId="32"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="3" sourceChannel="0" sourcePlacement="2" destId="5"
+                    destChannel="0" destPlacement="0"/>
+        <Connection sourceId="3" sourceChannel="0" sourcePlacement="1" destId="1"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="5" sourceChannel="0" sourcePlacement="1" destId="8"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="3" sourceChannel="0" sourcePlacement="1" destId="2"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="3" sourceChannel="0" sourcePlacement="1" destId="4"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="34" sourceChannel="0" sourcePlacement="1" destId="35"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="37" sourceChannel="0" sourcePlacement="1" destId="40"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="37" sourceChannel="0" sourcePlacement="1" destId="41"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="37" sourceChannel="0" sourcePlacement="1" destId="42"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="43" sourceChannel="0" sourcePlacement="2" destId="37"
+                    destChannel="0" destPlacement="0"/>
+        <Connection sourceId="34" sourceChannel="0" sourcePlacement="2" destId="43"
+                    destChannel="0" destPlacement="0"/>
+        <Connection sourceId="43" sourceChannel="0" sourcePlacement="1" destId="39"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="43" sourceChannel="0" sourcePlacement="1" destId="38"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="46" sourceChannel="0" sourcePlacement="2" destId="48"
+                    destChannel="0" destPlacement="0"/>
+        <Connection sourceId="46" sourceChannel="0" sourcePlacement="1" destId="44"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="48" sourceChannel="0" sourcePlacement="1" destId="49"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="48" sourceChannel="0" sourcePlacement="1" destId="50"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="48" sourceChannel="0" sourcePlacement="1" destId="51"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="46" sourceChannel="0" sourcePlacement="1" destId="45"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="46" sourceChannel="0" sourcePlacement="1" destId="47"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="12" sourceChannel="0" sourcePlacement="1" destId="52"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="20" sourceChannel="0" sourcePlacement="1" destId="53"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="25" sourceChannel="0" sourcePlacement="1" destId="53"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="5" sourceChannel="0" sourcePlacement="1" destId="6"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="5" sourceChannel="0" sourcePlacement="1" destId="7"
+                    destChannel="0" destPlacement="3"/>
+        <Connection sourceId="56" sourceChannel="0" sourcePlacement="2" destId="17"
+                    destChannel="0" destPlacement="0"/>
+        <Connection sourceId="14" sourceChannel="0" sourcePlacement="2" destId="57"
+                    destChannel="0" destPlacement="0"/>
+        <Connection sourceId="48" sourceChannel="0" sourcePlacement="2" destId="58"
+                    destChannel="0" destPlacement="0"/>
+        <Connection sourceId="37" sourceChannel="0" sourcePlacement="2" destId="58"
+                    destChannel="0" destPlacement="0"/>
+        <Connection sourceId="5" sourceChannel="0" sourcePlacement="2" destId="60"
+                    destChannel="0" destPlacement="0"/>
+        <Connection sourceId="22" sourceChannel="0" sourcePlacement="2" destId="61"
+                    destChannel="0" destPlacement="0"/>
+        <Connection sourceId="27" sourceChannel="0" sourcePlacement="2" destId="61"
+                    destChannel="0" destPlacement="0"/>
+        <Connection sourceId="61" sourceChannel="0" sourcePlacement="2" destId="29"
+                    destChannel="0" destPlacement="0"/>
+        <Connection sourceId="31" sourceChannel="0" sourcePlacement="2" destId="61"
+                    destChannel="0" destPlacement="0"/>
+        <Connection sourceId="61" sourceChannel="0" sourcePlacement="2" destId="59"
+                    destChannel="0" destPlacement="0"/>
+        <Connection sourceId="46" sourceChannel="0" sourcePlacement="1" destId="69"
+                    destChannel="0" destPlacement="3"/>
+        <SELECTION/>
+      </GraphPanel>
+    </WebAudioGraph>
+    <GeneratorPanel panelId="3"/>
+    <OutputScriptPanel panelId="4">
+      <APPLIED>&quot;use strict&quot;;
+
+var graph = (function() {
+   let ctx, master, whiteNoiseSource, kick_osc, kick_gain, sn_lpf, sn_noiseGain, sn_osc, sn_oscGain, bp_osc1, bp_gain1, bp_osc2, bp_gain2, bp_mix, bp_delay, bp_delayFb, tk_osc, tk_gain;
+
+   let now = function() {
+      return ctx.currentTime;
+   };
+
+   let prepareHtmlElements = function() {
+      var controllersDiv = document.querySelector('#controllers');
+
+      var startAudioButton = document.createElement ('button');
+      startAudioButton.appendChild (document.createTextNode('startAudio'));
+      startAudioButton.onclick = function() {
+         startAudio();
+      }
+
+      startAudioButton.style.background = &quot;#FFFFFF&quot;;
+      controllersDiv.appendChild (startAudioButton);
+
+      var kick808Button = document.createElement ('button');
+      kick808Button.appendChild (document.createTextNode('kick808'));
+      kick808Button.onclick = function() {
+         kick808();
+      }
+
+      kick808Button.style.background = &quot;#2E78E2&quot;;
+      controllersDiv.appendChild (kick808Button);
+
+      var snare808Button = document.createElement ('button');
+      snare808Button.appendChild (document.createTextNode('snare808'));
+      snare808Button.onclick = function() {
+         snare808();
+      }
+
+      snare808Button.style.background = &quot;#FFEC76&quot;;
+      controllersDiv.appendChild (snare808Button);
+
+      var beepButton = document.createElement ('button');
+      beepButton.appendChild (document.createTextNode('beep'));
+      beepButton.onclick = function() {
+         beep();
+      }
+
+      beepButton.style.background = &quot;#DE4141&quot;;
+      controllersDiv.appendChild (beepButton);
+
+      var tickButton = document.createElement ('button');
+      tickButton.appendChild (document.createTextNode('tick'));
+      tickButton.onclick = function() {
+         tick();
+      }
+
+      tickButton.style.background = &quot;#4DB67D&quot;;
+      controllersDiv.appendChild (tickButton);
+   }
+
+   window.addEventListener ('load', prepareHtmlElements);
+
+   let whiteNoiseGenerator = function() {
+      /* 
+          A really simple white noise generator.
+          Creates a buffer, fills it with random numbers and attach this buffer
+          to the AudioBufferSourceNode named 'whiteNoiseSource'
+      */
+      
+      // sr is the audio context's sample rate
+      let sr = ctx.sampleRate;
+      
+      // numSamples is the length in sample of the buffer
+      let numSamples = sr * 2.0;
+      
+      // numChannels is the number of channel of the buffer (here 2 because we want stereo noise)
+      let numChannels = 2;
+      
+      // Create a buffer
+      let buffer = ctx.createBuffer (numChannels, numSamples, sr);
+      
+      // For each channel of this buffer
+      for (let c = 0; c &lt; numChannels; ++c)
+      {
+          // Get the audio data for this channel
+          let channelData = buffer.getChannelData (c);
+          
+          // For each sample in this channel data
+          for (let i = 0; i &lt; numSamples; ++i)
+              // Set the sample value to a random value between -1 and 1
+              channelData[i] = Math.random() * 2 - 1;
+      }
+      
+      // Set (AudioBufferSourceNode) whiteNoiseSource's buffer to be the newly created buffer.
+      whiteNoiseSource.buffer = buffer;
+   };
+
+   let keyListener = function() {
+      /* 
+          Bind some key presses to dynamic route calls.
+      */
+      
+      // This is a way to know if this function already executed. We don't want HTML elements to be created
+      // twice so we check if it has already been added.
+      if (document.getElementById (&quot;keysText&quot;) != undefined)
+          return;
+      
+      // We'll use the keyboard to trigger sounds.
+      // To do so, we check the key's code to know what key was pressed and then we call trigger a sound by
+      // using the name of a dynamic route with parenthesis '()'. It means that we call the function corresponding
+      // to the dynamic route.
+      window.onkeypress = function(e) {
+         if (e.code == &quot;KeyQ&quot;)            kick808();
+         else if (e.code == &quot;KeyW&quot;)       snare808();
+         else if (e.code == &quot;KeyE&quot;)       beep();
+         else if (e.code == &quot;KeyR&quot;)       tick();
+      }
+      
+      // Here we create a para HTML element and we add some text to it. This text will be displayed in the 
+      // 'controllers' section of the generated HTML page
+      var pElement = document.createElement(&quot;p&quot;);
+      pElement.id = &quot;keysText&quot;;
+      pElement.appendChild (document.createTextNode(&quot;Try using the keyboard to trigger these sounds!&quot;));
+      pElement.appendChild (document.createElement(&quot;br&quot;));
+      pElement.appendChild (document.createTextNode(&quot;Key codes : KeyQ, KeyW, KeyE and KeyR.&quot;));
+      document.getElementById(&quot;controllers&quot;).appendChild(pElement);
+   };
+
+   let masterSlider = function() {
+      /* 
+          Creates a HTML range element to control the master gain.
+      */
+      
+      // This is a way to know if this function already executed. We don't want HTML elements to be created
+      // twice so we check if it has already been added.
+      if (document.getElementById (&quot;masterSlider&quot;) != undefined)
+          return;
+      
+      // Create a HTML input element with type range and prepare it.
+      var slider = document.createElement(&quot;input&quot;);
+      slider.id = &quot;masterSlider&quot;;
+      slider.setAttribute(&quot;type&quot;, &quot;range&quot;);
+      slider.setAttribute(&quot;min&quot;, &quot;0&quot;);
+      slider.setAttribute(&quot;max&quot;, &quot;100&quot;);  // range works with integer values so we need an arbitrary scaling
+      slider.style.width = &quot;100%&quot;;
+      
+      // Set oninput callback to react to value changes
+      slider.oninput = function() {
+          // Sets the value of the gain parameter of (GainNode) master.
+          // Don't forget to divide the slider's value by the appropriate factor to get a value in the range [0., 1.].
+          master.gain.setValueAtTime(slider.value / 100, now());
+      }
+      
+      // Create a label for the slider and add it to the 'controllers' section.
+      var pElement = document.createElement(&quot;p&quot;);
+      pElement.appendChild(document.createTextNode(&quot;Master gain :&quot;));
+      document.getElementById(&quot;controllers&quot;).appendChild(pElement);
+      
+      // Add the slider to the 'controllers' section.
+      document.getElementById(&quot;controllers&quot;).appendChild(slider);
+   };
+
+   let startAudio = function() {
+      var AudioContext = window.AudioContext || window.webkitAudioContext;
+
+      // Context declaration (default context)
+      ctx = new AudioContext();
+
+      master = new GainNode(ctx, {
+         gain: 0.5
+      });
+
+      whiteNoiseSource = new AudioBufferSourceNode(ctx, {
+         detune: 0,
+         loop: 1,
+         loopEnd: 0,
+         loopStart: 0,
+         playbackRate: 1
+      });
+
+      master.connect(ctx.destination);
+
+      keyListener();
+      masterSlider();
+      whiteNoiseGenerator();
+      whiteNoiseSource.start (now());
+   };
+
+   let kick808 = function() {
+      kick_osc = new OscillatorNode(ctx, {
+         type: &quot;sine&quot;,
+         frequency: 660,
+         detune: 0
+      });
+
+      kick_gain = new GainNode(ctx, {
+         gain: 0
+      });
+
+      kick_osc.connect(kick_gain);
+      kick_gain.connect(master);
+
+      kick_osc.start(0);
+      kick_osc.stop(now() + 1);
+      kick_osc.frequency.setValueAtTime(300, now());
+      kick_osc.frequency.exponentialRampToValueAtTime(30, now() + 0.1);
+      kick_gain.gain.setValueAtTime(0, now());
+      kick_gain.gain.linearRampToValueAtTime(0.9, now() + 0.001);
+      kick_gain.gain.linearRampToValueAtTime(0, now() + 0.3);
+   }
+
+   let snare808 = function() {
+      sn_lpf = new BiquadFilterNode(ctx, {
+         type: &quot;lowpass&quot;,
+         Q: 0.03,
+         detune: 0,
+         frequency: 350,
+         gain: 1
+      });
+
+      sn_noiseGain = new GainNode(ctx, {
+         gain: 0
+      });
+
+      sn_osc = new OscillatorNode(ctx, {
+         type: &quot;sine&quot;,
+         frequency: 660,
+         detune: 0
+      });
+
+      sn_oscGain = new GainNode(ctx, {
+         gain: 0
+      });
+
+      sn_lpf.connect(sn_noiseGain);
+      whiteNoiseSource.connect(sn_lpf);
+      sn_osc.connect(sn_oscGain);
+      sn_oscGain.connect(master);
+      sn_noiseGain.connect(master);
+
+      sn_lpf.frequency.setValueAtTime(7000, now());
+      sn_lpf.frequency.exponentialRampToValueAtTime(5000, now() + 0.05);
+      sn_noiseGain.gain.setValueAtTime(0, now());
+      sn_noiseGain.gain.linearRampToValueAtTime(0.5, now() + 0.001);
+      sn_noiseGain.gain.linearRampToValueAtTime(0, now() + 0.05);
+      sn_osc.start(now());
+      sn_osc.stop(now() + 1);
+      sn_osc.frequency.setValueAtTime(660, now());
+      sn_osc.frequency.exponentialRampToValueAtTime(330, now() + 0.004);
+      sn_oscGain.gain.setValueAtTime(0, now());
+      sn_oscGain.gain.linearRampToValueAtTime(0.5, now() + 0.0001);
+      sn_oscGain.gain.linearRampToValueAtTime(0, now() + 0.04);
+   }
+
+   let beep = function() {
+      bp_osc1 = new OscillatorNode(ctx, {
+         type: &quot;sine&quot;,
+         frequency: 440,
+         detune: 0
+      });
+
+      bp_gain1 = new GainNode(ctx, {
+         gain: 0
+      });
+
+      bp_osc2 = new OscillatorNode(ctx, {
+         type: &quot;sine&quot;,
+         frequency: 660,
+         detune: 0
+      });
+
+      bp_gain2 = new GainNode(ctx, {
+         gain: 0
+      });
+
+      bp_mix = new GainNode(ctx, {
+         gain: 1
+      });
+
+      bp_delay = new DelayNode(ctx, {
+         maxDelayTime: 1,
+         delayTime: 0.2
+      });
+
+      bp_delayFb = new GainNode(ctx, {
+         gain: 0.1
+      });
+
+      bp_osc1.connect(bp_gain1);
+      bp_osc2.connect(bp_gain2);
+      bp_delay.connect(bp_delayFb);
+      bp_gain1.connect(bp_mix);
+      bp_gain2.connect(bp_mix);
+      bp_mix.connect(bp_delay);
+      bp_delayFb.connect(bp_mix);
+      bp_mix.connect(master);
+
+      bp_osc1.start(0);
+      bp_osc2.start(0);
+      bp_osc1.stop(now() + 1);
+      bp_osc2.stop(now() + 1);
+      bp_gain1.gain.setValueAtTime(0, now());
+      bp_gain1.gain.linearRampToValueAtTime(1, now() + 0.02);
+      bp_gain1.gain.linearRampToValueAtTime (0, now() + 0.09);
+      bp_gain2.gain.setValueAtTime(0, now() + 0.08);
+      bp_gain2.gain.linearRampToValueAtTime(1, now() + 0.1);
+      bp_gain2.gain.linearRampToValueAtTime (0, now() + 0.17);
+   }
+
+   let tick = function() {
+      tk_osc = new OscillatorNode(ctx, {
+         type: &quot;sine&quot;,
+         frequency: 660,
+         detune: 0
+      });
+
+      tk_gain = new GainNode(ctx, {
+         gain: 0
+      });
+
+      tk_osc.connect(tk_gain);
+      tk_gain.connect(master);
+
+      tk_osc.start(now());
+      tk_osc.frequency.setValueAtTime(6000, now() + 0.005);
+      tk_osc.frequency.exponentialRampToValueAtTime(1500, now() + 0.007);
+      tk_gain.gain.setValueAtTime(0, now() + 0.005);
+      tk_gain.gain.linearRampToValueAtTime(0.6, now() + 0.01);
+      tk_gain.gain.linearRampToValueAtTime(0, now() + 0.02);
+   }
+
+})();</APPLIED>
+      <UNAPPLIED>&quot;use strict&quot;;
+
+var graph = (function() {
+   let ctx, master, whiteNoiseSource, kick_osc, kick_gain, sn_lpf, sn_noiseGain, sn_osc, sn_oscGain, bp_osc1, bp_gain1, bp_osc2, bp_gain2, bp_mix, bp_delay, bp_delayFb, tk_osc, tk_gain;
+
+   let now = function() {
+      return ctx.currentTime;
+   };
+
+   let prepareHtmlElements = function() {
+      var controllersDiv = document.querySelector('#controllers');
+
+      var startAudioButton = document.createElement ('button');
+      startAudioButton.appendChild (document.createTextNode('startAudio'));
+      startAudioButton.onclick = function() {
+         startAudio();
+      }
+
+      startAudioButton.style.background = &quot;#FFFFFF&quot;;
+      controllersDiv.appendChild (startAudioButton);
+
+      var kick808Button = document.createElement ('button');
+      kick808Button.appendChild (document.createTextNode('kick808'));
+      kick808Button.onclick = function() {
+         kick808();
+      }
+
+      kick808Button.style.background = &quot;#2E78E2&quot;;
+      controllersDiv.appendChild (kick808Button);
+
+      var snare808Button = document.createElement ('button');
+      snare808Button.appendChild (document.createTextNode('snare808'));
+      snare808Button.onclick = function() {
+         snare808();
+      }
+
+      snare808Button.style.background = &quot;#FFEC76&quot;;
+      controllersDiv.appendChild (snare808Button);
+
+      var beepButton = document.createElement ('button');
+      beepButton.appendChild (document.createTextNode('beep'));
+      beepButton.onclick = function() {
+         beep();
+      }
+
+      beepButton.style.background = &quot;#DE4141&quot;;
+      controllersDiv.appendChild (beepButton);
+
+      var tickButton = document.createElement ('button');
+      tickButton.appendChild (document.createTextNode('tick'));
+      tickButton.onclick = function() {
+         tick();
+      }
+
+      tickButton.style.background = &quot;#4DB67D&quot;;
+      controllersDiv.appendChild (tickButton);
+   }
+
+   window.addEventListener ('load', prepareHtmlElements);
+
+   let whiteNoiseGenerator = function() {
+      /* 
+          A really simple white noise generator.
+          Creates a buffer, fills it with random numbers and attach this buffer
+          to the AudioBufferSourceNode named 'whiteNoiseSource'
+      */
+      
+      // sr is the audio context's sample rate
+      let sr = ctx.sampleRate;
+      
+      // numSamples is the length in sample of the buffer
+      let numSamples = sr * 2.0;
+      
+      // numChannels is the number of channel of the buffer (here 2 because we want stereo noise)
+      let numChannels = 2;
+      
+      // Create a buffer
+      let buffer = ctx.createBuffer (numChannels, numSamples, sr);
+      
+      // For each channel of this buffer
+      for (let c = 0; c &lt; numChannels; ++c)
+      {
+          // Get the audio data for this channel
+          let channelData = buffer.getChannelData (c);
+          
+          // For each sample in this channel data
+          for (let i = 0; i &lt; numSamples; ++i)
+              // Set the sample value to a random value between -1 and 1
+              channelData[i] = Math.random() * 2 - 1;
+      }
+      
+      // Set (AudioBufferSourceNode) whiteNoiseSource's buffer to be the newly created buffer.
+      whiteNoiseSource.buffer = buffer;
+   };
+
+   let keyListener = function() {
+      /* 
+          Bind some key presses to dynamic route calls.
+      */
+      
+      // This is a way to know if this function already executed. We don't want HTML elements to be created
+      // twice so we check if it has already been added.
+      if (document.getElementById (&quot;keysText&quot;) != undefined)
+          return;
+      
+      // We'll use the keyboard to trigger sounds.
+      // To do so, we check the key's code to know what key was pressed and then we call trigger a sound by
+      // using the name of a dynamic route with parenthesis '()'. It means that we call the function corresponding
+      // to the dynamic route.
+      window.onkeypress = function(e) {
+         if (e.code == &quot;KeyQ&quot;)            kick808();
+         else if (e.code == &quot;KeyW&quot;)       snare808();
+         else if (e.code == &quot;KeyE&quot;)       beep();
+         else if (e.code == &quot;KeyR&quot;)       tick();
+      }
+      
+      // Here we create a para HTML element and we add some text to it. This text will be displayed in the 
+      // 'controllers' section of the generated HTML page
+      var pElement = document.createElement(&quot;p&quot;);
+      pElement.id = &quot;keysText&quot;;
+      pElement.appendChild (document.createTextNode(&quot;Try using the keyboard to trigger these sounds!&quot;));
+      pElement.appendChild (document.createElement(&quot;br&quot;));
+      pElement.appendChild (document.createTextNode(&quot;Key codes : KeyQ, KeyW, KeyE and KeyR.&quot;));
+      document.getElementById(&quot;controllers&quot;).appendChild(pElement);
+   };
+
+   let masterSlider = function() {
+      /* 
+          Creates a HTML range element to control the master gain.
+      */
+      
+      // This is a way to know if this function already executed. We don't want HTML elements to be created
+      // twice so we check if it has already been added.
+      if (document.getElementById (&quot;masterSlider&quot;) != undefined)
+          return;
+      
+      // Create a HTML input element with type range and prepare it.
+      var slider = document.createElement(&quot;input&quot;);
+      slider.id = &quot;masterSlider&quot;;
+      slider.setAttribute(&quot;type&quot;, &quot;range&quot;);
+      slider.setAttribute(&quot;min&quot;, &quot;0&quot;);
+      slider.setAttribute(&quot;max&quot;, &quot;100&quot;);  // range works with integer values so we need an arbitrary scaling
+      slider.style.width = &quot;100%&quot;;
+      
+      // Set oninput callback to react to value changes
+      slider.oninput = function() {
+          // Sets the value of the gain parameter of (GainNode) master.
+          // Don't forget to divide the slider's value by the appropriate factor to get a value in the range [0., 1.].
+          master.gain.setValueAtTime(slider.value / 100, now());
+      }
+      
+      // Create a label for the slider and add it to the 'controllers' section.
+      var pElement = document.createElement(&quot;p&quot;);
+      pElement.appendChild(document.createTextNode(&quot;Master gain :&quot;));
+      document.getElementById(&quot;controllers&quot;).appendChild(pElement);
+      
+      // Add the slider to the 'controllers' section.
+      document.getElementById(&quot;controllers&quot;).appendChild(slider);
+   };
+
+   let startAudio = function() {
+      var AudioContext = window.AudioContext || window.webkitAudioContext;
+
+      // Context declaration (default context)
+      ctx = new AudioContext();
+
+      master = new GainNode(ctx, {
+         gain: 0.5
+      });
+
+      whiteNoiseSource = new AudioBufferSourceNode(ctx, {
+         detune: 0,
+         loop: 1,
+         loopEnd: 0,
+         loopStart: 0,
+         playbackRate: 1
+      });
+
+      master.connect(ctx.destination);
+
+      keyListener();
+      masterSlider();
+      whiteNoiseGenerator();
+      whiteNoiseSource.start (now());
+   };
+
+   let kick808 = function() {
+      kick_osc = new OscillatorNode(ctx, {
+         type: &quot;sine&quot;,
+         frequency: 660,
+         detune: 0
+      });
+
+      kick_gain = new GainNode(ctx, {
+         gain: 0
+      });
+
+      kick_osc.connect(kick_gain);
+      kick_gain.connect(master);
+
+      kick_osc.start(0);
+      kick_osc.stop(now() + 1);
+      kick_osc.frequency.setValueAtTime(300, now());
+      kick_osc.frequency.exponentialRampToValueAtTime(30, now() + 0.1);
+      kick_gain.gain.setValueAtTime(0, now());
+      kick_gain.gain.linearRampToValueAtTime(0.9, now() + 0.001);
+      kick_gain.gain.linearRampToValueAtTime(0, now() + 0.3);
+   }
+
+   let snare808 = function() {
+      sn_lpf = new BiquadFilterNode(ctx, {
+         type: &quot;lowpass&quot;,
+         Q: 0.03,
+         detune: 0,
+         frequency: 350,
+         gain: 1
+      });
+
+      sn_noiseGain = new GainNode(ctx, {
+         gain: 0
+      });
+
+      sn_osc = new OscillatorNode(ctx, {
+         type: &quot;sine&quot;,
+         frequency: 660,
+         detune: 0
+      });
+
+      sn_oscGain = new GainNode(ctx, {
+         gain: 0
+      });
+
+      sn_lpf.connect(sn_noiseGain);
+      whiteNoiseSource.connect(sn_lpf);
+      sn_osc.connect(sn_oscGain);
+      sn_oscGain.connect(master);
+      sn_noiseGain.connect(master);
+
+      sn_lpf.frequency.setValueAtTime(7000, now());
+      sn_lpf.frequency.exponentialRampToValueAtTime(5000, now() + 0.05);
+      sn_noiseGain.gain.setValueAtTime(0, now());
+      sn_noiseGain.gain.linearRampToValueAtTime(0.5, now() + 0.001);
+      sn_noiseGain.gain.linearRampToValueAtTime(0, now() + 0.05);
+      sn_osc.start(now());
+      sn_osc.stop(now() + 1);
+      sn_osc.frequency.setValueAtTime(660, now());
+      sn_osc.frequency.exponentialRampToValueAtTime(330, now() + 0.004);
+      sn_oscGain.gain.setValueAtTime(0, now());
+      sn_oscGain.gain.linearRampToValueAtTime(0.5, now() + 0.0001);
+      sn_oscGain.gain.linearRampToValueAtTime(0, now() + 0.04);
+   }
+
+   let beep = function() {
+      bp_osc1 = new OscillatorNode(ctx, {
+         type: &quot;sine&quot;,
+         frequency: 440,
+         detune: 0
+      });
+
+      bp_gain1 = new GainNode(ctx, {
+         gain: 0
+      });
+
+      bp_osc2 = new OscillatorNode(ctx, {
+         type: &quot;sine&quot;,
+         frequency: 660,
+         detune: 0
+      });
+
+      bp_gain2 = new GainNode(ctx, {
+         gain: 0
+      });
+
+      bp_mix = new GainNode(ctx, {
+         gain: 1
+      });
+
+      bp_delay = new DelayNode(ctx, {
+         maxDelayTime: 1,
+         delayTime: 0.2
+      });
+
+      bp_delayFb = new GainNode(ctx, {
+         gain: 0.1
+      });
+
+      bp_osc1.connect(bp_gain1);
+      bp_osc2.connect(bp_gain2);
+      bp_delay.connect(bp_delayFb);
+      bp_gain1.connect(bp_mix);
+      bp_gain2.connect(bp_mix);
+      bp_mix.connect(bp_delay);
+      bp_delayFb.connect(bp_mix);
+      bp_mix.connect(master);
+
+      bp_osc1.start(0);
+      bp_osc2.start(0);
+      bp_osc1.stop(now() + 1);
+      bp_osc2.stop(now() + 1);
+      bp_gain1.gain.setValueAtTime(0, now());
+      bp_gain1.gain.linearRampToValueAtTime(1, now() + 0.02);
+      bp_gain1.gain.linearRampToValueAtTime (0, now() + 0.09);
+      bp_gain2.gain.setValueAtTime(0, now() + 0.08);
+      bp_gain2.gain.linearRampToValueAtTime(1, now() + 0.1);
+      bp_gain2.gain.linearRampToValueAtTime (0, now() + 0.17);
+   }
+
+   let tick = function() {
+      tk_osc = new OscillatorNode(ctx, {
+         type: &quot;sine&quot;,
+         frequency: 660,
+         detune: 0
+      });
+
+      tk_gain = new GainNode(ctx, {
+         gain: 0
+      });
+
+      tk_osc.connect(tk_gain);
+      tk_gain.connect(master);
+
+      tk_osc.start(now());
+      tk_osc.frequency.setValueAtTime(6000, now() + 0.005);
+      tk_osc.frequency.exponentialRampToValueAtTime(1500, now() + 0.007);
+      tk_gain.gain.setValueAtTime(0, now() + 0.005);
+      tk_gain.gain.linearRampToValueAtTime(0.6, now() + 0.01);
+      tk_gain.gain.linearRampToValueAtTime(0, now() + 0.02);
+   }
+
+})();</UNAPPLIED>
+    </OutputScriptPanel>
+    <NavigationPanel panelId="5">
+      <OPEN id="5905e9473f38442faa88621b9de92a0b" scrollPos="0"/>
+    </NavigationPanel>
+    <Library panelId="6"/>
+  </Panels>
+  <PanelWindows>
+    <PanelWindow state="96 76 1728 951">
+      <PanelTree>
+        <ROOT>
+          <LAYOUT barsEnabled="1" isVertical="0">
+            <ITEM keepProportions="1" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
+                  defaultSize="337.00000000000000000000"/>
+            <ITEM keepProportions="1" minSize="4.00000000000000000000" maxSize="4.00000000000000000000"
+                  defaultSize="4.00000000000000000000"/>
+            <ITEM keepProportions="1" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
+                  defaultSize="1030.00000000000000000000"/>
+            <ITEM keepProportions="1" minSize="4.00000000000000000000" maxSize="4.00000000000000000000"
+                  defaultSize="4.00000000000000000000"/>
+            <ITEM keepProportions="1" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
+                  defaultSize="343.00000000000000000000"/>
+          </LAYOUT>
+          <CHILD>
+            <LAYOUT barsEnabled="1" isVertical="1">
+              <ITEM keepProportions="1" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
+                    defaultSize="561.00000000000000000000"/>
+              <ITEM keepProportions="1" minSize="4.00000000000000000000" maxSize="4.00000000000000000000"
+                    defaultSize="4.00000000000000000000"/>
+              <ITEM keepProportions="1" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
+                    defaultSize="376.00000000000000000000"/>
+            </LAYOUT>
+            <CHILD>
+              <LAYOUT barsEnabled="1" isVertical="0"/>
+              <PANEL panelId="5"/>
+            </CHILD>
+            <CHILD>
+              <LAYOUT barsEnabled="1" isVertical="0"/>
+              <PANEL panelId="1"/>
+            </CHILD>
+          </CHILD>
+          <CHILD>
+            <LAYOUT barsEnabled="1" isVertical="1">
+              <ITEM keepProportions="1" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
+                    defaultSize="527.00000000000000000000"/>
+              <ITEM keepProportions="1" minSize="4.00000000000000000000" maxSize="4.00000000000000000000"
+                    defaultSize="4.00000000000000000000"/>
+              <ITEM keepProportions="1" minSize="30.00000000000000000000" maxSize="30.00000000000000000000"
+                    defaultSize="30.00000000000000000000"/>
+              <ITEM keepProportions="1" minSize="4.00000000000000000000" maxSize="4.00000000000000000000"
+                    defaultSize="4.00000000000000000000"/>
+              <ITEM keepProportions="1" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
+                    defaultSize="376.00000000000000000000"/>
+            </LAYOUT>
+            <CHILD>
+              <LAYOUT barsEnabled="1" isVertical="0">
+                <ITEM keepProportions="1" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
+                      defaultSize="202.00000000000000000000"/>
+                <ITEM keepProportions="1" minSize="4.00000000000000000000" maxSize="4.00000000000000000000"
+                      defaultSize="4.00000000000000000000"/>
+                <ITEM keepProportions="1" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
+                      defaultSize="824.00000000000000000000"/>
+              </LAYOUT>
+              <CHILD>
+                <LAYOUT barsEnabled="1" isVertical="1"/>
+                <PANEL panelId="6"/>
+              </CHILD>
+              <CHILD>
+                <LAYOUT barsEnabled="1" isVertical="1"/>
+                <PANEL panelId="2"/>
+              </CHILD>
+            </CHILD>
+            <CHILD>
+              <LAYOUT barsEnabled="1" isVertical="0"/>
+              <PANEL panelId="3"/>
+            </CHILD>
+            <CHILD>
+              <LAYOUT barsEnabled="1" isVertical="0"/>
+              <PANEL panelId="4"/>
+            </CHILD>
+          </CHILD>
+          <CHILD>
+            <LAYOUT barsEnabled="1" isVertical="1"/>
+            <PANEL panelId="0"/>
+          </CHILD>
+        </ROOT>
+      </PanelTree>
+    </PanelWindow>
+  </PanelWindows>
+</WAVEProject>
