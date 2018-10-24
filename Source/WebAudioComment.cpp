@@ -25,7 +25,9 @@ WebAudioComment::WebAudioComment (WebAudioGraphPanel* parent) : WebAudioEmbedded
     editor.setMultiLine (true);
     editor.setColour (TextEditor::outlineColourId, Colours::transparentBlack);
     editor.setColour (TextEditor::backgroundColourId, Colours::transparentBlack);
-    editor.setReturnKeyStartsNewLine (true);
+    
+    // since inspector panel won't deal with multiline text properties...
+    //editor.setReturnKeyStartsNewLine (true);
     
     setBackgroundColour (getLookAndFeel().findColour (ResizableWindow::backgroundColourId).contrasting());
     setResizableBorderHidden (true);
