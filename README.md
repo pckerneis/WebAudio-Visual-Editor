@@ -15,7 +15,7 @@ Here are a few design goals :
 * Produce code with **no dependency** : you can just copy and paste the few JS files generated with WebAudio Visual Editor into your existing project without worrying about including and maintaining other externals. The output code is vanilla Javascript and only uses code defined in the WebAudio API. It is encapsulated using the _module_ pattern so that it won't interfere with other Javascript code.
 * Designed as a **playground** : the software is primarily made to explore sound generation techniques and quickly prototype ideas. It is meant to be an invitation to non-specialists to get to know the WebAudio API. Working project examples are included and testing a project in the browser is as simple as hitting a button! If only a few things can be achieved without typing Javascript code, the software aims at providing the user with suggestions and make easier tedious tasks such as loading an audio file by using a few higher-level objects.
 
-Please note that for now, the software is more suited to prototyping than to 'serious' web deployment. Most notably, the software is based on the [WebAudio API w3c spec](https://www.w3.org/TR/webaudio/) which is not fully implemented in all browsers. You can have more info on supported platforms on [Mozilla's guide](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API).
+Please note that for now, the software is more suited to prototyping than to 'serious' web production. Most notably, the software is based on the [WebAudio API w3c spec](https://www.w3.org/TR/webaudio/) which is not fully implemented in all browsers. You can have more info on supported platforms on [Mozilla's guide](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API).
 
 Here are a few test pages generated from the example projects :
 * [Basics](http://htmlpreview.github.io/?https://github.com/pckerneis/WebAudio-Visual-Editor/blob/master/Examples/Basics/output/index.html): a sinus generator and a stop button.
@@ -23,7 +23,9 @@ Here are a few test pages generated from the example projects :
 
 ## Getting Started
 
-To automatically generate project files for your integrated development environment, download the [latest version of JUCE](https://shop.juce.com/get-juce) the  and open "_WebAudio Visual Editor.jucer_" with Projucer. For more information, here is a [complete tutorial](https://docs.juce.com/master/tutorial_new_projucer_project.html).
+For OSX, you can get the latest built version [here](https://pckerneis.com/upload/WebAudioVisualEditor_0.0.1_OSX.dmg). Simply download and open the DMG file and copy the app somewhere on your computer and you're done.
+
+For Windows and Linux users or to prepare a development version, you'll find instructions below to build WebAudio Visual Editor from a Projucer file.
 
 ### Prerequisites
 
@@ -31,11 +33,11 @@ You'll need the library code from JUCE. You can get it on their [website](https:
 
 ### Installation
 
-Open "_WebAudio Visual Editor.jucer_" with Projucer, set the exporter for your development environment and generate the project. Build and run from your development environment.
+Open "_WebAudio Visual Editor.jucer_" with Projucer, set the exporter for your development environment and generate the project. Build and run from your development environment. If you need more information for this step, here is a [complete tutorial](https://docs.juce.com/master/tutorial_new_projucer_project.html).
 
 ### Testing
 
-You can then open one of the example files and hit the "Test in browser". This should open a new tab in your default browser with a test page containing at least the name of the project and a "startAudio" button. If everything works, you should be able to hear the sounds from the examples.
+You can then open one of the example files and hit the "_Test in browser_" button. This should open a new tab in your default browser with a test page containing at least the name of the project and a "startAudio" button. If everything works, you should be able to hear the sounds from the examples.
 
 ## Built With
 
