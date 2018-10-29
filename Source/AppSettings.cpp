@@ -54,13 +54,15 @@ void AppSettings::setDefaultLook()
     setDefaultLook (getCommonSettings(ap));
 }
 
+#include "EmbeddedFonts.h"
 void AppSettings::setDefaultLook (PropertiesFile* pf)
 {
+	SharedResourcePointer<EmbeddedFonts> fonts;
+
     pf->setValue ("mainColour", Colours::steelblue.toString());
-    pf->setValue ("brightLook", false); // true means bright
-    
-    pf->setValue ("editorFont", "Andale Mono; 15.0 Regular");
-    pf->setValue ("editorFontSize", 13.0f);
+    pf->setValue ("brightLook", false); // true means bright	
+    pf->setValue ("editorFont", Font ("Lucida Console", "", 12.0f).toString());
+    pf->setValue ("editorFontSize", 12.0f);
     pf->setValue ("editorBackground", Colour().toString());
     
     setCurrentEditorColourScheme (JavascriptTokeniser::getDefaultEditorColourScheme(), pf);
@@ -186,7 +188,12 @@ void AppSettings::setCurrentMainColour (Colour c)
 bool AppSettings::isCurrentLookBright() { return getCommonBoolValue ("brightLook"); }
 void AppSettings::setCurrentLook (bool bright) { setCommonBoolValue ("brightLook", bright); }
 
-Font AppSettings::getCurrentEditorFont() { return Font::fromString (getCommonStringValue("editorFont")); }
+Font AppSettings::getCurrentEditorFont() 
+{ 
+	auto font = Font::fromString(getCommonStringValue("editorFont")).withHeight(getCurrentEditorFontSize());
+	return font; 
+}
+
 void AppSettings::setCurrentEditorFont (Font f) { setCommonStringValue ("editorFont", f.toString()); }
 
 float AppSettings::getCurrentEditorFontSize() { return getCommonFloatValue ("editorFontSize"); }

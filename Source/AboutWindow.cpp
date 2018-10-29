@@ -15,6 +15,7 @@ AboutScreen::AboutScreen()
     setSize (windowWidth, windowHeight);
 }
 
+#include "EmbeddedFonts.h"
 void AboutScreen::paint (Graphics& g)
 {
     const auto bg = getLookAndFeel().findColour (ResizableWindow::backgroundColourId);
@@ -26,9 +27,10 @@ void AboutScreen::paint (Graphics& g)
     g.drawImageAt (bgImage, 0, 0, false);
     
     const auto r = getLocalBounds().reduced (12);
-    const Font montserrat (Typeface::createSystemTypefaceFor (BinaryData::MontserratLight_ttf,
-                                                              BinaryData::MontserratLight_ttfSize));
-    g.setFont (montserrat);
+
+	SharedResourcePointer<EmbeddedFonts> fonts;
+
+    g.setFont (fonts->getMontserrat());
     g.setFont (26.0f);
     g.setColour (bg.contrasting());
     

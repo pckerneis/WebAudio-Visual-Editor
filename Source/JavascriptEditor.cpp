@@ -12,7 +12,8 @@
 
 JsCodeEditorComponent::JsCodeEditorComponent (CodeDocument& doc, JavascriptTokeniser* tokeniser) : CodeEditorComponent (doc, tokeniser)
 {
-    setFont (Font (Font::getDefaultMonospacedFontName(), 14.0f, Font::plain));
+	const auto defaultFont = AppSettings::getCurrentEditorFont();
+    setFont (defaultFont);
     setTabSize (4, true);
     setScrollbarThickness (10);
     

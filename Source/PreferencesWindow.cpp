@@ -226,24 +226,26 @@ class TextColourPropertyComponent : public BooleanPropertyComponent
 };
 //==============================================================================
 
+#include "EmbeddedFonts.h"
 class FontChoicePropertyComponent : public ChoicePropertyComponent
 {
-    public:
-    FontChoicePropertyComponent(String name = "Font", String defaultFont = Font::getDefaultMonospacedFontName()) : ChoicePropertyComponent (name)
+public:
+    FontChoicePropertyComponent(String name, Font defaultFont) : ChoicePropertyComponent (name)
     {
         setPreferredHeight (22);
-        
-        Font::findFonts (fonts);
-        
+
+		Font::findFonts (fonts);
+
         int defaultIndex = 0;
         
         for (int i = 0; i < fonts.size(); ++i)
         {
-            auto f = fonts.getUnchecked (i);
-            choices.add (f.getTypefaceName());
+			const auto typefaceName = fonts[i].getTypefaceName();
+
+            choices.add (typefaceName);
             
-            if (f.getTypefaceName() == defaultFont || f.toString() == defaultFont)
-            defaultIndex = i;
+            if (typefaceName == defaultFont.getTypeface()->getName())
+				defaultIndex = i;
         }
         
         setIndex (defaultIndex);
@@ -262,11 +264,13 @@ class FontChoicePropertyComponent : public ChoicePropertyComponent
     int getIndex() const override { return index; }
     
     Font getChosenFont() { return fonts[index]; }
-    void setChosenFont (String font)
+    void setChosenFont (Font font)
     {
+		const auto typefaceName = font.getTypefaceName();
+
         for (int i = 0; i < choices.size(); ++i)
         {
-            if (choices[i] == font)
+            if (choices[i] == typefaceName)
             {
                 setIndex (i);
                 refresh();
@@ -290,7 +294,8 @@ class FontChoicePropertyComponent : public ChoicePropertyComponent
     void removeListener (Listener* l) { listeners.removeFirstMatchingValue (l); }
     
     void changed() { for (auto l : listeners) l->fontPicked (this); }
-    private:
+
+private:
     Array<Listener*> listeners;
     
     int index = 0;
@@ -450,7 +455,7 @@ public:
                 toggle->setState(AppSettings::isCurrentLookBright());
             
             if (auto font = dynamic_cast<FontChoicePropertyComponent*>(getPropertyComponentWithName ("Font")))
-                font->setChosenFont(AppSettings::getCurrentEditorFont().getTypefaceName());
+                font->setChosenFont(AppSettings::getCurrentEditorFont());
             
             if (auto cpc = dynamic_cast<ColourPropertyComponent*>(getPropertyComponentWithName ("Background")))
                 cpc->setChosenColour(AppSettings::getCurrentEditorBackgroundColour ());
@@ -478,7 +483,7 @@ private:
         
         Array<PropertyComponent*> editorProps;
         
-        auto fontChoicePc = new FontChoicePropertyComponent("Font", AppSettings::getCurrentEditorFont().toString());
+        auto fontChoicePc = new FontChoicePropertyComponent ("Font", AppSettings::getCurrentEditorFont());
         editorProps.add (fontChoicePc);
         fontChoicePc->addListener (this);
         

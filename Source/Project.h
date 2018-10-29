@@ -221,6 +221,7 @@ PanelType* Project::findStaticPanelWithClass() const
 
 //==============================================================================
 #include "WaveLookAndFeel.h"
+#include "EmbeddedFonts.h"
 
 class StartWindow;
 class MainMenuBarModel;
@@ -255,14 +256,16 @@ public:
 private:
     WeakReference<ProjectManager>::Master masterReference;
     friend class WeakReference<ProjectManager>;
-    
-    SharedResourcePointer<LookAndFeelUpdater> lookAndFeelUpdater;
+
+	// Just so that we're sure these object are created at startup and don't get destroyed during the app's lifetime
+	SharedResourcePointer<LookAndFeelUpdater> lookAndFeelUpdater;
+	SharedResourcePointer<EmbeddedFonts> embeddedFonts;
+
     ProjectCommandTarget commandTarget;
-    
     ScopedPointer<StartWindow> startWindow;
-    OwnedArray<Project> projects;
     ScopedPointer<MainMenuBarModel> menuModel;
-    
+
+	OwnedArray<Project> projects;
     WeakReference<Project> activeProject;
     
     bool allowMultipleProjects = true;
