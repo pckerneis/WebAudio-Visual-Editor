@@ -63,22 +63,23 @@ bool JsTokeniserFunctions::isSpecialKeyword (String::CharPointerType token, cons
 bool JsTokeniserFunctions::isReservedKeyword (String::CharPointerType token, const int tokenLength) noexcept
 {
     static const char* const keywords2Char[] =
-    { "if", "do", "in", nullptr };
+    { "if", "do", "in", "of", nullptr };
     
     static const char* const keywords3Char[] =
-    { "for", "new", "var", nullptr };
+    { "for", "new", "var", "let", "try", nullptr };
     
     static const char* const keywords4Char[] =
-    { "else", "null", "eval", "true", "this", nullptr };
+    { "case", "else", "null", "eval", "true", "this", "void", "with", nullptr };
     
     static const char* const keywords5Char[] =
-    { "break", "false", "while", nullptr };
+    { "break", "false", "while", "catch", "class" "const", "super", "throw", "yield", nullptr };
     
     static const char* const keywords6Char[] =
-    { "return", "typeof", nullptr };
+    { "return", "typeof", "export", "import", "switch", nullptr };
     
     static const char* const keywordsOther[] =
-    { "function", "undefined", nullptr };
+    { "function", "undefined", "continue", "debugger", "default", "delete", "extends", 
+		"finally", "instanceof", nullptr };
     
     const char* const* k;
     
