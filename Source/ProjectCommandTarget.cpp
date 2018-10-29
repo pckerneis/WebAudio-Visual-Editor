@@ -27,6 +27,7 @@ void ProjectCommandTarget::prepareCommandTarget()
 void ProjectCommandTarget::getAllCommands (Array<CommandID>& commands)
 {
     const CommandID ids[] = {
+		CommandIDs::quit,
         CommandIDs::projectNew,
         CommandIDs::projectLoad,
         CommandIDs::projectSave,
@@ -54,6 +55,7 @@ void ProjectCommandTarget::getAllCommands (Array<CommandID>& commands)
         
         // General
         CommandIDs::openPreferences,
+		CommandIDs::openAboutWindow,
         
         // Layout
         CommandIDs::restoreDefaultPanelLayout
@@ -82,6 +84,9 @@ void ProjectCommandTarget::getCommandInfo (CommandID commandID, ApplicationComma
     
     switch (commandID)
     {
+		case CommandIDs::quit:
+			result.setInfo("Quit", "Quit WebAudio Visual Editor", projectCategory, 0);
+			break;
         case CommandIDs::projectNew :
             result.setInfo ("New Project", "Create a new project", projectCategory, 0);
             result.addDefaultKeypress ('n', ModifierKeys::commandModifier);
@@ -196,17 +201,26 @@ void ProjectCommandTarget::getCommandInfo (CommandID commandID, ApplicationComma
             result.setInfo ("Restore default layout", "Restores the panel layout back to default", "Window", 0);
             result.setActive (projectOpen);
             break;
+
+		case CommandIDs::openAboutWindow :
+			result.setInfo("About...", "Shows info about this app", "Help", 0);
+			break;
             
         default:
             break;
     }
 }
 
+#include "AboutWindow.h"
 #include "PreferencesWindow.h"
 bool ProjectCommandTarget::perform (const InvocationInfo& info)
 {
     switch (info.commandID)
     {
+		case CommandIDs::quit:
+			projectManager->tryToQuitApplication();
+			break;
+
         case CommandIDs::projectNew :
             projectManager->createNewProject();
             break;
@@ -250,6 +264,10 @@ bool ProjectCommandTarget::perform (const InvocationInfo& info)
         case CommandIDs::openPreferences :
             PreferencesWindow::show();
             break;
+
+		case CommandIDs::openAboutWindow:
+			AboutScreen::show();
+			break;
             
         case CommandIDs::restoreDefaultPanelLayout :
             if (project != nullptr)
@@ -296,11 +314,11 @@ MainMenuBarModel::MainMenuBarModel (ProjectManager& manager) : projectManager (m
     auto& acm = Project::getApplicationCommandManager();
     setApplicationCommandManagerToWatch(&acm);
     
-    extraMacMenuItems.addItem (1, "About WebAudio Visual Editor");
-    extraMacMenuItems.addSeparator();
-    extraMacMenuItems.addItem (2, "Preferences...");
-
 #if JUCE_MAC
+	extraMacMenuItems.addItem(1, "About WebAudio Visual Editor...");
+	extraMacMenuItems.addSeparator();
+	extraMacMenuItems.addItem(2, "Preferences...");
+
 	MenuBarModel::setMacMainMenu(this, &extraMacMenuItems);
 #endif // JUCE_MAC
 }
@@ -319,6 +337,11 @@ StringArray MainMenuBarModel::getMenuBarNames()
     arr.add ("Edit");
     arr.add ("Generate");
     arr.add ("Window");
+
+// Since the Help menu only shows "About", we don't need it on OSX (it would be in the special mac menu)
+#ifndef JUCE_MAC
+	arr.add("Help");
+#endif
     return arr;
 }
 
@@ -347,7 +370,14 @@ PopupMenu MainMenuBarModel::getMenuForIndex (int topLevelMenuIndex, const String
         popup.addCommandItem(&acm, CommandIDs::projectSaveAs);
         popup.addSeparator();
         popup.addCommandItem(&acm, CommandIDs::projectClose);
-        
+
+#ifndef JUCE_MAC
+		popup.addSeparator();
+		popup.addCommandItem(&acm, CommandIDs::openPreferences);
+		popup.addSeparator();
+		popup.addCommandItem(&acm, CommandIDs::quit);
+
+#endif
         return popup;
     }
     else if (menuName == "Edit")
@@ -394,7 +424,14 @@ PopupMenu MainMenuBarModel::getMenuForIndex (int topLevelMenuIndex, const String
         
         return popup;
     }
-    else
+    else if (menuName == "Help")
+	{
+		PopupMenu popup;
+
+		popup.addCommandItem(&acm, CommandIDs::openAboutWindow);
+
+		return popup;
+	} else
         return PopupMenu();
 }
 
@@ -435,7 +472,6 @@ void MainMenuBarModel::addPanelItems (PopupMenu& menu)
     }
 }
 
-#include "AboutWindow.h"
 #include "StartWindow.h"
 void MainMenuBarModel::menuItemSelected (int menuItemID, int topLevelMenuIndex)
 {
