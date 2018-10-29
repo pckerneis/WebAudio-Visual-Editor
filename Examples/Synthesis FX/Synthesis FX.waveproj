@@ -4,7 +4,7 @@
   <ProjectConfig>
     <VALUE name="name" val=""/>
     <VALUE name="created" val="11 Oct 2018 23:22:59"/>
-    <VALUE name="directory" val="/Users/pierre/Developer/JUCE projects/WebAudioVisualEditor/Examples/Synthesis FX"/>
+    <VALUE name="directory" val="D:\Users\pierre\Developer\JUCE projects\WebAudioVisualEditor\Examples\Synthesis FX"/>
   </ProjectConfig>
   <Panels>
     <InspectorPanel panelId="0"/>
@@ -237,7 +237,7 @@
                   interface="" elementType="messageType" backgroundColour="ffde4141"/>
         <Embedded name="keyListener" graphId="54" uiComp="scriptType" xpos="28"
                   ypos="16" width="93" height="22" navigableUuid="00000000000000000000000000000000"
-                  interface="" elementType="scriptType" editorPanelId="17" editorContent="/* &#13;&#10;    Bind some key presses to dynamic route calls.&#13;&#10;*/&#13;&#10;&#13;&#10;// This is a way to know if this function already executed. We don't want HTML elements to be created&#13;&#10;// twice so we check if it has already been added.&#13;&#10;if (document.getElementById (&quot;keysText&quot;) != undefined)&#13;&#10;    return;&#13;&#10;&#13;&#10;// We'll use the keyboard to trigger sounds.&#13;&#10;// To do so, we check the key's code to know what key was pressed and then we call trigger a sound by&#13;&#10;// using the name of a dynamic route with parenthesis '()'. It means that we call the function corresponding&#13;&#10;// to the dynamic route.&#13;&#10;window.onkeypress = function(e) {&#10;   if (e.code == &quot;KeyQ&quot;)            kick808();&#10;   else if (e.code == &quot;KeyW&quot;)       snare808();&#10;   else if (e.code == &quot;KeyE&quot;)       beep();&#10;   else if (e.code == &quot;KeyR&quot;)       tick();&#10;}&#13;&#10;&#13;&#10;// Here we create a para HTML element and we add some text to it. This text will be displayed in the &#13;&#10;// 'controllers' section of the generated HTML page&#10;var pElement = document.createElement(&quot;p&quot;);&#13;&#10;pElement.id = &quot;keysText&quot;;&#10;pElement.appendChild (document.createTextNode(&quot;Try using the keyboard to trigger these sounds!&quot;));&#13;&#10;pElement.appendChild (document.createElement(&quot;br&quot;));&#10;pElement.appendChild (document.createTextNode(&quot;Key codes : KeyQ, KeyW, KeyE and KeyR.&quot;));&#10;document.getElementById(&quot;controllers&quot;).appendChild(pElement);"
+                  interface="" elementType="scriptType" editorPanelId="17" editorContent="/* &#13;&#10;    Bind some key presses to dynamic route calls.&#13;&#10;*/&#13;&#10;&#13;&#10;// This is a way to know if this function already executed. We don't want HTML elements to be created&#13;&#10;// twice so we check if it has already been added.&#13;&#10;if (document.getElementById (&quot;keysText&quot;) != undefined)&#13;&#10;    return;&#13;&#10;&#13;&#10;// We'll use the keyboard to trigger sounds. We define a constructor for a simple object that will hold a list&#13;&#10;// of 'key' values (here we simply use a string because we only care about letters and digits) and provide a&#13;&#10;// method to check wether a given key is in the list or not.&#13;&#10;function KeyList (chars) {&#13;&#10;    // List of 'key' values stored as a string&#13;&#10;    this.chars = chars;&#13;&#10;    &#13;&#10;    // Is 'key' present in the list?&#13;&#10;    this.contains = function (key) {&#13;&#10;        for (let c of this.chars)&#13;&#10;            if (c == key)&#13;&#10;                return true;&#13;&#10;                &#13;&#10;        return false;&#13;&#10;    }&#13;&#10;}&#13;&#10;&#13;&#10;// Here are the keys we'll use, stored in an array to allow several keys to trigger the same sounds&#13;&#10;let kickKeys = new KeyList (&quot;aAqQ1&quot;);&#13;&#10;let snareKeys = new KeyList (&quot;zZwW2&quot;);&#13;&#10;let beepKeys = new KeyList (&quot;eE3&quot;);&#13;&#10;let tickKeys = new KeyList (&quot;rR4&quot;);&#13;&#10;&#13;&#10;// To do so, we check the key's code to know what key was pressed and then we call trigger a sound by&#13;&#10;// using the name of a dynamic route with parenthesis '()'. It means that we call the function corresponding&#13;&#10;// to the dynamic route.&#13;&#10;window.onkeypress = function(e) {&#10;   if (kickKeys.contains (e.key))            kick808();&#10;   else if (snareKeys.contains (e.key))       snare808();&#10;   else if (beepKeys.contains (e.key))       beep();&#10;   else if (tickKeys.contains (e.key))       tick();&#10;}&#13;&#10;&#13;&#10;// Here we create a para HTML element and we add some text to it. This text will be displayed in the &#13;&#10;// 'controllers' section of the generated HTML page&#10;var pElement = document.createElement(&quot;p&quot;);&#13;&#10;pElement.id = &quot;keysText&quot;;&#10;pElement.appendChild (document.createTextNode(&quot;Try using the keyboard to trigger these sounds!&quot;));&#13;&#10;pElement.appendChild (document.createElement(&quot;br&quot;));&#10;pElement.appendChild (document.createTextNode(&quot;Keys : QWER, AZER or 1234&quot;));&#10;document.getElementById(&quot;controllers&quot;).appendChild(pElement);"
                   isOpen="0" backgroundColour="ff8b00ff">
           <OPTIONS/>
         </Embedded>
@@ -420,7 +420,9 @@
                     destChannel="0" destPlacement="0"/>
         <Connection sourceId="46" sourceChannel="0" sourcePlacement="1" destId="69"
                     destChannel="0" destPlacement="3"/>
-        <SELECTION/>
+        <SELECTION>
+          <SELECTED graphId="54"/>
+        </SELECTION>
       </GraphPanel>
     </WebAudioGraph>
     <GeneratorPanel panelId="3"/>
@@ -530,15 +532,37 @@ var graph = (function() {
       if (document.getElementById (&quot;keysText&quot;) != undefined)
           return;
       
-      // We'll use the keyboard to trigger sounds.
+      // We'll use the keyboard to trigger sounds. We define a constructor for a simple object that will hold a list
+      // of 'key' values (here we simply use a string because we only care about letters and digits) and provide a
+      // method to check wether a given key is in the list or not.
+      function KeyList (chars) {
+          // List of 'key' values stored as a string
+          this.chars = chars;
+          
+          // Is 'key' present in the list?
+          this.contains = function (key) {
+              for (let c of this.chars)
+                  if (c == key)
+                      return true;
+                      
+              return false;
+          }
+      }
+      
+      // Here are the keys we'll use, stored in an array to allow several keys to trigger the same sounds
+      let kickKeys = new KeyList (&quot;aAqQ1&quot;);
+      let snareKeys = new KeyList (&quot;zZwW2&quot;);
+      let beepKeys = new KeyList (&quot;eE3&quot;);
+      let tickKeys = new KeyList (&quot;rR4&quot;);
+      
       // To do so, we check the key's code to know what key was pressed and then we call trigger a sound by
       // using the name of a dynamic route with parenthesis '()'. It means that we call the function corresponding
       // to the dynamic route.
       window.onkeypress = function(e) {
-         if (e.code == &quot;KeyQ&quot;)            kick808();
-         else if (e.code == &quot;KeyW&quot;)       snare808();
-         else if (e.code == &quot;KeyE&quot;)       beep();
-         else if (e.code == &quot;KeyR&quot;)       tick();
+         if (kickKeys.contains (e.key))            kick808();
+         else if (snareKeys.contains (e.key))       snare808();
+         else if (beepKeys.contains (e.key))       beep();
+         else if (tickKeys.contains (e.key))       tick();
       }
       
       // Here we create a para HTML element and we add some text to it. This text will be displayed in the 
@@ -547,7 +571,7 @@ var graph = (function() {
       pElement.id = &quot;keysText&quot;;
       pElement.appendChild (document.createTextNode(&quot;Try using the keyboard to trigger these sounds!&quot;));
       pElement.appendChild (document.createElement(&quot;br&quot;));
-      pElement.appendChild (document.createTextNode(&quot;Key codes : KeyQ, KeyW, KeyE and KeyR.&quot;));
+      pElement.appendChild (document.createTextNode(&quot;Keys : QWER, AZER or 1234&quot;));
       document.getElementById(&quot;controllers&quot;).appendChild(pElement);
    };
 
@@ -860,15 +884,37 @@ var graph = (function() {
       if (document.getElementById (&quot;keysText&quot;) != undefined)
           return;
       
-      // We'll use the keyboard to trigger sounds.
+      // We'll use the keyboard to trigger sounds. We define a constructor for a simple object that will hold a list
+      // of 'key' values (here we simply use a string because we only care about letters and digits) and provide a
+      // method to check wether a given key is in the list or not.
+      function KeyList (chars) {
+          // List of 'key' values stored as a string
+          this.chars = chars;
+          
+          // Is 'key' present in the list?
+          this.contains = function (key) {
+              for (let c of this.chars)
+                  if (c == key)
+                      return true;
+                      
+              return false;
+          }
+      }
+      
+      // Here are the keys we'll use, stored in an array to allow several keys to trigger the same sounds
+      let kickKeys = new KeyList (&quot;aAqQ1&quot;);
+      let snareKeys = new KeyList (&quot;zZwW2&quot;);
+      let beepKeys = new KeyList (&quot;eE3&quot;);
+      let tickKeys = new KeyList (&quot;rR4&quot;);
+      
       // To do so, we check the key's code to know what key was pressed and then we call trigger a sound by
       // using the name of a dynamic route with parenthesis '()'. It means that we call the function corresponding
       // to the dynamic route.
       window.onkeypress = function(e) {
-         if (e.code == &quot;KeyQ&quot;)            kick808();
-         else if (e.code == &quot;KeyW&quot;)       snare808();
-         else if (e.code == &quot;KeyE&quot;)       beep();
-         else if (e.code == &quot;KeyR&quot;)       tick();
+         if (kickKeys.contains (e.key))            kick808();
+         else if (snareKeys.contains (e.key))       snare808();
+         else if (beepKeys.contains (e.key))       beep();
+         else if (tickKeys.contains (e.key))       tick();
       }
       
       // Here we create a para HTML element and we add some text to it. This text will be displayed in the 
@@ -877,7 +923,7 @@ var graph = (function() {
       pElement.id = &quot;keysText&quot;;
       pElement.appendChild (document.createTextNode(&quot;Try using the keyboard to trigger these sounds!&quot;));
       pElement.appendChild (document.createElement(&quot;br&quot;));
-      pElement.appendChild (document.createTextNode(&quot;Key codes : KeyQ, KeyW, KeyE and KeyR.&quot;));
+      pElement.appendChild (document.createTextNode(&quot;Keys : QWER, AZER or 1234&quot;));
       document.getElementById(&quot;controllers&quot;).appendChild(pElement);
    };
 
@@ -1087,12 +1133,14 @@ var graph = (function() {
 })();</UNAPPLIED>
     </OutputScriptPanel>
     <NavigationPanel panelId="5">
-      <OPEN id="5905e9473f38442faa88621b9de92a0b" scrollPos="0"/>
+      <OPEN id="f1f12b631a72455c8ba5b5a4276ad059" scrollPos="0">
+        <SELECTED id="/f1f12b631a72455c8ba5b5a4276ad059/c8f7896920064b0d8a1356b0a20e0efa/00000000000000000000000000000000"/>
+      </OPEN>
     </NavigationPanel>
     <Library panelId="6"/>
   </Panels>
   <PanelWindows>
-    <PanelWindow state="96 76 1728 951">
+    <PanelWindow state="96 53 1728 945">
       <PanelTree>
         <ROOT>
           <LAYOUT barsEnabled="1" isVertical="0">
@@ -1110,11 +1158,11 @@ var graph = (function() {
           <CHILD>
             <LAYOUT barsEnabled="1" isVertical="1">
               <ITEM keepProportions="1" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
-                    defaultSize="561.00000000000000000000"/>
+                    defaultSize="543.00000000000000000000"/>
               <ITEM keepProportions="1" minSize="4.00000000000000000000" maxSize="4.00000000000000000000"
                     defaultSize="4.00000000000000000000"/>
               <ITEM keepProportions="1" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
-                    defaultSize="376.00000000000000000000"/>
+                    defaultSize="364.00000000000000000000"/>
             </LAYOUT>
             <CHILD>
               <LAYOUT barsEnabled="1" isVertical="0"/>
@@ -1128,7 +1176,7 @@ var graph = (function() {
           <CHILD>
             <LAYOUT barsEnabled="1" isVertical="1">
               <ITEM keepProportions="1" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
-                    defaultSize="527.00000000000000000000"/>
+                    defaultSize="509.00000000000000000000"/>
               <ITEM keepProportions="1" minSize="4.00000000000000000000" maxSize="4.00000000000000000000"
                     defaultSize="4.00000000000000000000"/>
               <ITEM keepProportions="1" minSize="30.00000000000000000000" maxSize="30.00000000000000000000"
@@ -1136,7 +1184,7 @@ var graph = (function() {
               <ITEM keepProportions="1" minSize="4.00000000000000000000" maxSize="4.00000000000000000000"
                     defaultSize="4.00000000000000000000"/>
               <ITEM keepProportions="1" minSize="100.00000000000000000000" maxSize="-1.00000000000000000000"
-                    defaultSize="376.00000000000000000000"/>
+                    defaultSize="364.00000000000000000000"/>
             </LAYOUT>
             <CHILD>
               <LAYOUT barsEnabled="1" isVertical="0">

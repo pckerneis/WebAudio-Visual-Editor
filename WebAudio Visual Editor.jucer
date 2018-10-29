@@ -275,7 +275,7 @@
         <MODULEPATH id="juce_video" path="../../juce"/>
         <MODULEPATH id="juce_osc" path="../../juce"/>
         <MODULEPATH id="juce_opengl" path="../../juce"/>
-        <MODULEPATH id="juce_mongoose" path="..\..\..\modules\juce_mongoose"/>
+        <MODULEPATH id="juce_mongoose" path="..\modules\juce_mongoose"/>
         <MODULEPATH id="juce_gui_extra" path="../../juce"/>
         <MODULEPATH id="juce_gui_basics" path="../../juce"/>
         <MODULEPATH id="juce_graphics" path="../../juce"/>
