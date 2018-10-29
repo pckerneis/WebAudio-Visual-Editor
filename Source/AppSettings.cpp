@@ -54,14 +54,31 @@ void AppSettings::setDefaultLook()
     setDefaultLook (getCommonSettings(ap));
 }
 
-#include "EmbeddedFonts.h"
+Font AppSettings::findNativeMonospacedFont()
+{
+    // A few basic mono typeface names
+    StringArray names;
+    names.add ("Andale Mono");
+    names.add ("Lucida Console");
+    names.add ("Courier New");
+    
+    Array<Font> nativeFonts;
+    Font::findFonts (nativeFonts);
+    
+    for (auto n : names)
+        for (auto f : nativeFonts)
+            if (f.getTypefaceName() == n)
+                return f;
+    
+    // On Windows 10, looks like the font returned isn't actually monospaced...
+    return Font (Font::getDefaultMonospacedFontName(), "", 13.0f);
+}
+
 void AppSettings::setDefaultLook (PropertiesFile* pf)
 {
-	SharedResourcePointer<EmbeddedFonts> fonts;
-
     pf->setValue ("mainColour", Colours::steelblue.toString());
-    pf->setValue ("brightLook", false); // true means bright	
-    pf->setValue ("editorFont", Font ("Lucida Console", "", 12.0f).toString());
+    pf->setValue ("brightLook", false); // true means bright
+    pf->setValue ("editorFont", findNativeMonospacedFont().toString());
     pf->setValue ("editorFontSize", 12.0f);
     pf->setValue ("editorBackground", Colour().toString());
     

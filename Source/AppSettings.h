@@ -27,6 +27,7 @@ struct AppSettings
     static void setDefaultLook();
     static void setDefaultLook (PropertiesFile* pf);
     
+    static Font findNativeMonospacedFont();
     //==============================================================================
     /** \brief Get the user's project directory */
     static File getProjectsDirectory();
