@@ -17,10 +17,6 @@ Here are a few design goals :
 
 Please note that for now, the software is more suited to prototyping than to 'serious' web production. Most notably, the software is based on the latest [WebAudio API w3c spec](https://www.w3.org/TR/webaudio/) which is not fully implemented in all browsers. You can have more info on supported platforms on [Mozilla's guide](https://developer.mozilla.org/en-US/docs/Web/API/Web_Audio_API).
 
-Here are a few test pages generated from the example projects :
-* [Basics](http://htmlpreview.github.io/?https://github.com/pckerneis/WebAudio-Visual-Editor/blob/master/Examples/Basics/output/index.html): a sinus generator and a stop button.
-* [Synthesis FX](http://htmlpreview.github.io/?https://github.com/pckerneis/WebAudio-Visual-Editor/blob/master/Examples/Synthesis%20FX/output/index.html): a few examples of short synthesized sounds with a master gain slider
-
 ## Getting Started
 
 For OSX, you can get the latest built version [here](https://pckerneis.com/upload/WebAudioVisualEditor_0.0.1_OSX.dmg). Simply download and open the DMG file and copy the app somewhere on your computer and you're done.
