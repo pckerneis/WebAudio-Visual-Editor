@@ -12,7 +12,7 @@
 
 #include "Panel.h"
 
-#include "ShapeButtons.h"
+#include "../Widgets/ShapeButtons.h"
 
 class TabbedPanel : public Panel, public Button::Listener
 {

@@ -8,9 +8,9 @@
   ==============================================================================
 */
 
-#include "WebAudioNavigation.h"
+#include "../Source/WebAudio/Navigation/WebAudioNavigation.h"
 
-#include "WebAudioInspectableElement.h"
+#include "../GraphElements/WebAudioInspectableElement.h"
 
 class WebAudioNavigation::ItemComponent : public Component
 {
@@ -63,12 +63,12 @@ private:
 
 //==============================================================================
 
-#include "Project.h"
+#include "../../Project/Project.h"
 
 WebAudioNavigation::WebAudioNavigation (Project& p) : NavigationPanel (&p.getPanelManager()), project (p)
 {}
 
-#include "WebAudioGraphElementTypeNames.h"
+#include "../Helpers/WebAudioGraphElementTypeNames.h"
 Component* WebAudioNavigation::createComponentFor (NavigationItem* item, NavigationPanel::Navigable* navigable)
 {
     if (navigable == nullptr)

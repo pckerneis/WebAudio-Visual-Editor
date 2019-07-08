@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include "AppSettings.h"
+#include "../Source/Application/AppSettings.h"
 
 class JavascriptTokeniser;
 
@@ -42,8 +42,8 @@ private:
 };
 
 //==============================================================================
-#include "ShapeButtons.h"
-#include "JavascriptCodeTokeniser.h"
+#include "../Source/Layout/Widgets/ShapeButtons.h"
+#include "../Source/Layout/ScriptEditor/JavascriptCodeTokeniser.h"
 
 /** \brief Javascript editor component with search bar and apply button
  */
@@ -192,8 +192,8 @@ private:
 
 //==============================================================================
 
-#include "Panel.h"
-#include "CommandIDs.h"
+#include "../Source/Layout/Panels/Panel.h"
+#include "../Source/Application/CommandIDs.h"
 
 class CodeEditorPanel : public Panel, public JsEditor::Listener
 {

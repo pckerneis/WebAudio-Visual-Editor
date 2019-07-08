@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include "GraphPanel.h"
+#include "../Source/Layout/Graph/GraphPanel.h"
 class WebAudioGraphPanel;
 
 // A GraphPanel with undoable add, remove, connect,...
@@ -54,10 +54,10 @@ private:
 };
 
 //==============================================================================
-#include "Panel.h"
-#include "NavigationPanel.h"
-#include "GraphTipComponent.h"
-#include "WebAudioNodeInstance.h"
+#include "../Source/Layout/Panels/Panel.h"
+#include "../Source/Layout/Panels/NavigationPanel.h"
+#include "../Source/WebAudio/WebAudioGraph/GraphTipComponent.h"
+#include "../Source/WebAudio/WebAudioGraph/WebAudioNodeInstance.h"
 
 class Project;
 class InspectorPanel;
@@ -229,9 +229,9 @@ private:
 };
 
 //==============================================================================
-#include "WebAudioGraphCodeGenerator.h"
-#include "JavascriptEditor.h"
-#include "WebServer.h"
+#include "../CodeGenerator/WebAudioGraphCodeGenerator.h"
+#include "../Source/Layout/ScriptEditor/JavascriptEditor.h"
+#include "../Source/WebServer/WebServer.h"
 
 class Project;
 

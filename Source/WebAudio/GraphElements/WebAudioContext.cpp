@@ -8,12 +8,12 @@
   ==============================================================================
 */
 
-#include "WebAudioContext.h"
+#include "../Source/WebAudio/GraphElements/WebAudioContext.h"
 
-#include "Project.h"
-#include "WebAudioGraph.h"
+#include "../Source/Project/Project.h"
+#include "../Source/WebAudio/WebAudioGraph/WebAudioGraph.h"
 
-#include "JsCodeHelpers.h"
+#include "../Source/WebAudio/Helpers/JsCodeHelpers.h"
 WebAudioContext::WebAudioContext (Project& proj, WebAudioGraphPanel* parent, Descriptor& descr)
 :  WebAudioContainer (*parent, descr), project (proj)
 {
@@ -31,7 +31,7 @@ WebAudioContext::WebAudioContext (Project& proj, WebAudioGraphPanel* parent, Des
     setNumPins (1, Pin::Placement::PinOnRight);
 }
 
-#include "WebAudioNode.h"
+#include "../Source/WebAudio/GraphElements/WebAudioNode.h"
 WebAudioContext::~WebAudioContext()
 {
     for (auto node : getAllNodes())
@@ -63,7 +63,7 @@ void WebAudioContext::paint (Graphics& g)
     paintUI (g, getLocalBounds().reduced (6));
 }
 
-#include "CommandIDs.h"
+#include "../Source/Application/CommandIDs.h"
 void WebAudioContext::addExtraPopupMenuCommands (PopupMenu& m, Point<int> pos)
 {
     WebAudioEmbedded::addExtraPopupMenuCommands (m, pos);
@@ -122,8 +122,8 @@ Array<WebAudioNode*> WebAudioContext::getAllNodes (bool sorted) const
     return nodes;
 }
 
-#include "JsCodeHelpers.h"
-#include "WebAudioDynamicRoute.h"
+#include "../Source/WebAudio/Helpers/JsCodeHelpers.h"
+#include "../Source/WebAudio/GraphElements/WebAudioDynamicRoute.h"
 String WebAudioContext::getValidName (String newName)
 {
     newName = JsCodeHelpers::removeIllegalCharactersForIdentifier (newName);

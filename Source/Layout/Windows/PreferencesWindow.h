@@ -23,7 +23,7 @@ class TextColourPropertyComponent;
 class FontChoicePropertyComponent;
 
 //==============================================================================
-#include "ColourPicker.h"
+#include "../Source/Layout/Widgets/ColourPicker.h"
 class AppPreferencesPanel : public Component, public LookAndFeelUpdater::Listener
 {
 public:

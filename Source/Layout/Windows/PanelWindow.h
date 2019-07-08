@@ -10,8 +10,8 @@
 
 #pragma once
 
-#include "PanelTree.h"
-#include "WaveLookAndFeel.h"
+#include "../Source/Layout/Panels/PanelTree.h"
+#include "../Source/Layout/WaveLookAndFeel.h"
 
 class Project;
 class PanelManager;

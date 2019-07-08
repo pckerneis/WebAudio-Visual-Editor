@@ -10,9 +10,9 @@
 
 #pragma once
 
-#include "Panel.h"
+#include "../Source/Layout/Panels/Panel.h"
 #include "AudioFilesManager.h"
-#include "ShapeButtons.h"
+#include "../Source/Layout/Widgets/ShapeButtons.h"
 
 class AudioFileItem;
 

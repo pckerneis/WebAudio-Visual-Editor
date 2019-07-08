@@ -11,7 +11,7 @@
 #pragma once
 
 //==============================================================================
-#include "WaveLookAndFeel.h"
+#include "../Source/Layout/WaveLookAndFeel.h"
 
 class ShadeButton : public Button
 {

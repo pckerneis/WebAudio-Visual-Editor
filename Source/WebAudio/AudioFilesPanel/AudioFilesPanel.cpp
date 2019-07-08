@@ -8,7 +8,7 @@
   ==============================================================================
 */
 
-#include "AudioFilesPanel.h"
+#include "../Source/WebAudio/AudioFilesPanel/AudioFilesPanel.h"
 
 void PreviewWidget::setPreviewedFile (LoadedAudioFile* file)
 {
@@ -81,7 +81,7 @@ void PreviewWidget::paintMessage (String message, Graphics& g, juce::Rectangle<i
 
 //==============================================================================
 
-#include "Project.h"
+#include "../Source/Project/Project.h"
 
 AudioFilesPanel::AudioFilesPanel (Project& p) : Panel (&p.getPanelManager()), project (p), addButton ("add"), playButton ("play"), filePlayer (*this), playhead (filePlayer)
 {
@@ -178,7 +178,7 @@ void AudioFilesPanel::addButtonClicked()
         addFileUndoable (chooser.getResult());
 }
 
-#include "CommandIDs.h"
+#include "../Source/Application/CommandIDs.h"
 void AudioFilesPanel::showPopupMenu (int row)
 {
     auto item = subItems[row];
@@ -258,7 +258,7 @@ private:
     File file;
 };
 
-#include "WebAudioGraph.h"
+#include "../Source/WebAudio/WebAudioGraph/WebAudioGraph.h"
 AudioFileItem* AudioFilesPanel::addFileUndoable (File f)
 {
     if (auto graph = project.findStaticPanelWithClass<RootWebAudioGraphPanel>())
@@ -330,8 +330,8 @@ void AudioFilesPanel::removeFileUndoable (int row)
     }
 }
 
-#include "WebAudioDictionary.h"
-#include "WebAudioData.h"
+#include "../Source/WebAudio/WebAudioGraph/WebAudioDictionary.h"
+#include "../Source/WebAudio/GraphElements/WebAudioData.h"
 void AudioFilesPanel::addToGraph (int row, String interfaceName)
 {
     auto graph = project.findStaticPanelWithClass<RootWebAudioGraphPanel>();
@@ -1014,7 +1014,6 @@ AudioFileItem::AudioFileItem (LoadedAudioFile* file, AudioFilesPanel& owner) : p
     checkFileExistence();
 }
 
-#include "WebAudioData.h"
 void AudioFileItem::setOutputName (String newName)
 {
     const String ext (getFile().getFileExtension());

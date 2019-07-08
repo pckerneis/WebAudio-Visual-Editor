@@ -64,7 +64,7 @@ static LookAndFeel_V4::ColourScheme getDarkColourSchemeWithBase (Colour base)
     };
 }
 
-#include "AppSettings.h"
+#include "../Application/AppSettings.h"
 class WaveLookAndFeel    : public LookAndFeel_V4
 {
 public:

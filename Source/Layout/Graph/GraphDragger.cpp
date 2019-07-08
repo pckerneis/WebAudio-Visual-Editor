@@ -8,9 +8,9 @@
   ==============================================================================
 */
 
-#include "GraphDragger.h"
+#include "../Source/Layout/Graph/GraphDragger.h"
 
-#include "GraphEmbeddedComponent.h"
+#include "../Source/Layout/Graph/GraphEmbeddedComponent.h"
 #include "GraphSelector.h"
 #include "GraphPanel.h"
 

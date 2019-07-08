@@ -15,7 +15,7 @@ AboutScreen::AboutScreen()
     setSize (windowWidth, windowHeight);
 }
 
-#include "EmbeddedFonts.h"
+#include "../Source/Layout/EmbeddedFonts.h"
 void AboutScreen::paint (Graphics& g)
 {
     const auto bg = getLookAndFeel().findColour (ResizableWindow::backgroundColourId);

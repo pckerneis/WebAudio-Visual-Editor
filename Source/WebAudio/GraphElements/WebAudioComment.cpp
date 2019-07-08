@@ -8,9 +8,9 @@
   ==============================================================================
 */
 
-#include "WebAudioComment.h"
+#include "../Source/WebAudio/GraphElements/WebAudioComment.h"
 
-#include "WebAudioGraph.h"
+#include "../Source/WebAudio/WebAudioGraph/WebAudioGraph.h"
 
 WebAudioComment::WebAudioComment (WebAudioGraphPanel* parent) : WebAudioEmbedded (*parent, Descriptor (GraphElementType::commentType))
 {
@@ -36,7 +36,7 @@ WebAudioComment::WebAudioComment (WebAudioGraphPanel* parent) : WebAudioEmbedded
     setWantsKeyboardFocus (true);
 }
 
-#include "AppSettings.h"
+#include "../Source/Application/AppSettings.h"
 void WebAudioComment::paint (Graphics &g)
 {
     const bool h = isHighlighted();
@@ -125,7 +125,7 @@ String WebAudioComment::getNameInInspector() const
     return "Comment : " + shortName.quoted();
 }
 
-#include "PropertyComponentTypes.h"
+#include "../Source/WebAudio/Helpers/PropertyComponentTypes.h"
 ValueTree WebAudioComment::createNameProperty()
 {
     return createEditableProperty ("comment",  ComponentTypes::messageType, "", "");

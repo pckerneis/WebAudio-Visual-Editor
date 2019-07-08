@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include "JavascriptCodeTokeniser.h"
+#include "../Layout/ScriptEditor/JavascriptCodeTokeniser.h"
 
 /** \brief Static methods to access the app properties file */
 struct AppSettings

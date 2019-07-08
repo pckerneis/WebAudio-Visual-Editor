@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include "PropertyTree.h"
+#include "../Widgets/PropertyTree.h"
 
 class InspectableElement : public PropertyItem
 {

@@ -10,7 +10,8 @@
 
 #include "Panel.h"
 
-#include "Project.h"
+#include "../Source/Project/Project.h"
+
 Panel::Panel (PanelManager* manager, bool wantsMouseListener) : border (*this), mouseListener (*this)
 {
     addAndMakeVisible (&border);
@@ -92,7 +93,7 @@ void Panel::gainFocus()
         panelManager->setFocus (this);
 }
 
-#include "PanelWindow.h"
+#include "../Windows/PanelWindow.h"
 void Panel::reveal()
 {
     if (isInTab())

@@ -10,8 +10,8 @@
 
 #pragma once
 
-#include "InspectorPanel.h"
-#include "WebAudioNodeInstance.h"
+#include "../Source/Layout/Panels/InspectorPanel.h"
+#include "../WebAudioGraph/WebAudioNodeInstance.h"
 
 class GraphEmbeddedComponent;
 class WebAudioGraph;
@@ -84,8 +84,8 @@ private:
 };
 
 //==============================================================================
-#include "GraphEmbeddedComponent.h"
-#include "NavigationPanel.h"
+#include "../Source/Layout/Graph/GraphEmbeddedComponent.h"
+#include "../Source/Layout/Panels/NavigationPanel.h"
 
 class WebAudioEmbedded  :   public WebAudioInspectableElement,
                             public GraphEmbeddedComponent,

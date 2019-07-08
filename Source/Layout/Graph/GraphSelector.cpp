@@ -78,7 +78,7 @@ void GraphSelectableItem::mouseUp (const MouseEvent& e)
 //==============================================================================
 
 #include "GraphPanel.h"
-#include "GraphDragger.h"
+#include "../Source/Layout/Graph/GraphDragger.h"
 
 GraphSelector::GraphSelector (GraphPanel& graph) : graphPanel (graph), selectedItems (*this)
 {
@@ -187,7 +187,7 @@ SelectedItemSet<GraphSelectableItem*>& GraphSelector::getLassoSelection()
 }
 
 //==============================================================================
-#include "GraphEmbeddedComponent.h"
+#include "../Source/Layout/Graph/GraphEmbeddedComponent.h"
 int GraphSelector::SelectedComparator::compareElements (GraphSelectableItem* first, GraphSelectableItem* second)
 {
     auto firstEmb = dynamic_cast<GraphEmbeddedComponent*>(first);

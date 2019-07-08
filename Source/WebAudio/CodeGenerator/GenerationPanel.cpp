@@ -8,7 +8,10 @@
   ==============================================================================
 */
 
-#include "GenerationPanel.h"
+#include "../Source/WebAudio/CodeGenerator/GenerationPanel.h"
+
+#include "../Source/Project/Project.h"
+#include "../Source/WebAudio/WebAudioGraph/WebAudioGraph.h"
 
 CodeGenerationPanel::CodeGenerationPanel (Project& proj) : Panel (&proj.getPanelManager()), generateButton ("Generate"), publishButton ("Publish"), project (proj)
 {

@@ -8,7 +8,7 @@
   ==============================================================================
 */
 
-#include "GraphEmbeddedComponent.h"
+#include "../Source/Layout/Graph/GraphEmbeddedComponent.h"
 #include "GraphPanel.h"
 
 GraphEmbeddedComponent::Pin::Pin (GraphEmbeddedComponent& ownerComp, Placement p, int channel) : owner (ownerComp), placement (p),channelNumber (channel)
@@ -87,7 +87,7 @@ void GraphEmbeddedComponent::setGraphId (int newGraphId)
     graphId = newGraphId;
 }
 
-#include "GraphDragger.h"
+#include "../Source/Layout/Graph/GraphDragger.h"
 void GraphEmbeddedComponent::mouseDown(const MouseEvent& e)
 {
     GraphSelectableItem::mouseDown(e);
@@ -141,8 +141,8 @@ void GraphEmbeddedComponent::mouseUp (const MouseEvent &e)
     }
 }
 
-#include "CommandIDs.h"
-#include "Project.h"
+#include "../Source/Application/CommandIDs.h"
+#include "../Source/Project/Project.h"
 
 PopupMenuHandler* popupMenuHandler;
 
@@ -180,7 +180,7 @@ void GraphEmbeddedComponent::showPopupMenu(Point<int> pos)
     popupMenuHandler = nullptr;
 }
 
-#include "AppSettings.h"
+#include "../Source/Application/AppSettings.h"
 void GraphEmbeddedComponent::paint(Graphics &g)
 {
     const bool h = isHighlighted();

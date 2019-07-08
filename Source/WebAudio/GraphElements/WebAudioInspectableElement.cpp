@@ -8,9 +8,9 @@
   ==============================================================================
 */
 
-#include "WebAudioInspectableElement.h"
+#include "../Source/WebAudio/GraphElements/WebAudioInspectableElement.h"
 
-#include "WebAudioGraph.h"
+#include "../Source/WebAudio/WebAudioGraph/WebAudioGraph.h"
 WebAudioInspectableElement::WebAudioInspectableElement (WebAudioGraphPanel &parent, Descriptor descr, GraphEmbeddedComponent* c) : InspectableElement (ValueTree ("InspectableProperties"), *parent.getInspectorPropertyTree()), parentPanel (parent), privateDescriptor (descr), embeddedComponent (c)
 {
 }
@@ -163,9 +163,9 @@ void WebAudioInspectableElement::addPropertyRecursive (const Descriptor& param, 
     }
 }
 
-#include "PropertyComponentTypes.h"
-#include "GraphEmbeddedComponent.h"
-#include "WebAudioGraphElementTypeNames.h"
+#include "../Source/WebAudio/Helpers/PropertyComponentTypes.h"
+#include "../Source/Layout/Graph/GraphEmbeddedComponent.h"
+#include "../Source/WebAudio/Helpers/WebAudioGraphElementTypeNames.h"
 void WebAudioInspectableElement::prepareInspectablePropertiesTree (String typeName)
 {
     // Inspectable properties
@@ -208,8 +208,8 @@ ValueTree WebAudioInspectableElement::createNameProperty()
     return createEditableProperty ("name",  ComponentTypes::elementName, "", embeddedComponent->canBeRenamed() ? "" : "readonly");
 }
 
-#include "WebAudioInspector.h"
-#include "Project.h"
+#include "../Source/WebAudio/Inspector/WebAudioInspector.h"
+#include "../Source/Project/Project.h"
 void WebAudioInspectableElement::setPositionProperties()
 {
     // Exclude this from the ValueTree listeners so that the property doesn't get applied
@@ -673,7 +673,7 @@ void WebAudioEmbedded::checkContainers (bool useHighlight)
         navigableChanged();
 }
 
-#include "JsCodeHelpers.h"
+#include "../Source/WebAudio/Helpers/JsCodeHelpers.h"
 String WebAudioEmbedded::getDefaultName() const
 {
     return JsCodeHelpers::getDefaultInstanceName (privateDescriptor);
@@ -737,7 +737,7 @@ void WebAudioEmbedded::deleteSelectedItem()
     GraphEmbeddedComponent::deleteSelectedItem();
 }
 
-#include "JsCodeHelpers.h"
+#include "../Source/WebAudio/Helpers/JsCodeHelpers.h"
 void WebAudioEmbedded::initializeWithWantedName (String name, bool createNewInstance)
 {
     name = name.isEmpty() ? getDefaultName() : name;
@@ -750,7 +750,7 @@ void WebAudioEmbedded::initializeWithWantedName (String name, bool createNewInst
     setPublicName (name);
 }
 
-#include "WebAudioGraphElementTypeNames.h"
+#include "../Source/WebAudio/Helpers/WebAudioGraphElementTypeNames.h"
 void WebAudioEmbedded::addExtraPopupMenuCommands (PopupMenu& m, Point<int> pos)
 {
     m.addSeparator();
@@ -1268,7 +1268,7 @@ const ReferenceCountedArray<GraphEmbeddedComponent>& WebAudioContainer::getConte
     return components;
 }
 
-#include "GraphDragger.h"
+#include "../Source/Layout/Graph/GraphDragger.h"
 void WebAudioContainer::mouseDown (const MouseEvent& e)
 {
     GraphSelectableItem::mouseDown(e);

@@ -18,7 +18,7 @@ Descriptor::Descriptor (String n, Interface interf, String defaultV, String attr
 
 Descriptor::Descriptor (const Descriptor& other) : name (other.name), interf (other.interf), defaultValue (other.defaultValue), attributes (other.attributes), helpText (other.helpText) {}
 
-#include "JsCodeHelpers.h"
+#include "../Helpers/JsCodeHelpers.h"
 bool Descriptor::isPrimitive() const
 {
     return JsCodeHelpers::isPrimitive (interf.name);

@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include "AppSettings.h"
+#include "../Source/Application/AppSettings.h"
 
 class GraphElementPreset : public ReferenceCountedObject
 {

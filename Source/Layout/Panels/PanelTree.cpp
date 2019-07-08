@@ -485,7 +485,7 @@ void PanelTree::setDropOverlayVisible (bool shouldBeVisible)
     overlay.toFront (shouldBeVisible);
 }
 
-#include "PanelWindow.h"
+#include "../Source/Layout/Windows/PanelWindow.h"
 void PanelTree::moveContainedPanel (Panel* panel, DropZone* dropZone)
 {
     if (! panel)

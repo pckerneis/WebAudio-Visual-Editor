@@ -8,11 +8,11 @@
   ==============================================================================
 */
 
-#include "PanelWindow.h"
+#include "../Source/Layout/Windows/PanelWindow.h"
 
-#include "Panel.h"
+#include "../Panels/Panel.h"
 
-#include "Project.h"
+#include "../Source/Project/Project.h"
 PanelWindow::PanelWindow (Panel* contentPanel, PanelManager& manager, Project& proj)
 : DocumentWindow (manager.getWindowsTitle(),
 				  WaveLookAndFeel::getWindowBackgroundColour(), DocumentWindow::allButtons),
@@ -81,7 +81,6 @@ void PanelWindow::restoreFromXml (XmlElement* state)
     panelTree.restoreFromXml (state->getChildElement (0));
 }
 
-#include "Project.h"
 ApplicationCommandTarget* PanelWindow::getNextCommandTarget()
 {
     return &project.getCommandTarget();
@@ -114,7 +113,7 @@ void PanelWindow::activeWindowStatusChanged()
         project.getProjectManager().setActiveProject (&project);
 }
 
-#include "PanelTree.h"
+#include "../Panels/PanelTree.h"
 void PanelWindow::closeButtonPressed()
 {
     if (project.windowContainsAllStaticPanels (this))

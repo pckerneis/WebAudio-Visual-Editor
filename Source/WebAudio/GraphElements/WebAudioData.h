@@ -10,9 +10,9 @@
 
 #pragma once
 
-#include "WebAudioGraphElementTypeNames.h"
-#include "WebAudioInspectableElement.h"
-#include "AudioFilesPanel.h"
+#include "../Helpers/WebAudioGraphElementTypeNames.h"
+#include "../Source/WebAudio/GraphElements/WebAudioInspectableElement.h"
+#include "../AudioFilesPanel/AudioFilesPanel.h"
 
 class WebAudioGraphPanel;
 class Project;

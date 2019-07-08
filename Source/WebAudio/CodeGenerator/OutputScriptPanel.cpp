@@ -8,4 +8,4 @@
   ==============================================================================
 */
 
-#include "OutputScriptPanel.h"
+#include "../Source/WebAudio/CodeGenerator/OutputScriptPanel.h"

@@ -138,14 +138,14 @@ void WebAudioGraphGenerator::declareButtons (String& buttonsScript, int indentLe
         buttonsScript += ind + "window.addEventListener ('load', prepareHtmlElements);" + newLine + newLine;
 }
 
-#include "WebAudioGraph.h"
-#include "WebAudioNodeInstance.h"
-#include "WebAudioNode.h"
-#include "WebAudioMessage.h"
-#include "WebAudioData.h"
-#include "WebAudioContext.h"
-#include "WebAudioScript.h"
-#include "WebAudioDynamicRoute.h"
+#include "../Source/WebAudio/WebAudioGraph/WebAudioGraph.h"
+#include "../Source/WebAudio/WebAudioGraph/WebAudioNodeInstance.h"
+#include "../Source/WebAudio/GraphElements/WebAudioNode.h"
+#include "../Source/WebAudio/GraphElements/WebAudioMessage.h"
+#include "../Source/WebAudio/GraphElements/WebAudioData.h"
+#include "../Source/WebAudio/GraphElements/WebAudioContext.h"
+#include "../Source/WebAudio/GraphElements/WebAudioScript.h"
+#include "../Source/WebAudio/GraphElements/WebAudioDynamicRoute.h"
 
 String WebAudioGraphGenerator::generateAudioContexts (int numIndents)
 {
@@ -757,7 +757,7 @@ String WebAudioGraphGenerator::getHtmlPage (const String &pageName, String &cont
     //return s;
 }
 
-#include "Project.h"
+#include "../Source/Project/Project.h"
 String WebAudioGraphGenerator::getPageTitle() const
 {
     const auto& proj = graph.getProject();

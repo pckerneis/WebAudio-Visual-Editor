@@ -10,10 +10,10 @@
 
 #pragma once
 
-#include "WebAudioGraphElementTypeNames.h"
-#include "WebAudioInspectableElement.h"
-#include "PropertyComponentTypes.h"
-#include "GraphTipComponent.h"
+#include "../Helpers/WebAudioGraphElementTypeNames.h"
+#include "../Source/WebAudio/GraphElements/WebAudioInspectableElement.h"
+#include "../Source/WebAudio/Helpers/PropertyComponentTypes.h"
+#include "../Source/WebAudio/WebAudioGraph/GraphTipComponent.h"
 
 class WebAudioGraphPanel;
 class Tip;

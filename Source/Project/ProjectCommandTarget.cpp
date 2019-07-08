@@ -10,7 +10,7 @@
 
 #include "ProjectCommandTarget.h"
 
-#include "Project.h"
+#include "../Source/Project/Project.h"
 void ProjectCommandTarget::prepareCommandTarget()
 {
     auto& commandManager = Project::getApplicationCommandManager();
@@ -64,7 +64,7 @@ void ProjectCommandTarget::getAllCommands (Array<CommandID>& commands)
     commands.addArray (ids, numElementsInArray (ids));
 }
 
-#include "WebAudioGraph.h"
+#include "../Source/WebAudio/WebAudioGraph/WebAudioGraph.h"
 void ProjectCommandTarget::getCommandInfo (CommandID commandID, ApplicationCommandInfo& result)
 {
     const auto graph = getWebAudioGraphPanel();
@@ -211,8 +211,8 @@ void ProjectCommandTarget::getCommandInfo (CommandID commandID, ApplicationComma
     }
 }
 
-#include "AboutWindow.h"
-#include "PreferencesWindow.h"
+#include "../Source/Layout/Windows/AboutWindow.h"
+#include "../Source/Layout/Windows/PreferencesWindow.h"
 bool ProjectCommandTarget::perform (const InvocationInfo& info)
 {
     switch (info.commandID)
@@ -472,7 +472,7 @@ void MainMenuBarModel::addPanelItems (PopupMenu& menu)
     }
 }
 
-#include "StartWindow.h"
+#include "../Source/Layout/Windows/StartWindow.h"
 void MainMenuBarModel::menuItemSelected (int menuItemID, int topLevelMenuIndex)
 {
     if (topLevelMenuIndex == -1)

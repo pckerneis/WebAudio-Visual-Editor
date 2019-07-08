@@ -11,7 +11,7 @@
 #pragma once
 
 #include "GraphSelector.h"
-#include "PopupMenuHandler.h"
+#include "../../Application/PopupMenuHandler.h"
 
 class GraphEmbeddedComponent
 : public GraphSelectableItem, public PopupMenuHandler::PopupMenuHandlerClient, public ReferenceCountedObject

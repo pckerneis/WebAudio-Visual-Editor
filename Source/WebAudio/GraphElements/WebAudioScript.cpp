@@ -8,11 +8,11 @@
   ==============================================================================
 */
 
-#include "WebAudioScript.h"
+#include "../Source/WebAudio/GraphElements/WebAudioScript.h"
 
 
-#include "JavascriptEditor.h"
-#include "WebAudioNodeInstance.h"
+#include "../Source/Layout/ScriptEditor/JavascriptEditor.h"
+#include "../WebAudioGraph/WebAudioNodeInstance.h"
 
 FunctionEditor::FunctionEditor (WebAudioNodeInstance* i, CodeEditorPanel* e) : instance (i), editor (e)
 {}
@@ -87,7 +87,7 @@ String WebAudioScript::getUICompTypeName() const
     return GraphElementType::scriptType;
 }
 
-#include "WebAudioGraph.h"
+#include "../WebAudioGraph/WebAudioGraph.h"
 void WebAudioScript::setPublicName (String newName)
 {
     const String oldName (getPublicName());
@@ -171,8 +171,8 @@ String WebAudioScript::getDefaultName() const
     return "script";
 }
 
-#include "TabbedPanel.h"
-#include "Project.h"
+#include "../Source/Layout/Panels/TabbedPanel.h"
+#include "../Source/Project/Project.h"
 void WebAudioScript::showEditorInTabs()
 {
     if (editorPanel == nullptr)

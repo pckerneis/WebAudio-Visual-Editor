@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include "WebAudioGraphElementTypeNames.h"
+#include "../Helpers/WebAudioGraphElementTypeNames.h"
 
 class WebAudioNodeInstance;
 class CodeEditorPanel;
@@ -39,7 +39,7 @@ private:
 };
 
 //==============================================================================
-#include "WebAudioInspectableElement.h"
+#include "../Source/WebAudio/GraphElements/WebAudioInspectableElement.h"
 
 class WebAudioScript : public WebAudioFoldable
 {

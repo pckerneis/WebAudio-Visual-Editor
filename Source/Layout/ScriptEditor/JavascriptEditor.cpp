@@ -8,7 +8,7 @@
   ==============================================================================
 */
 
-#include "JavascriptEditor.h"
+#include "../Source/Layout/ScriptEditor/JavascriptEditor.h"
 
 JsCodeEditorComponent::JsCodeEditorComponent (CodeDocument& doc, JavascriptTokeniser* tokeniser) : CodeEditorComponent (doc, tokeniser)
 {
@@ -312,7 +312,7 @@ bool JsEditor::applyYesNoCancel()
     return false;
 }
 
-#include "Project.h"
+#include "../Source/Project/Project.h"
 void JsEditor::codeDocumentChanged()
 {
     // checks if the bar needs to be shown/hidden

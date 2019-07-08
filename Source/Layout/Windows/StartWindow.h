@@ -11,8 +11,8 @@
 #pragma once
 
 //==============================================================================
-#include "ProjectCommandTarget.h"
-#include "WaveLookAndFeel.h"
+#include "../Source/Project/ProjectCommandTarget.h"
+#include "../Source/Layout/WaveLookAndFeel.h"
 
 class ProjectManager;
 

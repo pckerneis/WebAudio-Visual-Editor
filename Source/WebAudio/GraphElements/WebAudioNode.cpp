@@ -8,11 +8,11 @@
   ==============================================================================
 */
 
-#include "WebAudioNode.h"
+#include "../Source/WebAudio/GraphElements/WebAudioNode.h"
 
-#include "Project.h"
-#include "WebAudioGraph.h"
-#include "JsCodeHelpers.h"
+#include "../../Project/Project.h"
+#include "../WebAudioGraph/WebAudioGraph.h"
+#include "../Helpers/JsCodeHelpers.h"
 
 WebAudioNode::WebAudioNode (Project& proj, Descriptor& descriptor, WebAudioGraphPanel* parent, WebAudioContext* ctx, bool canBeRenamed)
 :  WebAudioFoldable (*parent, descriptor), project (proj)
@@ -31,14 +31,14 @@ WebAudioNode::WebAudioNode (Project& proj, Descriptor& descriptor, WebAudioGraph
     setPropertyValue ("context", getAudioContextName());
 }
 
-#include "WebAudioNodeInstance.h"
+#include "../WebAudioGraph/WebAudioNodeInstance.h"
 WebAudioNode::~WebAudioNode()
 {
     getInstanceManager().removeReference (this);
     masterReference.clear();
 }
 
-#include "WebAudioContext.h"
+#include "../Source/WebAudio/GraphElements/WebAudioContext.h"
 String WebAudioNode::getAudioContextName() const
 {
     return audioContext ? audioContext->getPublicName() : "";
@@ -65,7 +65,7 @@ void WebAudioNode::setAudioContext (WebAudioContext* ctx)
     repaint();
 }
 
-#include "WebAudioDynamicRoute.h"
+#include "../Source/WebAudio/GraphElements/WebAudioDynamicRoute.h"
 
 void WebAudioNode::checkContainers (bool useHighlight)
 {

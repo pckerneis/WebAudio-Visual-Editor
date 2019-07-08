@@ -10,13 +10,10 @@
 
 #pragma once
 
-#include "Panel.h"
-#include "ShapeButtons.h"
+#include "../Source/Layout/Panels/Panel.h"
+#include "../Source/Layout/Widgets/ShapeButtons.h"
 
 class Project;
-// test
-#include "Project.h"
-#include "WebAudioGraph.h"
 
 class CodeGenerationPanel : public Panel, public Button::Listener
 {

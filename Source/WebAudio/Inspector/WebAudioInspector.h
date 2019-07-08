@@ -10,8 +10,8 @@
 
 #pragma once
 
-#include "WebAudioGraph.h"
-#include "InspectorPanel.h"
+#include "../WebAudioGraph/WebAudioGraph.h"
+#include "../Source/Layout/Panels/InspectorPanel.h"
 
 class WebAudioInspectableElement;
 

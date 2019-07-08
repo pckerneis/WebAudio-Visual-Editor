@@ -569,7 +569,7 @@ void GraphPanel::mouseDrag (const MouseEvent& e)
         dragLasso(e);
 }
 
-#include "WaveLookAndFeel.h"
+#include "../Source/Layout/WaveLookAndFeel.h"
 void GraphPanel::startLasso (const MouseEvent& e)
 {
     auto c = LookAndFeelUpdater::getLookAndFeel().getUIColour (LookAndFeel_V4::ColourScheme::UIColour::highlightedFill);
@@ -795,7 +795,7 @@ Array<ConnectionInfo> GraphPanel::getAllConnections (const GraphEmbeddedComponen
     return result;
 }
 
-#include "InternalClipboard.h"
+#include "../Source/Application/InternalClipboard.h"
 bool GraphPanel::canPaste() const
 {
     SharedResourcePointer<InternalClipboard> clipboard;
@@ -1006,7 +1006,7 @@ void GraphPanel::renameSelected()
         emb->showNameEditor();
 }
 
-#include "Project.h"
+#include "../Source/Project/Project.h"
 void GraphPanel::prepareCommandTarget()
 {
     auto& commandManager = Project::getApplicationCommandManager();
@@ -1021,7 +1021,7 @@ ApplicationCommandTarget* GraphPanel::getNextCommandTarget()
     return findFirstTargetParentComponent();
 }
 
-#include "CommandIDs.h"
+#include "../Source/Application/CommandIDs.h"
 void GraphPanel::getAllCommands (Array<CommandID>& commands)
 {
     const CommandID ids[] = {

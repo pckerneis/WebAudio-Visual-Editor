@@ -8,9 +8,9 @@
   ==============================================================================
 */
 
-#include "WebAudioDynamicRoute.h"
+#include "../Source/WebAudio/GraphElements/WebAudioDynamicRoute.h"
 
-#include "WebAudioGraph.h"
+#include "../Source/WebAudio/WebAudioGraph/WebAudioGraph.h"
 WebAudioDynamicRoute::WebAudioDynamicRoute (WebAudioGraphPanel* parent) : WebAudioContainer (*parent,  Descriptor (GraphElementType::dynamicRouteType))
 {
     setSize (getDefaultWidth(), getDefaultHeight());
@@ -68,7 +68,7 @@ void WebAudioDynamicRoute::paint (Graphics &g)
     paintUI (g, getLocalBounds().reduced (2));
 }
 
-#include "JsCodeHelpers.h"
+#include "../Source/WebAudio/Helpers/JsCodeHelpers.h"
 String WebAudioDynamicRoute::getValidName (String newName)
 {
     if (getParentGraph() == nullptr)
@@ -122,7 +122,7 @@ void WebAudioDynamicRoute::editorShown (Label* label, TextEditor& e)
     e.setInputRestrictions(0, JsCodeHelpers::getAllowedCharactersForIdentifier());
 }
 
-#include "WebAudioContext.h"
+#include "../Source/WebAudio/GraphElements/WebAudioContext.h"
 void WebAudioDynamicRoute::checkContainers (bool useHighlight)
 {
     const auto centre = getBounds().getCentre();
@@ -153,7 +153,7 @@ void WebAudioDynamicRoute::checkContainers (bool useHighlight)
     }
 }
 
-#include "WebAudioNode.h"
+#include "../Source/WebAudio/GraphElements/WebAudioNode.h"
 Array<WeakReference<NavigationPanel::Navigable>> WebAudioDynamicRoute::getSubNavigables()
 {
     Array<WeakReference<Navigable>> result;
@@ -167,7 +167,7 @@ Array<WeakReference<NavigationPanel::Navigable>> WebAudioDynamicRoute::getSubNav
     return result;
 }
 
-#include "WebAudioMessage.h"
+#include "../Source/WebAudio/GraphElements/WebAudioMessage.h"
 Array<WebAudioMessage*> WebAudioDynamicRoute::getAllMessages (bool sorted) const
 {
     Array<WebAudioMessage*> result;
@@ -185,7 +185,7 @@ Array<WebAudioMessage*> WebAudioDynamicRoute::getAllMessages (bool sorted) const
     return result;
 }
 
-#include "WebAudioScript.h"
+#include "../Source/WebAudio/GraphElements/WebAudioScript.h"
 Array<WebAudioScript*> WebAudioDynamicRoute::getAllScripts (bool sorted) const
 {
     Array<WebAudioScript*> result;
@@ -241,7 +241,7 @@ Array<WebAudioEmbedded*> WebAudioDynamicRoute::getAllScriptsAndMessages (bool so
     return result;
 }
 
-#include "CommandIDs.h"
+#include "../Source/Application/CommandIDs.h"
 void WebAudioDynamicRoute::addExtraPopupMenuCommands (PopupMenu& m, Point<int> pos)
 {
     WebAudioEmbedded::addExtraPopupMenuCommands (m, pos);

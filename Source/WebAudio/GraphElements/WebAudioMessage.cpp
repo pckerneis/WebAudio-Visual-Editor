@@ -8,11 +8,11 @@
   ==============================================================================
 */
 
-#include "WebAudioMessage.h"
+#include "../Source/WebAudio/GraphElements/WebAudioMessage.h"
 
 
 
-#include "JavascriptCodeTokeniser.h"
+#include "../Source/Layout/ScriptEditor/JavascriptCodeTokeniser.h"
 class QuickCodeParser
 {
 public:
@@ -92,7 +92,7 @@ private:
 };
 
 //==============================================================================
-#include "WebAudioGraph.h"
+#include "../WebAudioGraph/WebAudioGraph.h"
 
 WebAudioMessage::WebAudioMessage (WebAudioGraphPanel* parent) : WebAudioEmbedded (*parent, Descriptor (GraphElementType::messageType)), editor (*this), errorHighlight (*this)
 {
@@ -207,7 +207,7 @@ void WebAudioMessage::timerCallback()
         startTimer (200);
 }
 
-#include "JsCodeHelpers.h"
+#include "../Source/WebAudio/Helpers/JsCodeHelpers.h"
 struct TipHelpers
 {
     static Tip methodToTip (Descriptor::Method method, String prefix)

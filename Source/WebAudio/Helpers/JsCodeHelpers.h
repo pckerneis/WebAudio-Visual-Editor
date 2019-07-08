@@ -12,8 +12,8 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 
-#include "WebAudioDictionary.h"
-#include "JavascriptCodeTokeniser.h"
+#include "../Source/WebAudio/WebAudioGraph/WebAudioDictionary.h"
+#include "../Source/Layout/ScriptEditor/JavascriptCodeTokeniser.h"
 
 struct JsCodeHelpers
 {

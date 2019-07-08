@@ -8,12 +8,12 @@
   ==============================================================================
 */
 
-#include "StartWindow.h"
+#include "../Source/Layout/Windows/StartWindow.h"
 
 //==============================================================================
-#include "Project.h"
+#include "../Source/Project/Project.h"
 
-#include "AppSettings.h"
+#include "../Source/Application/AppSettings.h"
 StartWindowContent::StartWindowContent(ProjectManager* projManager) : ProjectCommandTarget (projManager, nullptr), recentListBox ("Recent files", this)
 {    
     newProjectButton.setButtonText("Start a new project");

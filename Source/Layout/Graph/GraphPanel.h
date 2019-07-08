@@ -10,8 +10,7 @@
 
 #pragma once
 
-
-#include "GraphEmbeddedComponent.h"
+#include "../Source/Layout/Graph/GraphEmbeddedComponent.h"
 
 struct ConnectionInfo;
 

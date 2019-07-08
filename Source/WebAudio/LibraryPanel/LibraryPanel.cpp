@@ -8,7 +8,7 @@
   ==============================================================================
 */
 
-#include "LibraryPanel.h"
+#include "../Source/WebAudio/LibraryPanel/LibraryPanel.h"
 
 String PresetNavigation::PresetHolder::getIconString()
 {
@@ -393,8 +393,8 @@ void PresetNavigation::ItemComponent::mouseDrag (const MouseEvent& e)
     }
 }
 
-#include "Project.h"
-#include "CommandIDs.h"
+#include "../../Project/Project.h"
+#include "../../Application/CommandIDs.h"
 void PresetNavigation::ItemComponent::showPopupMenu()
 {
     PopupMenu m;
@@ -432,7 +432,7 @@ void PresetNavigation::ItemComponent::showInNativeFileExplorer() const
             preset->getFile().revealToUser();
 }
 
-#include "WebAudioGraph.h"
+#include "../WebAudioGraph/WebAudioGraph.h"
 void PresetNavigation::ItemComponent::addToGraph()
 {
     if (! (isFactoryPreset() || isUserPreset()))

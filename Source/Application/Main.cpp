@@ -1,8 +1,8 @@
 
-#include "Project.h"
+#include "../Project/Project.h"
 #include "AppSettings.h"
-#include "StartWindow.h"
-#include "AboutWindow.h"
+#include "../Layout/Windows/StartWindow.h"
+#include "../Layout/Windows/AboutWindow.h"
 
 //==============================================================================
 /** \brief Application instance

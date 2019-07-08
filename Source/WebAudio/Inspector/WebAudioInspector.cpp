@@ -8,11 +8,11 @@
   ==============================================================================
 */
 
-#include "WebAudioInspector.h"
+#include "../Source/WebAudio/Inspector/WebAudioInspector.h"
 
-#include "PropertyComponentTypes.h"
-#include "JsCodeHelpers.h"
-#include "WebAudioInspectableElement.h"
+#include "../Source/WebAudio/Helpers/PropertyComponentTypes.h"
+#include "../Source/WebAudio/Helpers/JsCodeHelpers.h"
+#include "../Source/WebAudio/GraphElements/WebAudioInspectableElement.h"
 
 struct ElementNameConstrainer : public PropertyValueConstrainer
 {
@@ -100,7 +100,7 @@ PropertyItemComponent* WebAudioInspector::CustomPropertyTree::createComponentFor
     return comp;
 }
 
-#include "Project.h"
+#include "../Source/Project/Project.h"
 WebAudioInspectableElement* WebAudioInspector::CustomPropertyTree::findElementWithName (String name)
 {
     auto graphPanel = owner.getProject().findStaticPanelWithClass<WebAudioGraphPanel>();

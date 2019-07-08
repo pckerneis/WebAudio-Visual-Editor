@@ -195,7 +195,7 @@ Colour AppSettings::getCurrentMainColour()
     return getCommonColourValue ("mainColour");
 }
 
-#include "WaveLookAndFeel.h"
+#include "../Layout/WaveLookAndFeel.h"
 void AppSettings::setCurrentMainColour (Colour c)
 {
     setCommonColourValue ("mainColour", c);

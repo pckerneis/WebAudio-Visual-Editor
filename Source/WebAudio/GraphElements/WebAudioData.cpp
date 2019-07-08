@@ -7,9 +7,9 @@
   ==============================================================================
 */
 
-#include "WebAudioData.h"
+#include "../Source/WebAudio/GraphElements/WebAudioData.h"
 
-#include "JsCodeHelpers.h"
+#include "../Source/WebAudio/Helpers/JsCodeHelpers.h"
 WebAudioData::WebAudioData (WebAudioGraphPanel* parent, Descriptor& descr) : WebAudioFoldable (*parent, descr)
 {
     setZ (5);

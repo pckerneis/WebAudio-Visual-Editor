@@ -9,7 +9,7 @@
 */
 
 
-#include "Project.h"
+#include "../Source/Project/Project.h"
 
 String Project::projectFileTagName = "WAVEProject";
 String Project::projectFileExtension = ".waveproj";
@@ -50,7 +50,7 @@ Project::Project(ProjectManager& pm) : projectManager (pm), panelManager (*this)
 }
 
 #include "ProjectCommandTarget.h"
-#include "AppSettings.h"
+#include "../Source/Application/AppSettings.h"
 Project::Project(String n, String d, File f, File dir, ProjectManager& pm)
 : creationDate(d), projectFile(f), projectDirectory (dir), projectManager (pm), panelManager (*this), commandTarget (&pm, this)
 {
@@ -112,7 +112,7 @@ void Project::closeWindowsAndQuit()
     projectManager.quitProject (this);
 }
 
-#include "PanelWindow.h"
+#include "../Source/Layout/Windows/PanelWindow.h"
 
 Result Project::saveAs (const File & file)
 {
@@ -409,12 +409,12 @@ Panel* Project::loadPanelLayout (XmlElement* state)
     return p;
 }
 
-#include "WebAudioInspector.h"
-#include "WebAudioGraph.h"
-#include "GenerationPanel.h"
-#include "AudioFilesPanel.h"
-#include "LibraryPanel.h"
-#include "OutputScriptPanel.h"
+#include "../Source/WebAudio/Inspector/WebAudioInspector.h"
+#include "../Source/WebAudio/WebAudioGraph/WebAudioGraph.h"
+#include "../Source/WebAudio/CodeGenerator/GenerationPanel.h"
+#include "../Source/WebAudio/AudioFilesPanel/AudioFilesPanel.h"
+#include "../Source/WebAudio/LibraryPanel/LibraryPanel.h"
+#include "../Source/WebAudio/CodeGenerator/OutputScriptPanel.h"
 
 Panel* Project::findStaticPanel (XmlElement* state)
 {
@@ -435,8 +435,8 @@ String Project::getName() const
     return projectFile.getFileNameWithoutExtension();
 }
 
-#include "JavascriptEditor.h"
-#include "WebAudioNavigation.h"
+#include "../Source/Layout/ScriptEditor/JavascriptEditor.h"
+#include "../Source/WebAudio/Navigation/WebAudioNavigation.h"
 
 void Project::createStaticPanels()
 {
@@ -532,7 +532,7 @@ StringPairArray Project::getNavigationInfo() const
     return info;
 }
 
-#include "WebAudioScript.h"
+#include "../Source/WebAudio/GraphElements/WebAudioScript.h"
 Array<WeakReference<Panel>> Project::getDynamicPanels() const
 {
     Array<WeakReference<Panel>> result;
@@ -566,7 +566,7 @@ ProjectManager::ProjectManager() : commandTarget (this, nullptr)
     openStartWindow();
 }
 
-#include "PreferencesWindow.h"
+#include "../Source/Layout/Windows/PreferencesWindow.h"
 ProjectManager::~ProjectManager()
 {
     masterReference.clear();
@@ -659,7 +659,7 @@ bool ProjectManager::loadProject()
     return false;
 }
 
-#include "StartWindow.h"
+#include "../Source/Layout/Windows/StartWindow.h"
 void ProjectManager::openStartWindow()
 {
     StartWindow::open (this);

@@ -11,7 +11,7 @@
 #pragma once
 
 #include "../JuceLibraryCode/JuceHeader.h"
-#include "CommandIDs.h"
+#include "../Source/Application/CommandIDs.h"
 
 class ProjectManager;
 class Project;

@@ -8,7 +8,7 @@
   ==============================================================================
 */
 
-#include "UserLibraryManager.h"
+#include "../Source/WebAudio/LibraryPanel/UserLibraryManager.h"
 
 UserLibraryManager::UserLibraryManager()
 {
@@ -155,7 +155,7 @@ void UserLibraryManager::scanLibrary()
     }
 }
 
-#include "WebAudioDictionary.h"
+#include "../WebAudioGraph/WebAudioDictionary.h"
 void UserLibraryManager::createPresetDirectory()
 {
     auto presetsDir = getPresetsDirectory();

@@ -10,10 +10,10 @@
 
 #pragma once
 
-#include "Panel.h"
-#include "ShapeButtons.h"
-#include "UserLibraryManager.h"
-#include "WebAudioDictionary.h"
+#include "../Source/Layout/Panels/Panel.h"
+#include "../Source/Layout/Widgets/ShapeButtons.h"
+#include "../Source/WebAudio/LibraryPanel/UserLibraryManager.h"
+#include "../WebAudioGraph/WebAudioDictionary.h"
 
 class Project;
 
@@ -251,7 +251,7 @@ private:
 };
 
 //==============================================================================
-#include "Panel.h"
+#include "../Source/Layout/Panels/Panel.h"
 
 class LibraryPanel : public Panel, TextEditor::Listener, public AsyncUpdater
 {

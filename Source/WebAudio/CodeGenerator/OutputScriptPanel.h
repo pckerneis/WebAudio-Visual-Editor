@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include "JavascriptEditor.h"
+#include "../Source/Layout/ScriptEditor/JavascriptEditor.h"
 
 class OutputScriptPanel : public CodeEditorPanel
 {

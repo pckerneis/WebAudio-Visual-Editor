@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include "ResizableLayoutManager.h"
+#include "../ResizableLayoutManager.h"
 
 class PanelNode;
 class Panel;

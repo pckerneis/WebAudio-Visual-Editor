@@ -8,7 +8,7 @@
   ==============================================================================
 */
 
-#include "WebAudioGraph.h"
+#include "../Source/WebAudio/WebAudioGraph/WebAudioGraph.h"
 
 //==============================================================================
 
@@ -31,14 +31,14 @@ void WebAudioGraph::focusGained (FocusChangeType cause)
     GraphPanel::focusGained (cause);
 }
 
-#include "WebAudioInspectableElement.h"
-#include "WebAudioNode.h"
-#include "WebAudioContext.h"
-#include "WebAudioDynamicRoute.h"
-#include "WebAudioMessage.h"
-#include "WebAudioData.h"
-#include "WebAudioScript.h"
-#include "WebAudioComment.h"
+#include "../Source/WebAudio/GraphElements/WebAudioInspectableElement.h"
+#include "../Source/WebAudio/GraphElements/WebAudioNode.h"
+#include "../Source/WebAudio/GraphElements/WebAudioContext.h"
+#include "../Source/WebAudio/GraphElements/WebAudioDynamicRoute.h"
+#include "../Source/WebAudio/GraphElements/WebAudioMessage.h"
+#include "../Source/WebAudio/GraphElements/WebAudioData.h"
+#include "../Source/WebAudio/GraphElements/WebAudioScript.h"
+#include "../Source/WebAudio/GraphElements/WebAudioComment.h"
 
 class UndoableRemove : public UndoableAction
 {
@@ -354,9 +354,9 @@ XmlElement* WebAudioGraph::getXmlFor (GraphEmbeddedComponent* comp)
     return e;
 }
 
-#include "Project.h"
-#include "AudioFilesPanel.h"
-#include "WebAudioGraphElementTypeNames.h"
+#include "../Source/Project/Project.h"
+#include "../Source/WebAudio/AudioFilesPanel/AudioFilesPanel.h"
+#include "../Source/WebAudio/Helpers/WebAudioGraphElementTypeNames.h"
 GraphEmbeddedComponent* WebAudioGraph::createFromXml (const XmlElement& xml, bool undoable)
 {
     const int x = xml.getIntAttribute ("xpos");
@@ -629,8 +629,8 @@ void WebAudioGraph::pastePreset (const String& xmlDoc, Point<int> offset)
 
 //==============================================================================
 
-#include "Project.h"
-#include "WebAudioInspector.h"
+#include "../Source/Project/Project.h"
+#include "../Source/WebAudio/Inspector/WebAudioInspector.h"
 WebAudioGraphPanel::WebAudioGraphPanel (Project& proj) : Panel (&proj.getPanelManager()), project (proj), graphPanel (*this), inspector (*proj.findStaticPanelWithClass<WebAudioInspector>())
 {
     graphPanel.addListener (this);
@@ -684,7 +684,7 @@ void WebAudioGraphPanel::paint (Graphics &g)
     g.fillRect (b);
 }
 
-#include "CommandIDs.h"
+#include "../Source/Application/CommandIDs.h"
 void WebAudioGraphPanel::showPopupMenu (Point<int> pos)
 {
     PopupMenu m;
@@ -849,7 +849,7 @@ void WebAudioGraphPanel::reveal (ModifierKeys mods)
 {
 }
 
-#include "PanelWindow.h"
+#include "../Source/Layout/Windows/PanelWindow.h"
 void WebAudioGraphPanel::revealComponent (GraphEmbeddedComponent* compToReveal, ModifierKeys mods)
 {
     if (isInTab())
@@ -888,7 +888,7 @@ ApplicationCommandTarget* WebAudioGraphPanel::getNextCommandTarget()
     return findFirstTargetParentComponent();
 }
 
-#include "CommandIDs.h"
+#include "../Source/Application/CommandIDs.h"
 void WebAudioGraphPanel::getAllCommands (Array<CommandID>& commands)
 {
     commands.add (CommandIDs::undo);
@@ -1415,8 +1415,8 @@ void WebAudioGraphPanel::restoreState (XmlElement* state)
     graphPanel.getUndoManager().clearUndoHistory ();
 }
 
-#include "UserLibraryManager.h"
-#include "LibraryPanel.h"
+#include "../Source/WebAudio/LibraryPanel/UserLibraryManager.h"
+#include "../Source/WebAudio/LibraryPanel/LibraryPanel.h"
 void WebAudioGraphPanel::saveSelectionAsPreset()
 {
     ScopedPointer<XmlElement> selXml (graphPanel.getSelectionAsXml());
@@ -1517,7 +1517,7 @@ bool WebAudioGraphPanel::isInterestedInDragSource (const SourceDetails &dragSour
     return dragSourceDetails.description.toString() == "GraphElementPreset";
 }
 
-#include "LibraryPanel.h"
+#include "../Source/WebAudio/LibraryPanel/LibraryPanel.h"
 void WebAudioGraphPanel::itemDropped (const SourceDetails &dragSourceDetails)
 {
     if (auto item = dynamic_cast<PresetNavigation::ItemComponent*>(dragSourceDetails.sourceComponent.get()))

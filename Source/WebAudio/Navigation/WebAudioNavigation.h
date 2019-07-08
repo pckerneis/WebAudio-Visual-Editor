@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include "NavigationPanel.h"
+#include "../Source/Layout/Panels/NavigationPanel.h"
 
 class WebAudioInspectableElement;
 class Project;

@@ -10,8 +10,8 @@
 
 #pragma once
 
-#include "NavigationPanel.h"
-#include "ProjectCommandTarget.h"
+#include "../Source/Layout/Panels/NavigationPanel.h"
+#include "../Source/Project/ProjectCommandTarget.h"
 
 class ProjectManager;
 
@@ -220,8 +220,8 @@ PanelType* Project::findStaticPanelWithClass() const
 }
 
 //==============================================================================
-#include "WaveLookAndFeel.h"
-#include "EmbeddedFonts.h"
+#include "../Layout/WaveLookAndFeel.h"
+#include "../Layout/EmbeddedFonts.h"
 
 class StartWindow;
 class MainMenuBarModel;

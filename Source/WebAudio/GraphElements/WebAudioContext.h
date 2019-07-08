@@ -10,8 +10,8 @@
 
 #pragma once
 
-#include "WebAudioGraphElementTypeNames.h"
-#include "WebAudioInspectableElement.h"
+#include "../Helpers/WebAudioGraphElementTypeNames.h"
+#include "../Source/WebAudio/GraphElements/WebAudioInspectableElement.h"
 
 class Project;
 class WebAudioDestinationNode;

@@ -88,8 +88,8 @@ void* ConsoleComponent::clearInternal (void* udata)
 
 //==============================================================================
 
-#include "Project.h"
-#include "CommandIDs.h"
+#include "../Source/Project/Project.h"
+#include "../Source/Application/CommandIDs.h"
 void ConsoleComponent::ConsoleEditor::addPopupMenuItems (PopupMenu &m, const MouseEvent *mouseClickEvent)
 {
     TextEditor::addPopupMenuItems (m, mouseClickEvent);

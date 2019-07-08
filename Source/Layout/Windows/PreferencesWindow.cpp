@@ -8,7 +8,7 @@
   ==============================================================================
 */
 
-#include "PreferencesWindow.h"
+#include "../Source/Layout/Windows/PreferencesWindow.h"
 
 class ListPropertyComponent : public ChoicePropertyComponent
 {
@@ -226,7 +226,7 @@ class TextColourPropertyComponent : public BooleanPropertyComponent
 };
 //==============================================================================
 
-#include "EmbeddedFonts.h"
+#include "../Source/Layout/EmbeddedFonts.h"
 class FontChoicePropertyComponent : public ChoicePropertyComponent
 {
 public:
@@ -307,9 +307,9 @@ private:
 
 
 //==============================================================================
-#include "ColourPicker.h"
-#include "AppSettings.h"
-#include "Project.h"
+#include "../Source/Layout/Widgets/ColourPicker.h"
+#include "../Source/Application/AppSettings.h"
+#include "../Source/Project/Project.h"
 
 
 class AppPreferencesPanel::PreferencesPage

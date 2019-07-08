@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include "WaveLookAndFeel.h"
+#include "../Source/Layout/WaveLookAndFeel.h"
 
 /** \brief The about window content and static methods to add an intance to the desktop. */
 class AboutScreen    : public Component, public LookAndFeelUpdater::Listener

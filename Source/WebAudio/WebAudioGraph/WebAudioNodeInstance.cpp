@@ -11,7 +11,7 @@
 #include "WebAudioNodeInstance.h"
 
 #include "WebAudioDictionary.h"
-#include "WebAudioInspectableElement.h"
+#include "../GraphElements/WebAudioInspectableElement.h"
 
 WebAudioNodeInstance::WebAudioNodeInstance (String instanceName, String interfaceName, WebAudioInspectableElement* ref, Array<Descriptor> o) : name (instanceName), interf (interfaceName)
 {
