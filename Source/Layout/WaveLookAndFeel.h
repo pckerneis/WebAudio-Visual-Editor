@@ -78,6 +78,20 @@ public:
             setColourScheme (getDarkColourSchemeWithBase (mainColour));
         
         setUsingNativeAlertWindows(true);
+
+		auto windowBgCol = findColour(ResizableWindow::backgroundColourId);
+
+		// Panel default colours
+		setColour(Panel::panelBackgroundColourId, windowBgCol);
+		setColour(Panel::panelSeparatorColourId, windowBgCol.withMultipliedBrightness(0.8f));
+		setColour(Panel::panelNameColourId, Colours::white);
+
+		// Overlay default colours
+		setColour(PanelTree::overlayTopColourId,	Colours::orange);
+		setColour(PanelTree::overlayRightColourId,	Colours::blue);
+		setColour(PanelTree::overlayBottomColourId, Colours::green);
+		setColour(PanelTree::overlayLeftColourId,	Colours::red);
+		setColour(PanelTree::overlayTabColourId,	Colours::violet);
     }
     
     void setMainColour (Colour c)

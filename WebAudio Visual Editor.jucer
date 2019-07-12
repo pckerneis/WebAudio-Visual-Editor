@@ -68,12 +68,6 @@
                 file="Source/Layout/Panels/NavigationPanel.cpp"/>
           <FILE id="QWO4Lw" name="NavigationPanel.h" compile="0" resource="0"
                 file="Source/Layout/Panels/NavigationPanel.h"/>
-          <FILE id="Pp6UYR" name="Panel.cpp" compile="1" resource="0" file="Source/Layout/Panels/Panel.cpp"/>
-          <FILE id="bpwg6c" name="Panel.h" compile="0" resource="0" file="Source/Layout/Panels/Panel.h"/>
-          <FILE id="UfkQp7" name="PanelTree.cpp" compile="1" resource="0" file="Source/Layout/Panels/PanelTree.cpp"/>
-          <FILE id="Mq8LUB" name="PanelTree.h" compile="0" resource="0" file="Source/Layout/Panels/PanelTree.h"/>
-          <FILE id="ISlPng" name="TabbedPanel.cpp" compile="1" resource="0" file="Source/Layout/Panels/TabbedPanel.cpp"/>
-          <FILE id="LCyBFK" name="TabbedPanel.h" compile="0" resource="0" file="Source/Layout/Panels/TabbedPanel.h"/>
         </GROUP>
         <GROUP id="{4547466E-757D-AC9E-0A0D-6A1BE63C964D}" name="ScriptEditor">
           <FILE id="FlFcdb" name="JavascriptCodeTokeniser.cpp" compile="1" resource="0"
@@ -103,8 +97,6 @@
         <GROUP id="{DA42C557-2B72-1069-6EFC-3477D2273C1E}" name="Windows">
           <FILE id="Apq8VQ" name="AboutWindow.cpp" compile="1" resource="0" file="Source/Layout/Windows/AboutWindow.cpp"/>
           <FILE id="f0dMdv" name="AboutWindow.h" compile="0" resource="0" file="Source/Layout/Windows/AboutWindow.h"/>
-          <FILE id="gEdtlK" name="PanelWindow.cpp" compile="1" resource="0" file="Source/Layout/Windows/PanelWindow.cpp"/>
-          <FILE id="biGpct" name="PanelWindow.h" compile="0" resource="0" file="Source/Layout/Windows/PanelWindow.h"/>
           <FILE id="rUn3ok" name="PreferencesWindow.cpp" compile="1" resource="0"
                 file="Source/Layout/Windows/PreferencesWindow.cpp"/>
           <FILE id="LBFr9l" name="PreferencesWindow.h" compile="0" resource="0"
@@ -115,10 +107,6 @@
         <FILE id="Z0Sx6h" name="EmbeddedFonts.cpp" compile="1" resource="0"
               file="Source/Layout/EmbeddedFonts.cpp"/>
         <FILE id="JFtNxc" name="EmbeddedFonts.h" compile="0" resource="0" file="Source/Layout/EmbeddedFonts.h"/>
-        <FILE id="vymaSv" name="ResizableLayoutManager.cpp" compile="1" resource="0"
-              file="Source/Layout/ResizableLayoutManager.cpp"/>
-        <FILE id="OzDCm7" name="ResizableLayoutManager.h" compile="0" resource="0"
-              file="Source/Layout/ResizableLayoutManager.h"/>
         <FILE id="Blm1sI" name="WaveLookAndFeel.h" compile="0" resource="0"
               file="Source/Layout/WaveLookAndFeel.h"/>
       </GROUP>
@@ -267,6 +255,7 @@
         <MODULEPATH id="juce_dsp" path="../../../JUCE/modules"/>
         <MODULEPATH id="juce_osc" path="../../../JUCE/modules"/>
         <MODULEPATH id="juce_mongoose" path="JuceLibraryCode/modules/juce_mongoose"/>
+        <MODULEPATH id="juce_gui_panel_tree" path="../modules"/>
       </MODULEPATHS>
     </XCODE_MAC>
     <VS2017 targetFolder="Builds/VisualStudio2017" smallIcon="kFzVru" bigIcon="aISeGo">
@@ -292,6 +281,7 @@
         <MODULEPATH id="juce_audio_formats" path="../../juce"/>
         <MODULEPATH id="juce_audio_devices" path="../../juce"/>
         <MODULEPATH id="juce_audio_basics" path="../../juce"/>
+        <MODULEPATH id="juce_gui_panel_tree" path="../modules"/>
       </MODULEPATHS>
     </VS2017>
     <VS2019 targetFolder="Builds/VisualStudio2019">
@@ -317,6 +307,7 @@
         <MODULEPATH id="juce_audio_formats"/>
         <MODULEPATH id="juce_audio_devices"/>
         <MODULEPATH id="juce_audio_basics"/>
+        <MODULEPATH id="juce_gui_panel_tree" path="../modules"/>
       </MODULEPATHS>
     </VS2019>
   </EXPORTFORMATS>
@@ -334,6 +325,7 @@
     <MODULE id="juce_graphics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_gui_basics" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_gui_extra" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
+    <MODULE id="juce_gui_panel_tree" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_mongoose" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_opengl" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>
     <MODULE id="juce_osc" showAllCode="1" useLocalCopy="0" useGlobalPath="1"/>

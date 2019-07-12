@@ -41,7 +41,7 @@ PanelManager& Project::getPanelManager()
     return panelManager;
 }
 
-Project::Project(ProjectManager& pm) : projectManager (pm), panelManager (*this), commandTarget (&pm, this)
+Project::Project(ProjectManager& pm) : projectManager (pm), commandTarget (&pm, this)
 {
     createStaticPanels();
     // This constructor is called when loading a project. We don't need to open the default window as the
@@ -52,7 +52,7 @@ Project::Project(ProjectManager& pm) : projectManager (pm), panelManager (*this)
 #include "ProjectCommandTarget.h"
 #include "../Source/Application/AppSettings.h"
 Project::Project(String n, String d, File f, File dir, ProjectManager& pm)
-: creationDate(d), projectFile(f), projectDirectory (dir), projectManager (pm), panelManager (*this), commandTarget (&pm, this)
+: creationDate(d), projectFile(f), projectDirectory (dir), projectManager (pm), commandTarget (&pm, this)
 {
     createStaticPanels();
     // This constructor is called when creating a new project. To ensure the static panels are properly created
@@ -111,8 +111,6 @@ void Project::closeWindowsAndQuit()
     panelManager.closeAllWindows();
     projectManager.quitProject (this);
 }
-
-#include "../Source/Layout/Windows/PanelWindow.h"
 
 Result Project::saveAs (const File & file)
 {
@@ -373,7 +371,7 @@ void Project::restorePanelWindow (XmlElement* state)
     if (state == nullptr)
         return;
     
-    auto window = new PanelWindow (panelManager, *this);
+    auto window = new PanelWindow (panelManager);
     
     // Give some default size to the window
     auto userArea = Desktop::getInstance().getDisplays().getMainDisplay().userArea;
@@ -463,6 +461,20 @@ void Project::createStaticPanels()
     
     auto lib = new LibraryPanel (*this);
     staticPanels.add (lib);
+
+	// Get shared application command manager
+	auto& commandManager = getApplicationCommandManager();
+
+	for (auto p : staticPanels)
+	{
+		if (auto cmdPanel = dynamic_cast<ApplicationCommandTarget*>(p))
+		{
+			//p->setBackgroundColour(Colours::red);
+			p->addKeyListener(commandManager.getKeyMappings());
+			p->setWantsKeyboardFocus(true);
+			commandManager.registerAllCommandsForTarget(cmdPanel);
+		}
+	}
 }
 
 bool Project::windowContainsAllStaticPanels (PanelWindow* window)
@@ -486,12 +498,15 @@ void Project::restoreDefaultPanelLayout()
 
 PanelWindow* Project::openDefaultWindow()
 {
-    auto window = new PanelWindow (panelManager, *this);
+    auto window = new PanelWindow (panelManager);
+	window->setMenuBar(projectManager.getMenuBarModel());
+	window->setNextCommandTarget(&getCommandTarget());
+
     auto userArea = Desktop::getInstance().getDisplays().getMainDisplay().userArea;
     window->centreWithSize (userArea.getWidth() * 0.9, userArea.getHeight() * 0.9);
     panelManager.addPanelWindow (window);
     
-    auto& panelRoot = window->panelTree.getRootItem();
+    auto& panelRoot = window->getPanelTree().getRootItem();
     
     auto l = panelRoot.addChildNode (-0.2, 100);
     l->addChildNode (-0.6, 100)->setComponent (getNavigationPanel());

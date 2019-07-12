@@ -10,7 +10,6 @@
 
 #pragma once
 
-#include "../Source/Layout/Panels/Panel.h"
 #include "../Source/Layout/Widgets/ShapeButtons.h"
 
 class Project;

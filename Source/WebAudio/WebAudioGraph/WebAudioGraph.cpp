@@ -849,7 +849,6 @@ void WebAudioGraphPanel::reveal (ModifierKeys mods)
 {
 }
 
-#include "../Source/Layout/Windows/PanelWindow.h"
 void WebAudioGraphPanel::revealComponent (GraphEmbeddedComponent* compToReveal, ModifierKeys mods)
 {
     if (isInTab())

@@ -171,7 +171,6 @@ String WebAudioScript::getDefaultName() const
     return "script";
 }
 
-#include "../Source/Layout/Panels/TabbedPanel.h"
 #include "../Source/Project/Project.h"
 void WebAudioScript::showEditorInTabs()
 {

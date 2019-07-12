@@ -10,7 +10,7 @@
 
 #pragma once
 
-#include "Panel.h"
+#include "../JuceLibraryCode/JuceHeader.h"
 
 //==============================================================================
 class NavigationItem;

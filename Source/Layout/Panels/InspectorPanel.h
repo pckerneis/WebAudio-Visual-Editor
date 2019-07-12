@@ -37,7 +37,6 @@ private:
 };
 
 //==============================================================================
-#include "Panel.h"
 
 class InspectorPanel :  public Panel
 {

@@ -54,7 +54,6 @@ private:
 };
 
 //==============================================================================
-#include "../Source/Layout/Panels/Panel.h"
 #include "../Source/Layout/Panels/NavigationPanel.h"
 #include "../Source/WebAudio/WebAudioGraph/GraphTipComponent.h"
 #include "../Source/WebAudio/WebAudioGraph/WebAudioNodeInstance.h"
@@ -79,6 +78,7 @@ class WebAudioScript;
 class WebAudioComment;
 
 class WebAudioGraphPanel :  public Panel,
+							public ApplicationCommandTarget,
                             public GraphPanel::Listener,
                             public NavigationPanel::Navigable,
                             public DragAndDropTarget

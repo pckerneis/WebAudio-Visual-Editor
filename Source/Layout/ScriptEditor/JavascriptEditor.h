@@ -192,7 +192,6 @@ private:
 
 //==============================================================================
 
-#include "../Source/Layout/Panels/Panel.h"
 #include "../Source/Application/CommandIDs.h"
 
 class CodeEditorPanel : public Panel, public JsEditor::Listener

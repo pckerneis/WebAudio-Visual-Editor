@@ -10,7 +10,6 @@
 
 #pragma once
 
-#include "../Source/Layout/Panels/Panel.h"
 #include "../Source/Layout/Widgets/ShapeButtons.h"
 #include "../Source/WebAudio/LibraryPanel/UserLibraryManager.h"
 #include "../WebAudioGraph/WebAudioDictionary.h"
@@ -251,7 +250,6 @@ private:
 };
 
 //==============================================================================
-#include "../Source/Layout/Panels/Panel.h"
 
 class LibraryPanel : public Panel, TextEditor::Listener, public AsyncUpdater
 {

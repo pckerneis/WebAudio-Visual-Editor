@@ -10,7 +10,6 @@
 
 #pragma once
 
-#include "../Source/Layout/Panels/Panel.h"
 #include "AudioFilesManager.h"
 #include "../Source/Layout/Widgets/ShapeButtons.h"
 
@@ -58,6 +57,7 @@ private:
 class Project;
 
 class AudioFilesPanel :     public Panel,
+							public ApplicationCommandTarget,
                             public Button::Listener,
                             public PreviewWidget::Listener,
                             public TableListBoxModel,
