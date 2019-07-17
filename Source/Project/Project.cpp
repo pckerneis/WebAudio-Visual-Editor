@@ -38,23 +38,27 @@ ApplicationCommandManager& Project::getApplicationCommandManager()
 
 PanelManager& Project::getPanelManager()
 {
-    return panelManager;
+	return panelManager;// *panelManager.get();
 }
 
-Project::Project(ProjectManager& pm) : projectManager (pm), commandTarget (&pm, this)
+Project::Project(ProjectManager& pm) : projectManager (pm), commandTarget (&pm, this), panelManager(this)
 {
     createStaticPanels();
+	//panelManager = new MainPanelManager(*this);
+
     // This constructor is called when loading a project. We don't need to open the default window as the
     // panel layout will be restored anyway.
-    //triggerAsyncUpdate();
 }
 
 #include "ProjectCommandTarget.h"
 #include "../Source/Application/AppSettings.h"
 Project::Project(String n, String d, File f, File dir, ProjectManager& pm)
-: creationDate(d), projectFile(f), projectDirectory (dir), projectManager (pm), commandTarget (&pm, this)
+: Project(pm)
 {
-    createStaticPanels();
+	creationDate = d;
+	projectFile = f;
+	projectDirectory = dir;
+
     // This constructor is called when creating a new project. To ensure the static panels are properly created
     // at the time we create the window, we use an async update.
     triggerAsyncUpdate();
@@ -144,7 +148,8 @@ Result Project::saveAs (const File & file)
     if (auto um = getMainUndoManager())
         um->clearUndoHistory();
     
-    panelManager.refreshWindowsTitle();
+	// TODO : change window titles
+    //panelManager.refreshWindowsTitle();
     
     return Result::ok();
 }
@@ -371,7 +376,7 @@ void Project::restorePanelWindow (XmlElement* state)
     if (state == nullptr)
         return;
     
-    auto window = new PanelWindow (panelManager);
+    auto window = panelManager.createPanelWindow(nullptr);
     
     // Give some default size to the window
     auto userArea = Desktop::getInstance().getDisplays().getMainDisplay().userArea;
@@ -496,11 +501,24 @@ void Project::restoreDefaultPanelLayout()
     openDefaultWindow();
 }
 
+String Project::getWindowName() const
+{
+	const auto projectName = getName();
+
+	return "WebAudio Visual Editor" + (projectName.isEmpty() ? "" : " - " + projectName);
+}
+
+void Project::refreshWindowNames()
+{
+	auto& windows = panelManager.getWindows();
+
+	for (auto w : windows)
+		w->setName(getWindowName());
+}
+
 PanelWindow* Project::openDefaultWindow()
 {
-    auto window = new PanelWindow (panelManager);
-	window->setMenuBar(projectManager.getMenuBarModel());
-	window->setNextCommandTarget(&getCommandTarget());
+    auto window = panelManager.createPanelWindow(nullptr);
 
     auto userArea = Desktop::getInstance().getDisplays().getMainDisplay().userArea;
     window->centreWithSize (userArea.getWidth() * 0.9, userArea.getHeight() * 0.9);
@@ -685,6 +703,22 @@ void ProjectManager::closeStartWindow()
     StartWindow::close();
 }
 
+Project* ProjectManager::getActiveProject() const
+{
+	auto window = TopLevelWindow::getActiveTopLevelWindow();
+
+	if (auto panelWindow = dynamic_cast<PanelWindow*>(window))
+	{
+		auto& pm = panelWindow->getPanelTree().getPanelManager();
+
+		for (auto p : projects)
+			if (&p->getPanelManager() == &pm)
+				return p;
+	}
+
+	return nullptr;
+}
+
 bool ProjectManager::tryToCloseProject (Project* project)
 {
     if (project == nullptr)
@@ -703,4 +737,18 @@ bool ProjectManager::tryToQuitApplication()
         app->quit();
     
     return true;
+}
+
+PanelWindow* Project::MainPanelManager::createPanelWindow(Panel* content)
+{
+	auto w = new PanelWindow(*this, content);
+
+	if (project == nullptr)
+		return w;
+
+	w->setMenuBar(project->getProjectManager().getMenuBarModel());
+	w->setNextCommandTarget(&project->getCommandTarget());
+	w->setName(project->getWindowName());
+
+	return w;
 }

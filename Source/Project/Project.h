@@ -57,6 +57,17 @@ public:
     static ApplicationCommandManager& getApplicationCommandManager();
     
     //==============================================================================
+	class MainPanelManager : public PanelManager
+	{
+	public:
+		MainPanelManager(Project* p) : project(p) {}
+
+		PanelWindow* createPanelWindow(Panel* content) override;
+
+	private:
+		WeakReference<Project> project;
+	};
+
     /** \brief Returns the panel manager for this project. Each project has its own
      *  panel manager so that panels from different can't be 'mixed' in a same window
      */
@@ -94,6 +105,10 @@ public:
      */
     void restoreDefaultPanelLayout();
     
+	String getWindowName() const;
+
+	void refreshWindowNames();
+
 private:
     //To use weak references to this project
     WeakReference<Project>::Master masterReference;
@@ -197,7 +212,7 @@ private:
     OwnedArray<Panel> staticPanels;
     
     ProjectManager& projectManager;
-    PanelManager panelManager;
+	MainPanelManager panelManager;
     
     ProjectCommandTarget commandTarget;
     
@@ -248,8 +263,7 @@ public:
     
     ProjectCommandTarget& getCommandTarget() { return commandTarget; }
     
-    Project* getActiveProject() const { return activeProject; }
-    void setActiveProject (Project* project) { activeProject = project; }
+	Project* getActiveProject() const;
 
 	MainMenuBarModel* getMenuBarModel() { return menuModel; }
     
