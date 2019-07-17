@@ -15,7 +15,7 @@ WebAudioData::WebAudioData (WebAudioGraphPanel* parent, Descriptor& descr) : Web
     setZ (5);
     setSize (getDefaultWidth(), getDefaultHeight());
     
-    prepareInspectablePropertiesTree (getUICompTypeName());
+    //prepareInspectablePropertiesTree (getUICompTypeName());
     
     prepareLabel();
     label->setJustificationType (Justification::centred);

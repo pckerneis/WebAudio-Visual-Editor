@@ -17,7 +17,7 @@ WebAudioComment::WebAudioComment (WebAudioGraphPanel* parent) : WebAudioEmbedded
     setZ (5);
     setSize (getDefaultWidth() * 1.8f, getDefaultHeight());
     
-    prepareInspectablePropertiesTree (getUICompTypeName());
+    //prepareInspectablePropertiesTree (getUICompTypeName());
     
     addAndMakeVisible (editor);
     editor.addListener (this);

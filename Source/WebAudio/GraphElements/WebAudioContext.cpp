@@ -26,7 +26,7 @@ WebAudioContext::WebAudioContext (Project& proj, WebAudioGraphPanel* parent, Des
     
     setParentGraph (&parent->getGraphPanel());
     
-    prepareInspectablePropertiesTree (getUICompTypeName());
+    //prepareInspectablePropertiesTree (getUICompTypeName());
     
     setNumPins (1, Pin::Placement::PinOnRight);
 }

@@ -24,7 +24,7 @@ WebAudioDynamicRoute::WebAudioDynamicRoute (WebAudioGraphPanel* parent) : WebAud
     if (auto border = getChildComponent (0))
         border->setAlpha (0);
     
-    prepareInspectablePropertiesTree (getUICompTypeName());
+    //prepareInspectablePropertiesTree (getUICompTypeName());
 }
 
 WebAudioDynamicRoute::~WebAudioDynamicRoute()

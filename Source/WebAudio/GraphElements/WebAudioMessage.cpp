@@ -101,7 +101,7 @@ WebAudioMessage::WebAudioMessage (WebAudioGraphPanel* parent) : WebAudioEmbedded
     
     setNumPins (1, Pin::Placement::PinOnLeft);
     
-    prepareInspectablePropertiesTree (getUICompTypeName());
+    //prepareInspectablePropertiesTree (getUICompTypeName());
     
     addAndMakeVisible (editor);
     editor.addListener (this);

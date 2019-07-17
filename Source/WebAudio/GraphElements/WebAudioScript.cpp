@@ -64,7 +64,7 @@ WebAudioScript::WebAudioScript (WebAudioGraphPanel& parent) : WebAudioFoldable (
     setZ (5);
     setSize (getDefaultWidth(), getDefaultHeight());
     
-    prepareInspectablePropertiesTree (getUICompTypeName());
+    //prepareInspectablePropertiesTree (getUICompTypeName());
     
     prepareLabel();
     label->setJustificationType (Justification::centred);

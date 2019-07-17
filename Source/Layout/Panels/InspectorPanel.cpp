@@ -64,6 +64,8 @@ void InspectorPanel::setInspectedItems (Array<InspectableElement*> elems)
 
 void InspectorPanel::populatePropertyPanel()
 {
+	return;	// TODO : remove return
+
     inspectedElementsTree.removeAllChildren (nullptr);
     
     if (useCommonProperties && inspectedElements.size() > 1)
