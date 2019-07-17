@@ -464,8 +464,10 @@ void Project::createStaticPanels()
     staticPanels.add (nav);
     nav->setRootNavigable (this);
     
+	/*
     auto lib = new LibraryPanel (*this);
     staticPanels.add (lib);
+	*/
 
 	// Get shared application command manager
 	auto& commandManager = getApplicationCommandManager();
@@ -532,7 +534,7 @@ PanelWindow* Project::openDefaultWindow()
     
     auto c = panelRoot.addChildNode (-0.6, 100);
     auto ctop = c->addChildNode (-0.40, 100);
-    ctop->addChildNode (-0.2, 100)->setComponent (findStaticPanelWithClass<LibraryPanel>());
+    //ctop->addChildNode (-0.2, 100)->setComponent (findStaticPanelWithClass<LibraryPanel>());
     ctop->addChildNode (-0.8, 100)->setComponent (findStaticPanelWithClass<WebAudioGraphPanel>());
     
     c->addChildNode (30, 30,30)->setComponent (findStaticPanelWithClass<CodeGenerationPanel>());
@@ -751,4 +753,10 @@ PanelWindow* Project::MainPanelManager::createPanelWindow(Panel* content)
 	w->setName(project->getWindowName());
 
 	return w;
+}
+
+void Project::MainPanelManager::lastWindowWasClosed()
+{
+	if (project != nullptr)
+		project->getProjectManager().quitProject(project);
 }

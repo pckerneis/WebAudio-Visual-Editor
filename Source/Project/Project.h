@@ -63,6 +63,7 @@ public:
 		MainPanelManager(Project* p) : project(p) {}
 
 		PanelWindow* createPanelWindow(Panel* content) override;
+		void lastWindowWasClosed() override;
 
 	private:
 		WeakReference<Project> project;
@@ -280,7 +281,6 @@ private:
     ScopedPointer<MainMenuBarModel> menuModel;
 
 	OwnedArray<Project> projects;
-    WeakReference<Project> activeProject;
     
     bool allowMultipleProjects = true;
     
