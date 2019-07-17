@@ -26,9 +26,9 @@ WebAudioNode::WebAudioNode (Project& proj, Descriptor& descriptor, WebAudioGraph
     
     setCanBeRenamed (canBeRenamed);
     
-    prepareInspectablePropertiesTree (getUICompTypeName());
+    //prepareInspectablePropertiesTree (getUICompTypeName());
     
-    setPropertyValue ("context", getAudioContextName());
+    //setPropertyValue ("context", getAudioContextName());
 }
 
 #include "../WebAudioGraph/WebAudioNodeInstance.h"

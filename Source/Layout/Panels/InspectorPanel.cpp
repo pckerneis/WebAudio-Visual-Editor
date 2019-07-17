@@ -33,11 +33,11 @@ void InspectableElement::valueTreePropertyChanged (ValueTree &tree, const Identi
 //==============================================================================
 InspectorPanel::InspectorPanel (PanelManager* manager, PropertyTree* customTree, bool commonProps) : Panel (manager), useCommonProperties (commonProps)
 {
-    propertyTree = customTree == nullptr ? new PropertyTree() : customTree;
+    //propertyTree = customTree == nullptr ? new PropertyTree() : customTree;
     
     inspectedElementsTree = propertyTree->createTree ("LABEL", "Selected");
-    propertyTree->setRootItemVisible (false);
-    addAndMakeVisible (propertyTree);
+    //propertyTree->setRootItemVisible (false);
+    //addAndMakeVisible (propertyTree);
     setPanelName ("Inspector");
 }
 
@@ -51,7 +51,9 @@ void InspectorPanel::paint (Graphics& g)
 void InspectorPanel::resized()
 {
     Panel::resized();
-    propertyTree->setBounds (getLocalBounds().withTrimmedTop(getHeaderHeight()));
+	
+	if (propertyTree != nullptr)
+		propertyTree->setBounds (getLocalBounds().withTrimmedTop(getHeaderHeight()));
 }
 
 void InspectorPanel::setInspectedItems (Array<InspectableElement*> elems)
@@ -72,6 +74,10 @@ void InspectorPanel::populatePropertyPanel()
     for (auto elem : inspectedElements)
         inspectedElementsTree.addChild (elem->inspectableProperties, ++index, nullptr);
     
+
+	if (propertyTree == nullptr)
+		return;
+
     propertyTree->loadValueTree (inspectedElementsTree, 1);
     propertyTree->repaint();
 }
