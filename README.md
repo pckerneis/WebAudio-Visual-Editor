@@ -1,6 +1,6 @@
 # WebAudio Visual Editor
 
-**Important note : this project needs heavy refactoring. It was developed on OSX and there are many unsolved issues on Windows. It's read-only for now. A lot of GUI parts will be turned into separate JUCE modules for more maintainability and easier debugging when working on WebAudio Visual Editor's specific code.**
+**Important note : this project is no longer maintained.**
 
 ![WebAudio Visual Editor screenshot](/docs/images/screenshot01.png)
 
